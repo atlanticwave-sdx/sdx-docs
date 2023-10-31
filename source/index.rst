@@ -7,7 +7,7 @@ Welcome to AtlanticWave-SDX's documentation!
 ============================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    lc_oxp.rst
