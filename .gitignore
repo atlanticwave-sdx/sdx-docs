@@ -1,5 +1,6 @@
 /venv*/
 /*.egg-info/
+/.tox/
 
 .DS_Store
 
