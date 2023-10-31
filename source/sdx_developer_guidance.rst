@@ -1,5 +1,5 @@
-How to Contribute
-~~~~~~~~~~~~~~~~~
+Contributing to AtlanticWave-SDX
+================================
 
 Developer Guidance
 ^^^^^^^^^^^^^^^^^^

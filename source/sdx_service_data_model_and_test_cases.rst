@@ -1,5 +1,5 @@
 Service Data Model as Input to AW-SDX
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=====================================
 
 Layer 2 VPN Service Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^
