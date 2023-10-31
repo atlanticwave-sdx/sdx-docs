@@ -13,6 +13,8 @@ all the components.
 The overall update workflow is shown in the figure with more detailed
 tasks followed.
 
+.. image:: media/sdx-datamodel-development.png
+
 Step 1: Update the data model specification document with a new version number.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
