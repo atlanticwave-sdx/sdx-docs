@@ -10,6 +10,12 @@ Welcome to AtlanticWave-SDX's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   lc_oxp.rst
+   sdx_data_model_development_procedure.rst
+   sdx_developer_guidance.rst
+   sdx_service_data_model_and_test_cases.rst
+   sdx_software_system_design.rst
+   sdx_system_integration_test_procedure.rst
 
 
 Indices and tables
