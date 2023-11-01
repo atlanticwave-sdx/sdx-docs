@@ -18,7 +18,10 @@ tasks followed.
 Step 1: Update the data model specification document with a new version number.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(https://drive.google.com/drive/folders/1_IsB9O9x1dF5zvBI-txRyR6aVuck4vZ_)
+The specs are in a Google Drive folder_.
+
+.. _folder: https://drive.google.com/drive/folders/1_IsB9O9x1dF5zvBI-txRyR6aVuck4vZ_
+
 
 Step 2: Update the “datamodel” repo to conform to the latest version of above specification.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
