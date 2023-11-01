@@ -33,7 +33,7 @@ jobs:
 
       - name: Build HTML documentation with Sphinx
         run: |
-          sphinx-build -W -b html -d ./build/_build/doctrees ./source ./build/_build/html
+          sphinx-build -W -b html -d ./build/doctrees ./source ./build/html
         
       # See https://github.com/actions/upload-artifact
       - name: Upload build artifacts
