@@ -12,9 +12,7 @@ testing environment consists of three layer level tests, two cross-layer
 integration tests, and the final system test, as depicted in the
 following figure.
 
-.. image:: media/image1.png
-   :width: 6.5in
-   :height: 4.875in
+.. image:: ./media/system-integration.png
 
 Before new deployment, the AW-SDX software system has to validate the
 services on an end-to-end basis that are specified in the next section.

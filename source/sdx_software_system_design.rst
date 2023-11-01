@@ -8,9 +8,7 @@ Data plane
 
 1.1 How to abstract the AmLight Interdomain topology?
 
-.. image:: media/image1.png
-   :width: 6.5in
-   :height: 4.875in
+.. image:: media/amlight-sax-zaoxi.png
 
 2. .. rubric:: SDX 2.0 architecture and implementation
       :name: sdx-2.0-architecture-and-implementation
@@ -20,16 +18,12 @@ Data plane
          and Message Queue; (2) will be developed independently.
          :name: a-service-oriented-modular-design-where-different-subsystems-1-only-communicate-with-each-other-via-restapis-and-message-queue-2-will-be-developed-independently.
 
-.. image:: media/image2.png
-   :width: 6.5in
-   :height: 5.68333in
+.. image:: media/system-apis.png
 
 Detailed System Architecture based on OpenAPI and Pub-Sub
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   .. image:: media/image3.png
-      :width: 6.5in
-      :height: 4.875in
+   .. image:: media/detailed-system.png
 
 c. .. rubric:: Four thrusts
       :name: four-thrusts
@@ -72,9 +66,7 @@ c. .. rubric:: Four thrusts
 
    https://drive.google.com/drive/folders/128CaADqVSFMS83kRYpMuPjhDz2h9Y0n-
 
-.. image:: media/image4.png
-   :width: 6.5in
-   :height: 4.875in
+.. image:: media/system-flow.png
 
 2. .. rubric:: Monitoring information update: per-link available
       bandwidth, latency, available vlans, utilization, and timestamps.
@@ -94,9 +86,7 @@ LC OpenAPI Server:
    SDX-LC API Client SDK:
    https://github.com/atlanticwave-sdx/sdx-lc-client
 
-.. image:: media/image5.png
-   :width: 6.5in
-   :height: 4.875in
+.. image:: media/system-lc.png
 
 1. (1) Domain provisioning system (Kytos, OESS, SDX-OF)
 

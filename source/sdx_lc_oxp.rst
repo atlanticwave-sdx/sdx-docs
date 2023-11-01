@@ -102,7 +102,7 @@ Here’s a diagram that illustrates the process:
 (It’s inside [AtlanticWave-SDX2.0/Design Documents] folder. Feel free to
 edit)
 
-.. image:: media/image2.png
+.. image:: ./media/sdx-lc-oxp.png
    :width: 6.5in
    :height: 4.77778in
 
