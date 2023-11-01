@@ -1,6 +1,6 @@
 # AtlanticWave-SDX Documentation.
 
-[![rtd-docs-badge][rtd-docs]]
+[![rtd-docs-badge]][rtd-docs]
 
 This repository contains some documentation for AtlanticWave-SDX
 project.  This is work in progress -- most of our documentation
