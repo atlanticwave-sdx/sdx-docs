@@ -1,6 +1,10 @@
-# sdx-docs
+# AtlanticWave-SDX Documentation.
 
-Some documentation for AtlanticWave-SDX project
+This repository contains some documentation for AtlanticWave-SDX
+project.  This is work in progress -- most of our documentation
+currently lives elsewhere, and we are evaluating a GitHub based
+workflow of documenting the project.
+
 
 ## Writing the docs
 
