@@ -1,5 +1,7 @@
 # AtlanticWave-SDX Documentation.
 
+[![rtd-docs-badge][rtd-docs]]
+
 This repository contains some documentation for AtlanticWave-SDX
 project.  This is work in progress -- most of our documentation
 currently lives elsewhere, and we are evaluating a GitHub based
@@ -28,3 +30,9 @@ Then run:
 ```console
 $ make html
 ```
+
+<!-- URLs -->
+
+[rtd-docs]: https://sdx-docs.readthedocs.io/en/latest/?badge=latest
+[rtd-docs-badge]: https://readthedocs.org/projects/sdx-docs/badge/?version=latest (Documentation Status)
+
