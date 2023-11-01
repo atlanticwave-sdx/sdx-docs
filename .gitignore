@@ -4,7 +4,6 @@
 
 .DS_Store
 
-/build/doctrees/
-/build/html/
-/build/_build/
+/build/
+
 /*.docx#
