@@ -24,6 +24,12 @@ AtlanticWave-SDX project documentation
    sdx_software_system_design.rst
    sdx_system_integration_test_procedure.rst
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Deploying and Running AtlanticWave-SDX
+
+   sdx_deployment.rst
+
 
 Indices and tables
 ==================
