@@ -15,7 +15,7 @@ AtlanticWave-SDX project documentation
 
 .. toctree::
    :maxdepth: 1
-   :caption: Developing the project
+   :caption: Developing AtlanticWave-SDX
 
    sdx_developer_guidance.rst
    sdx_software_system_design.rst
@@ -27,7 +27,7 @@ AtlanticWave-SDX project documentation
 
 .. toctree::
    :maxdepth: 1
-   :caption: Deploying and Running AtlanticWave-SDX
+   :caption: Deploying AtlanticWave-SDX
 
    sdx_deployment.rst
 
