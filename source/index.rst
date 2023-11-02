@@ -26,6 +26,13 @@ AtlanticWave-SDX project documentation
 
 .. toctree::
    :maxdepth: 1
+   :caption: Releases
+
+   sdx_release_notes_2.0.0.rst
+
+
+.. toctree::
+   :maxdepth: 1
    :caption: Deploying and Running AtlanticWave-SDX
 
    sdx_deployment.rst
