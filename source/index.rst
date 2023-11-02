@@ -24,18 +24,20 @@ AtlanticWave-SDX project documentation
    sdx_lc_oxp.rst
    sdx_system_integration_test_procedure.rst
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Releases
-
-   sdx_release_notes_2.0.0.rst
-
 
 .. toctree::
    :maxdepth: 1
    :caption: Deploying and Running AtlanticWave-SDX
 
    sdx_deployment.rst
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Releases
+
+   sdx_release_notes_2.0.0.rst
+
 
 
 Indices and tables
