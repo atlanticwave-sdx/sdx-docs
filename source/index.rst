@@ -18,9 +18,9 @@ AtlanticWave-SDX project documentation
    :caption: Developing the project
 
    sdx_developer_guidance.rst
-   sdx_software_system_design.rst   
+   sdx_software_system_design.rst
    sdx_data_model_development_procedure.rst
-   sdx_service_data_model_and_test_cases.rst   
+   sdx_service_data_model_and_test_cases.rst
    sdx_lc_oxp.rst
    sdx_system_integration_test_procedure.rst
 
@@ -37,12 +37,3 @@ AtlanticWave-SDX project documentation
    :caption: Releases
 
    sdx_release_notes_2.0.0.rst
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
