@@ -39,8 +39,13 @@ The resulting HTML files will be under [build/html].
 ## Contributing to AtlanticWave-SDX Documentation
 
 Please start a pull request.  If the changes are large, it would be a
-good idea to file an issue first so that we can discuss the changes
-first.
+good idea to file an issue first so that we can discuss them before
+you set out to spend considerable time.
+
+Pull requests must pass two checks: one by a readthedocs.org PR
+builder, and another by a GitHub workflow that runs Sphinx with
+warnings enabled.  They also must be approved by a reviewer before
+they can be merged.
 
 
 ## Publishing the docs
