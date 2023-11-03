@@ -1,4 +1,4 @@
-# AtlanticWave-SDX Documentation.
+# AtlanticWave-SDX Documentation
 
 [![rtd-docs-badge]][rtd-docs]
 
@@ -7,17 +7,19 @@ project.  This is work in progress -- most of our documentation
 currently lives elsewhere, and we are evaluating a GitHub based
 workflow of documenting the project.
 
+The documentation sources live in [sources] directory.  They are text
+documents with [reStructuredText][reST] markup.  HTML version of the
+documents is produced by processing them with [Sphinx], and they are
+hosted at https://sdx-docs.readthedocs.io/.
+
+Some additional information about reStruredText can be found in
+[Sphinx manual][Sphinx+reST].
+
 
 ## Writing the docs
 
-Edit the source files in source directory.  They are in
-reStructuredText format.
-
-
-## Building the docs
-
-First, install Sphinx and a theme, preferably in a virtual
-environment:
+The setup will require Python.  First, install the requirements,
+preferably in a virtual environment:
 
 ```console
 $ python3 -m venv venv --upgrade-deps
@@ -25,13 +27,45 @@ $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
-Then run:
+Then make the edits you want to files under [source], and then run:
 
 ```console
 $ make html
 ```
 
+The resulting HTML files will be under [build/html].
+
+
+## Contributing to AtlanticWave-SDX Documentation
+
+Please start a pull request.  If the changes are large, it would be a
+good idea to file an issue first so that we can discuss them before
+you set out to spend considerable time.
+
+Pull requests must pass two checks: one by a readthedocs.org PR
+builder, and another by a GitHub workflow that runs Sphinx with
+warnings enabled.  They also must be approved by a reviewer before
+they can be merged.
+
+
+## Publishing the docs
+
+Publishing is automated: https://sdx-docs.readthedocs.io/ will be
+updated when pull requests are merged to `main` branch of this
+repository.
+
+
 <!-- URLs -->
+
+[source]: ./source/
+[build/html]: ./build/
+
+[reST]: https://docutils.sourceforge.io/rst.html
+[readthedocs.org]: https://about.readthedocs.com/
+[Sphinx]: https://www.sphinx-doc.org/en/master/index.html
+[Sphinx+reST]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+
+[sdx-docs-rtd]: https://sdx-docs.readthedocs.io/
 
 [rtd-docs]: https://sdx-docs.readthedocs.io/en/latest/?badge=latest
 [rtd-docs-badge]: https://readthedocs.org/projects/sdx-docs/badge/?version=latest (Documentation Status)
