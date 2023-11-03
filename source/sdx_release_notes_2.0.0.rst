@@ -22,10 +22,10 @@ Components
 
 - Each OXP consists of two essential elements:
 
-  - Network Orchestrator (OXPO): Automated network configuration,
+  + Network Orchestrator (OXPO): Automated network configuration,
     flow, and traffic engineering policies.
 
-  - SDX Local Controller (SDX-LC): Acts as a bridge between the OXPO
+  + SDX Local Controller (SDX-LC): Acts as a bridge between the OXPO
     and the centralized SDX Controller.
 
 OXPO Selection
