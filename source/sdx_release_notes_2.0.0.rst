@@ -14,6 +14,22 @@ OXPOs. This abstraction layer enables the SDX Controller to communicate
 with various OXPOs using a consistent data model, regardless of the API
 variations in other solutions.
 
+Software Releases
+-----------------
+
+Sources of SDX Controller, SDX-LC, and the libraries they use (pce and
+datamodel) are available at GitHub:
+
+- https://github.com/atlanticwave-sdx/sdx-controller/releases/tag/2.0.0
+- https://github.com/atlanticwave-sdx/sdx-lc/releases/tag/2.0.0  
+- https://github.com/atlanticwave-sdx/pce/releases/tag/2.0.0
+- https://github.com/atlanticwave-sdx/datamodel/releases/tag/2.0.0
+
+Docker images are available too::
+
+  $ docker pull awsdx/sdx-lc:2.0.0
+  $ docker pull awsdx/sdx-controller:2.0.0
+
 Components
 ----------
 
