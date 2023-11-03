@@ -27,7 +27,7 @@ $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
-Then make the edits you want, and then run:
+Then make the edits you want to files under [source], and then run:
 
 ```console
 $ make html
@@ -57,7 +57,7 @@ repository.
 
 <!-- URLs -->
 
-[sources]: ./sources/
+[source]: ./source/
 [build/html]: ./build/
 
 [reST]: https://docutils.sourceforge.io/rst.html
