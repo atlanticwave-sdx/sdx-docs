@@ -10,7 +10,7 @@ workflow of documenting the project.
 The documentation sources live in [sources] directory.  They are text
 documents with [reStructuredText][reST] markup.  HTML version of the
 documents is produced by processing them with [Sphinx], and they are
-hosted by [readthedocs.org], at https://sdx-docs.readthedocs.io/.
+hosted by [readthedocs.org], at [https://sdx-docs.readthedocs.io/].
 
 Some additional information about reStruredText can be found in
 [Sphinx manual][Sphinx+reST].
@@ -36,6 +36,13 @@ $ make html
 The resulting HTML files will be under [build/html].
 
 
+## Publishing the docs
+
+Publishing is automated: https://sdx-docs.readthedocs.io/ will be
+updated when pull requests are merged to `main` branch of this
+repository.
+
+
 <!-- URLs -->
 
 [sources]: ./sources
@@ -45,6 +52,8 @@ The resulting HTML files will be under [build/html].
 [readthedocs.org]: https://about.readthedocs.com/
 [Sphinx]: https://www.sphinx-doc.org/en/master/index.html
 [Sphinx+reST]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+
+[sdx-docs-rtd]: https://sdx-docs.readthedocs.io/
 
 [rtd-docs]: https://sdx-docs.readthedocs.io/en/latest/?badge=latest
 [rtd-docs-badge]: https://readthedocs.org/projects/sdx-docs/badge/?version=latest (Documentation Status)
