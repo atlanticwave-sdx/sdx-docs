@@ -57,8 +57,8 @@ repository.
 
 <!-- URLs -->
 
-[sources]: ./sources
-[build/html]: ./build/html
+[sources]: ./sources/
+[build/html]: ./build/
 
 [reST]: https://docutils.sourceforge.io/rst.html
 [readthedocs.org]: https://about.readthedocs.com/
