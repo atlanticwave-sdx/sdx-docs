@@ -18,14 +18,8 @@ Some additional information about reStruredText can be found in
 
 ## Writing the docs
 
-Edit the source files in source directory.  They are in
-reStructuredText format.
-
-
-## Building the docs
-
-First, install Sphinx and a theme, preferably in a virtual
-environment:
+The setup will require Python.  First, install the requirements,
+preferably in a virtual environment:
 
 ```console
 $ python3 -m venv venv --upgrade-deps
@@ -33,15 +27,20 @@ $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
-Then run:
+Then make the edits you want, and then run:
 
 ```console
 $ make html
 ```
 
+The resulting HTML files will be under [build/html].
+
+
 <!-- URLs -->
 
 [sources]: ./sources
+[build/html]: ./build/html
+
 [reST]: https://docutils.sourceforge.io/rst.html
 [readthedocs.org]: https://about.readthedocs.com/
 [Sphinx]: https://www.sphinx-doc.org/en/master/index.html
