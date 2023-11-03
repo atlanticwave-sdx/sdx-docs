@@ -10,7 +10,7 @@ workflow of documenting the project.
 The documentation sources live in [sources] directory.  They are text
 documents with [reStructuredText][reST] markup.  HTML version of the
 documents is produced by processing them with [Sphinx], and they are
-hosted at [https://sdx-docs.readthedocs.io/].
+hosted at https://sdx-docs.readthedocs.io/.
 
 Some additional information about reStruredText can be found in
 [Sphinx manual][Sphinx+reST].
