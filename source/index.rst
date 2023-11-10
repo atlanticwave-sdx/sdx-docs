@@ -35,8 +35,10 @@ AtlanticWave-SDX project documentation
    :maxdepth: 1
    :caption: Specifications
 
+   specs/datamodel_2_0_0.rst
    specs/datamodel_1_0_2.rst
    specs/datamodel_1_0_0.rst
+
 
 .. toctree::
    :maxdepth: 1
