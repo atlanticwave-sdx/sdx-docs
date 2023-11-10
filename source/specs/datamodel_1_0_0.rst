@@ -142,118 +142,127 @@ Topology Object
 The Topology object is represented by the following attributes or
 properties:
 
-- name
-- id
-- version
-- model version
-- timestamp
-- nodes
-- links
+- **name**
+- **id**
+- **version**
+- **model version**
+- **timestamp**
+- **nodes**
+- **links**
 
-he name attribute is a string that represents the OXP name. name will
-be used to display the OXP name within the SDX web user-interface
-(UI). name is operator-defined. name must be limited to 30 (thirty)
-ASCII characters and only the following special characters are
-allowed: "."  (period), "," (comma), "-" (dash), "_" (underscore)",
-and "/" (forward slash).
+The **name** attribute is a string that represents the OXP
+name. **name** will be used to display the OXP name within the SDX web
+user-interface (UI). **name** is operator-defined. **name** must be
+limited to 30 (thirty) ASCII characters and only the following special
+characters are allowed: "."  (period), "," (comma), "-" (dash), "_"
+(underscore)", and "/" (forward slash).
 
-The id attribute is a Uniform Resource Name
-(URN) used to uniquely identify the OXP in the AW-SDX context. To
-guarantee the URN is unique, since two OXPs could have the same
-acronym or name, the OXP operator must use the OXP website or
-opertor's URL as part of the URN. The topology ID will follow the
-format: "urn:sdx:topology:<oxp_url>", for instance
-"urn:sdx:topology:amlight.net" for AmLight, "urn:sdx:topology:rnp.br"
-for SAX and "urn:sdx:topology:tenet.ac.za" for ZAOXI.
-
+The **id** attribute is a Uniform Resource Name (URN) used to uniquely
+identify the OXP in the AW-SDX context. To guarantee the URN is
+unique, since two OXPs could have the same acronym or name, the OXP
+operator must use the OXP website or opertor's URL as part of the
+URN. The topology ID will follow the format:
+``"urn:sdx:topology:<oxp_url>"``, for instance
+``"urn:sdx:topology:amlight.net"`` for AmLight,
+``"urn:sdx:topology:rnp.br"`` for SAX and
+``"urn:sdx:topology:tenet.ac.za"`` for ZAOXI.
 
 The Topology Object has two properties to indicate changes to OXPO's
-topology and counters: version and timestamp:
+topology and counters: **version** and **timestamp**:
 
-   - version is an unsigned integer and starts as 1 when the OXP is
-     added to the AW-SDX and it will increment by 1 every time that
-     there is an administrative change that MODIFIES the
-     topology. Administrative changes are those created by the network
-     operators. Below are some examples of physical changes that
-     modify the topology and will increase the version number:
+- **version** is an unsigned integer and starts as 1 when the OXP is
+  added to the AW-SDX and it will increment by 1 every time that there
+  is an *administrative change* that MODIFIES the
+  topology. Administrative changes are those created by the network
+  operators. Below are some examples of physical changes that modify
+  the topology and will increase the version number:
 
-     ○ A new node is added or removed by the OXP operator..
-     ○ A new link is added or removed.
-     ○ A new user port is configured.
-     ○ When the location of an item changes (node moved to a different address).
-     ○ A link or node is set to maintenance mode and becomes unusable.
-     ○ A link that was reconfigured to go through a different location (city or country).
-     ○ A change on the port/interface bandwidth via configuration
+  - A new node is added or removed by the OXP operator..
 
-  - timestamp starts with a timestamp of when the topology was
-    created. timestamp changes every time the topology changes
-    (administrative or not), and when link counters, state, or status
-    are updated:
+  - A new link is added or removed.
 
-    ○ A port, node, or link that changed from up to down or down to up
-      because of a problem (power outage, fiber cut, damaged
-      transceiver).
-      
-    ○ A change in the bandwidth utilization of a link.
+  - A new user port is configured.
+
+  - When the location of an item changes (node moved to a different
+    address).
     
-    ○ An increase in packet loss or drops on a port.
+  - A link or node is set to *maintenance mode* and becomes unusable.
     
+  - A link that was reconfigured to go through a different location
+    (city or country).
+    
+  - A change on the port/interface bandwidth via configuration
 
-version and timestamp will be used by the SDX-LC and SDX Controller to
+- **timestamp** starts with a timestamp of when the topology was
+  created. **timestamp** changes every time the topology changes
+  (administrative or not), and when link counters, state, or status
+  are updated:
+
+  - A port, node, or link that changed from up to down or down to up
+    because of a problem (power outage, fiber cut, damaged
+    transceiver).
+    
+  - A change in the bandwidth utilization of a link.
+    
+  - An increase in packet loss or drops on a port.
+
+**version** and **timestamp** will be used by the SDX-LC and SDX Controller to
 know how to process the topology update received and what kind of
 changes to expect.
 
-The model_version attribute describes which topology data model
+The **model_version** attribute describes which topology data model
 specification version is in use, since updates might happen. The
 current version is the string "1.0.0".
 
-The nodes and links attributes are list attributes. nodes is a list of
-Node objects and links is a list of Link objects. Both Node and Link
-objects are described in this specification.
+The **nodes** and **links** attributes are list attributes. **nodes**
+is a list of Node objects and **links** is a list of Link
+objects. Both Node and Link objects are described in this
+specification.
 
 
 Restrictions:
 ~~~~~~~~~~~~~
 
-1. name, id, version, model_version, timestamp, nodes, links
-   attributes must be provided when creating the topology data.
+1. **name**, **id**, **version**, **model_version**, **timestamp**,
+   **nodes**, **links** attributes must be provided when creating the
+   topology data.
 
-2. name, id, version, model_version, timestamp, nodes, links
-   attributes must not be empty.
+2. **name**, **id**, **version**, **model_version**, **timestamp**,
+   **nodes**, **links** attributes must not be empty.
 
-3. name must be an ASCII string with length shorter than 30
+3. **name** must be an ASCII string with length shorter than 30
    characters.
    
-4. name supports only the following special characters: "." (period),
-   "," (comma), "-" (dash), "_" (underscore)", and "/" (forward
-   slash).
+4. **name** supports only the following special characters: "."
+   (period), "," (comma), "-" (dash), "_" (underscore)", and "/"
+   (forward slash).
 
-5. id must follow the format "urn:sdx:topology:<url>" where <url> is
-   the OXP's website main domain name.
+5. **id** must follow the format ``"urn:sdx:topology:<url>"`` where
+   ``<url>`` is the OXP's website main domain name.
 
-6. version must be an unsigned integer that starts with 1 and
+6. **version** must be an unsigned integer that starts with 1 and
    increments by 1 when there are administrative topology changes.
    
-7. version will be 0 only when the SDX-LC is added for the first time
-   to AW-SDX.
+7. **version** will be 0 only when the SDX-LC is added for the first
+   time to AW-SDX.
    
-8. timestamp attribute must be the UNIX timestamp and be updated when
-   there are non-administrative topology changes.
+8. **timestamp** attribute must be the UNIX timestamp and be updated
+   when there are non-administrative topology changes.
 
-9. timestamp must be a string and must follow the format "YYYY-MM-DD
-   HH:mm:SS", where YYYY stands for four-digit year, MM stands for
-   two-digit month, DD stands for two-digit day of the month, HH
-   stands for two-digit hour using 24 hours, mm stands for two-digit
-   minutes, and SS stands for two-digit seconds. An " " (white space)
-   separates days from time.
+9. **timestamp** must be a string and must follow the format
+   "YYYY-MM-DD HH:mm:SS", where YYYY stands for four-digit year, MM
+   stands for two-digit month, DD stands for two-digit day of the
+   month, HH stands for two-digit hour using 24 hours, mm stands for
+   two-digit minutes, and SS stands for two-digit seconds. An " "
+   (white space) separates days from time.
 
-10. timestamp must be based on UTC.
+10. **timestamp** must be based on UTC.
     
-11. model_version must be "1.0.0".
+11. **model_version** must be "1.0.0".
     
-12. nodes attribute must be a non-empty list of Node objects.
+12. **nodes** attribute must be a non-empty list of Node objects.
     
-13. links attribute must be a non-empty list of Link objects.
+13. **links** attribute must be a non-empty list of Link objects.
     
 14. The Topology Object has no attribute that can be set to private
     since all attributes are essential for the SDX operation.
@@ -263,17 +272,19 @@ Example:
 
 Example of a topology object, where the attributes nodes and lists are
 removed to simplify the representation. Examples of nodes and lists
-are provided in the next subsections::
+are provided in the next subsections.
 
-  {
-      "name": "AmLight-OXP",
-      "id": "urn:sdx:topology:amlight.net",
-      "version": 2,
-      "time_stamp": "2021-07-07 21:19:40",
-      "model_version": "1.0.0",
-      "nodes": [ {...}, {...} ],
-      "links": [ {...}, {...} ]
-  }
+.. code-block:: javascript
+
+   {
+       "name": "AmLight-OXP",
+       "id": "urn:sdx:topology:amlight.net",
+       "version": 2,
+       "time_stamp": "2021-07-07 21:19:40",
+       "model_version": "1.0.0",
+       "nodes": [ {...}, {...} ],
+       "links": [ {...}, {...} ]
+   }
 
   
 Node Object
@@ -282,84 +293,89 @@ Node Object
 The Node object is represented by the following attributes or
 properties of a network device, such as a switch or a router:
 
-- name
-- id
-- location
-- ports
+- **name**
+- **id**
+- **location**
+- **ports**
 
-The name attribute is a string that represents the node name. name
-will be used to display the node name within the SDX web
-user-interface (UI). name is operator-defined. name must be limited to
-30 (thirty) ASCII characters and only the following special characters
-are allowed: "."  (period), "," (comma), "-" (dash), "_"
-(underscore)", and "/" (forward slash).
+The **name** attribute is a string that represents the node
+name. **name** will be used to display the node name within the SDX
+web user-interface (UI). **name** is operator-defined. **name** must
+be limited to 30 (thirty) ASCII characters and only the following
+special characters are allowed: "."  (period), "," (comma), "-"
+(dash), "_" (underscore)", and "/" (forward slash).
 
-
-The id attribute is a Uniform Resource Name (URN) used to uniquely
+The **id** attribute is a Uniform Resource Name (URN) used to uniquely
 identify the node in the AW-SDX context. The OXP operator is
 responsible for guaranteeing the uniqueness of the URN. The node ID
-will follow the format: "urn:sdx:node:<oxp_url>:<node_name>". The
-<oxp_url> is the OXP website or operator's URL, the same used for the
-Topology Object. The <node_name> represents the name of the node and
-should be derived from the attribute name, entirely or a subset of
-it. It is up to the OXP operator to make this definition. Some
-examples of IDs:
+will follow the format: ``"urn:sdx:node:<oxp_url>:<node_name>"``. The
+``<oxp_url>`` is the OXP website or operator's URL, the same used for
+the Topology Object. The ``<node_name>`` represents the name of the
+node and should be derived from the attribute **name**, entirely or a
+subset of it. It is up to the OXP operator to make this
+definition. Some examples of IDs:
 
-- "urn:sdx:node:redclara.net:switch_01"
-- "urn:sdx:node:amlight.net:juniper_router01"
-- "urn:sdx:node:sax.net:s1"
-- "urn:sdx:node:tenet.za.ac:tor"
+- ``"urn:sdx:node:redclara.net:switch_01"``
+- ``"urn:sdx:node:amlight.net:juniper_router01"``
+- ``"urn:sdx:node:sax.net:s1"``
+- ``"urn:sdx:node:tenet.za.ac:tor"``
   
-location is used to represent the physical location of the node. The
-Location object is used and it must not be empty.
+**location** is used to represent the physical location of the
+node. The Location object is used and it must not be empty.
 
-ports is a list of ports that belong to the node. The content for
-ports is a list of Port objects.  Each port has a set of attributes to
-reflect the current network state and status. The Port Object is
-described in the next sections.
+**ports** is a list of ports that belong to the node. The content for
+**ports** is a list of Port objects.  Each port has a set of
+attributes to reflect the current network state and status. The Port
+Object is described in the next sections.
+
 
 Restrictions:
+~~~~~~~~~~~~~
 
-1. name, id, location, and ports must be provided when creating the
-   node object.
+1. **name**, **id**, **location**, and **ports** must be provided when
+   creating the node object.
    
-2. name, id, location, and ports must not be empty.
+2. **name**, **id**, **location**, and **ports** must not be empty.
    
-3. name must be an ASCII string with length not to exceed 30
+3. **name** must be an ASCII string with length not to exceed 30
    characters.
    
-4. name must not include special characters.
+4. **name** must not include special characters.
    
-5. id must follow the format "urn:sdx:node:<oxp_url>:<node_name>"
-   where <oxp_url> is the OXP's website or operator's website domain
-   name.
+5. **id** must follow the format
+   ``"urn:sdx:node:<oxp_url>:<node_name>"`` where ``<oxp_url>`` is the
+   OXP's website or operator's website domain name.
 
-6. location must be a Location object.
+6. **location** must be a Location object.
    
-7. ports must be a non-empty list of Port Objects.
+7. **ports** must be a non-empty list of Port Objects.
    
 8. The Node Object has no attributes that can be set to private since
-all attributes are essential for the SDX operation. However, the
-Location Object attributes can be manipulated to not provide the exact
-location. More details can be found in the Location Object section.
+   all attributes are essential for the SDX operation. However, the
+   Location Object attributes can be manipulated to not provide the
+   exact location. More details can be found in the Location Object
+   section.
+
 
 Example:
 ~~~~~~~~
 
 Example of a Node object, where the attribute ports is removed to
 simplify the representation. Examples of ports are provided in the
-Port Object subsection::
+Port Object subsection.
+
+.. code-block:: javascript
   
-    {
-        "name": "switch01",
-        "id": "urn:sdx:node:amlight.net:switch01",
-        "location": {
-            "address": "Miami,FL,USA",
-            "latitude": "25.761681",
-            "longitude": "-80.191788"
-        },
-        "ports": [ {...}, {...} ]
-    }
+   {
+       "name": "switch01",
+       "id": "urn:sdx:node:amlight.net:switch01",
+       "location": {
+           "address": "Miami,FL,USA",
+           "latitude": "25.761681",
+           "longitude": "-80.191788"
+       },
+       "ports": [ {...}, {...} ]
+   }
 
     
 Port Object
