@@ -770,11 +770,10 @@ Restrictions:
 Schemas
 -------
 
-The data model schemas in this specification are provided at [1] for
+The data model schemas in this specification are provided at [2_] for
 easy implementation and validation.
 
-[1] https://github.com/atlanticwave-sdx/datamodel/blob/main/schemas/
-
+.. _2: https://github.com/atlanticwave-sdx/datamodel/blob/main/schemas/
 
 .. rubric:: Footnotes
 
@@ -782,4 +781,3 @@ easy implementation and validation.
    AW-SDX 2.0 architecture. A design objective of the SDX-LC is to
    abstract the distinct physical characteristics of a participant
    OXP.
-
