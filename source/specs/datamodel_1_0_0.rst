@@ -384,148 +384,154 @@ Port Object
 The Port object is represented by the following attributes or
 properties of a network device's port (or interface):
 
-- name
-- id
-- node
-- type
-- mtu
-- nni
-- status
-- state
-- services
+- **name**
+- **id**
+- **node**
+- **type**
+- **mtu**
+- **nni**
+- **status**
+- **state**
+- **services**
 
-The name attribute is a string that represents the name of the port
-and it will be used to display the node name within the SDX
+The **name** attribute is a string that represents the name of the
+port and it will be used to display the node name within the SDX
 portals. It is operator-defined. The only restriction created for the
-name attribute is its length of 30 (thirty) characters and only the
-following special characters are allowed: "." (period), "," (comma),
-"-" (dash), "_" (underscore)", and "/" (forward slash).
+**name** attribute is its length of 30 (thirty) characters and only
+the following special characters are allowed: "." (period), ","
+(comma), "-" (dash), "_" (underscore)", and "/" (forward slash).
 
-The id attribute is a Uniform Resource Name (URN) used to uniquely
+The **id** attribute is a Uniform Resource Name (URN) used to uniquely
 identify the port in the AW-SDX context. The OXP operator is
 responsible for guaranteeing the uniqueness of the URN. The port ID
 will follow the format:
-"urn:sdx:port:<oxp_url>:<node_name>:<port_name>".  The <oxp_url> is
-the same URL used to create the Topology Object ID. The <node_name> is
-the same URL used to represent the Node Object ID. The <port_name>
-represents the name of the port and should be derived from the
-attribute name, entirely or a subset of it. It is up to the OXP
-operator to make this definition. Some examples of valid port ids are:
+``"urn:sdx:port:<oxp_url>:<node_name>:<port_name>"``.  The
+``<oxp_url>`` is the same URL used to create the Topology
+Object ID. The ``<node_name>`` is the same URL used to represent the
+Node Object ID. The ``<port_name>`` represents the name of the port
+and should be derived from the attribute **name**, entirely or a
+subset of it. It is up to the OXP operator to make this
+definition. Some examples of valid port **id** s are:
 
-- "urn:sdx:port:amlight.net:switch_01:port_1"
-- "urn:sdx:port:amlight.net:tor:131"
-- "urn:sdx:port:rnp.br:juniper_router01:amlight_100G"
-- "urn:sdx:port:zaoxi.ac.za:s1:port_to_brazil"
+- ``"urn:sdx:port:amlight.net:switch_01:port_1"``
+- ``"urn:sdx:port:amlight.net:tor:131"``
+- ``"urn:sdx:port:rnp.br:juniper_router01:amlight_100G"``
+- ``"urn:sdx:port:zaoxi.ac.za:s1:port_to_brazil"``
 
-The node attribute is a Uniform Resource Name (URN) used to uniquely
-identify which node the port belongs to in the AW-SDX context.
+The **node** attribute is a Uniform Resource Name (URN) used to
+uniquely identify which node the port belongs to in the AW-SDX
+context.
 
-The type attribute represents the technology and bandwidth of the
-physical port (or interface).  type is an enum with only one value
+The **type** attribute represents the technology and bandwidth of the
+physical port (or interface).  **type** is an enum with only one value
 acceptable. For version 1.0.0 of the Topology data model
-specification, the only technology supported is Ethernet. The type
+specification, the only technology supported is Ethernet. The **type**
 enum is 100FE, 1GE, 10GE, 25GE, 40GE, 50GE, 100GE, 400GE, and
 Other. When the value Other is chosen, no bandwidth guaranteed
 services will be supported in this port. The value Other was created
 to enable flexibility when the port is not on the enum. In case Other
 becomes recurrent, the SDX team must increase the specification
-subversion and add the correct bandwidth to the type enum.  The
+subversion and add the correct bandwidth to the **type** enum.  The
 specification version table must be updated with such info.
 
-The mtu attribute is the port's maximum transmission unit (MTU) or the
-max size of a packet supported by the port in bytes. mtu is a kind of
-attribute that could become a challenge to dynamically retrieve from a
-node. For this reason, this attribute is considered optional, but
-recommended.
+The **mtu** attribute is the port's maximum transmission unit (MTU) or
+the max size of a packet supported by the port in bytes. **mtu** is a
+kind of attribute that could become a challenge to dynamically
+retrieve from a node. For this reason, this attribute is considered
+optional, but recommended.
 
-The nni attribute is used to describe whether the port is a Network to
-Network Interface (NNI).  NNI will be used to qualify the port as an
-endpoint of an intra-domain (internal) or an inter-domain (external)
-link. If nni is not set (an empty string), the port is considered an
-UNI (User-Network Interface), meaning a user port. From the SDX
-perspective, a R&E network that is not operated by the
+The **nni** attribute is used to describe whether the port is a
+Network to Network Interface (NNI).  NNI will be used to qualify the
+port as an endpoint of an intra-domain (internal) or an inter-domain
+(external) link. If **nni** is not set (an empty string), the port is
+considered an UNI (User-Network Interface), meaning a user port. From
+the SDX perspective, a R&E network that is not operated by the
 AtlanticWave-SDX Controller is considered a user port. If the port is
-a NNI, then the nni attribute must be set with the Link ID (URN to
+a NNI, then the **nni** attribute must be set with the Link ID (URN to
 represent the Link), if it is an intra-domain link; otherwise, the nni
 attribute must be set with the remote OXPs Port ID, if it is an
 inter-domain. For example, if the port is a NNI part of the link
-"Novi03/p2_Novi02/p3" at the AmLight OXP, then the nni attribute is
-set to "urn:sdx:link:amlight.net:Novi03/p2_Novi02/p3". If the port is
-an AmLight port connected to ZAOXI OXP, via link named "sacs_sub_link"
-then the nni attribute on the AmLight topology side is set to
-"urn:sdx:link:zaoxi.ac.za:sacs_sub_link".
+``"Novi03/p2_Novi02/p3"`` at the AmLight OXP, then the nni attribute
+is set to ``"urn:sdx:link:amlight.net:Novi03/p2_Novi02/p3"``. If the
+port is an AmLight port connected to ZAOXI OXP, via link named
+``"sacs_sub_link"`` then the nni attribute on the AmLight topology
+side is set to ``"urn:sdx:link:zaoxi.ac.za:sacs_sub_link"``.
 
-The status attribute represents the current operational status of the
-port. Status is an enum with the following values: "down" if the port
-is not operational, "up" if the port is operational, 'error' when
-there is an error with the interface.
+The **status** attribute represents the current operational status of
+the port. **Status** is an enum with the following values: "down" if
+the port is not operational, "up" if the port is operational, 'error'
+when there is an error with the interface.
 
-The state attribute represents the current administrative state of the
-port. State is an enum with the following values: "enabled" if the
-port is in administrative enabled mode, "disabled" when the port is in
-administrative disabled mode (a.k.a. shutdown), and "maintenance" when
-in under maintenance (not available for use).
+The **state** attribute represents the current administrative state of
+the port. **State** is an enum with the following values: "enabled" if
+the port is in administrative enabled mode, "disabled" when the port
+is in administrative disabled mode (a.k.a. *shutdown*), and
+"maintenance" when in under maintenance (not available for use).
 
-The services attribute describes the services supported and their
-attributes. services is set as an empty string when no services are
-supported or declared for this port. The usage of services will be
-available in future versions of this specification.
+The **services** attribute describes the services supported and their
+attributes. **services** is set as an empty string when no services
+are supported or declared for this port. The usage of **services**
+will be available in future versions of this specification.
+
 
 Restrictions:
 ~~~~~~~~~~~~~
 
-9. name, id, node, type, status, and state must be provided when
-   creating the node object.
+9. **name**, id**, **node**, **type**, **status**, and **state** must
+   be provided when creating the node object.
    
-10. name, id, node, type, status, and state must not be empty.
+10. **name**, **id**, **node**, **type**, **status**, and **state**
+    must not be empty.
     
-11. name must be an ASCII string with length not to exceed 30
+11. **name** must be an ASCII string with length not to exceed 30
     characters.
     
-12. name supports only the following special characters: "." (period),
-    "," (comma), "-" (dash), "_" (underscore)", and "/" (forward
-    slash).
+12. **name** supports only the following special characters: "."
+    (period), "," (comma), "-" (dash), "_" (underscore)", and "/"
+    (forward slash).
     
-13. id must follow the format
-    "urn:sdx:port:<oxp_url>:<node_name>:<port_name>" where <oxp_url>
-    is the OXP's website or operator's website domain name,
-    <node_name> is the node's name, and <port_name> is the port's
-    name.
+13. **id** must follow the format
+    ``"urn:sdx:port:<oxp_url>:<node_name>:<port_name>"`` where
+    ``<oxp_url>`` is the OXP's website or operator's website domain
+    name, ``<node_name>`` is the node's name, and ``<port_name>`` is
+    the port's name.
 
-14. When mtu is not set, the port's MTU is considered to be 1,500
+14. When **mtu** is not set, the port's MTU is considered to be 1,500
     bytes.
     
-15. mtu is an integer with minimum value of 1,500 and maximum of
+15. **mtu** is an integer with minimum value of 1,500 and maximum of
     10,000.
     
-16. When nni is not set (empty string), the port is considered an UNI.
+16. When **nni** is not set (empty string), the port is considered an
+    UNI.
     
-17. status is an enum and only supports one of the following values:
-    "up", "down", or "error"
+17. **status** is an enum and only supports one of the following
+    values: "up", "down", or "error"
     
-18. state is an enum and only supports one of the following values:
-    "enabled", "disabled", or "maintenance"
+18. **state** is an enum and only supports one of the following
+    values: "enabled", "disabled", or "maintenance"
 
-19. From the Port Object, mtu, status and state can be set as private
-    attributes although it is highly recommended to keep them public.
+19. From the Port Object, **mtu**, **status** and **state** can be set
+    as private attributes although it is highly recommended to keep
+    them public.
 
 Example:
 ~~~~~~~~
 
-Example of a port::
+.. code-block:: javascript
 
-    {
-        "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
-        "name": "s3-eth2",
-        "node": "urn:sdx:node:amlight.net:s3",
-        "type": "10GE",
-        "mtu": 10000,
-        "status": "up",
-        "state": "enabled",
-        "nni": "urn:sdx:link:amlight.net:Novi03/2_s3/s3-eth2",
-        "services": "",
-        "private": ["state", "mtu"]
-    }
+   {
+       "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
+       "name": "s3-eth2",
+       "node": "urn:sdx:node:amlight.net:s3",
+       "type": "10GE",
+       "mtu": 10000,
+       "status": "up",
+       "state": "enabled",
+       "nni": "urn:sdx:link:amlight.net:Novi03/2_s3/s3-eth2",
+       "services": "",
+       "private": ["state", "mtu"]
+   }
 
 
 Location Object
