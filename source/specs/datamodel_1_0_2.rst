@@ -139,9 +139,7 @@ simplicity to be read by humans and machines.
 The diagram below will be used to explain the relationship between the
 topology objects.
 
-.. image:: media/image1.png
-   :width: 3.31771in
-   :height: 2.58473in
+.. image:: image_0.png
 
 Each topology object will be described in detail in the next subsections
 as well as its dependencies.
@@ -236,7 +234,7 @@ objects. Both Node and Link objects are described in this
 specification.
 
 Restrictions:
-~~~~~~~~~~~~~
+-------------
 
 1. **name, id, version, model_version, timestamp, nodes, links**
    attributes must be provided when creating the topology data.
@@ -283,7 +281,7 @@ Restrictions:
 
 
 Example:
-~~~~~~~~
+--------
 
 Example of a topology object, where the attributes **nodes** and
 **lists** are removed to simplify the representation. Examples of
@@ -353,10 +351,11 @@ Location object is used and it must not be empty.
 to reflect the current network state and status. The Port Object is
 described in the next sections.
 
+
 .. _restrictions-1:
 
 Restrictions:
-~~~~~~~~~~~~~
+-------------
 
 1. **name, id, location,** and **ports** must be provided when
    creating the node object.
@@ -386,7 +385,7 @@ Restrictions:
 
 
 Example:
-~~~~~~~~
+--------
 
 Example of a Node object, where the attribute **ports** is removed to
 simplify the representation. Examples of **ports** are provided in the
@@ -577,7 +576,7 @@ Example:
 
 
 Location Object
----------------
+===============
 
 The Location object is represented by the following attributes or
 properties of a physical location:
@@ -832,7 +831,7 @@ Restrictions:
 
 
 Schemas
--------
+=======
 
 The data model schemas in this specification are provided at [1] for
 easy implementation and validation.
