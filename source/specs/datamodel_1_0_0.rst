@@ -223,8 +223,8 @@ objects. Both Node and Link objects are described in this
 specification.
 
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1. **name**, **id**, **version**, **model_version**, **timestamp**,
    **nodes**, **links** attributes must be provided when creating the
@@ -271,8 +271,8 @@ Restrictions:
     since all attributes are essential for the SDX operation.
 
 
-Example:
---------
+Example
+-------
 
 Example of a topology object, where the attributes nodes and lists are
 removed to simplify the representation. Examples of nodes and lists
@@ -333,8 +333,8 @@ attributes to reflect the current network state and status. The Port
 Object is described in the next sections.
 
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1. **name**, **id**, **location**, and **ports** must be provided when
    creating the node object.
@@ -361,8 +361,8 @@ Restrictions:
    section.
 
 
-Example:
---------
+Example
+-------
 
 Example of a Node object, where the attribute ports is removed to
 simplify the representation. Examples of ports are provided in the
@@ -478,8 +478,8 @@ are supported or declared for this port. The usage of **services**
 will be available in future versions of this specification.
 
 
-Restrictions:
--------------
+Restrictions
+------------
 
 9. **name**, **id**, **node**, **type**, **status**, and **state**
    must be provided when creating the node object.
@@ -520,8 +520,8 @@ Restrictions:
     them public.
 
 
-Example:
---------
+Example
+-------
 
 .. code-block:: javascript
 
@@ -563,8 +563,8 @@ The **longitude** attribute is the geographic coordinate that
 specifies the east–west position of a node on the Earth's surface.
 
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1. **address**, **latitude**, and **longitude** must be provided when
    creating the Location object.
@@ -580,6 +580,10 @@ Restrictions:
 5. For privacy reasons, **address**, **latitude**, and **longitude**
    can be provided with content that doesn't show the exact location
    of a node.
+
+
+Example
+-------   
 
 .. code-block:: javascript
 
@@ -719,8 +723,9 @@ the link is in administrative enabled mode, "disabled" when the link
 is in administrative disabled mode (a.k.a. *shutdown*), and
 "maintenance" when link in under maintenance (not available for use).
 
-Restrictions:
--------------
+
+Restrictions
+------------
 
 1. **name**, **id**, **ports**, **bandwidth**, **type**, **status**,
    and **state** must be provided when creating the link object.
