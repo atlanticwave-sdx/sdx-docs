@@ -2,8 +2,8 @@
 AW-SDX 2.0 Controller - Topology Data Model Specification 1.0.2
 ===============================================================
 
-Versioning: 
-===========
+Versioning 
+==========
 
 +---------+------------+-------------------------------+
 | Version | Date       | Description                   |
@@ -233,8 +233,9 @@ is a list of Node objects and **links** is a list of Link
 objects. Both Node and Link objects are described in this
 specification.
 
-Restrictions:
--------------
+
+Restrictions
+------------
 
 1. **name, id, version, model_version, timestamp, nodes, links**
    attributes must be provided when creating the topology data.
@@ -280,8 +281,8 @@ Restrictions:
        since all attributes are essential for the SDX operation.
 
 
-Example:
---------
+Example
+-------
 
 Example of a topology object, where the attributes **nodes** and
 **lists** are removed to simplify the representation. Examples of
@@ -354,8 +355,8 @@ described in the next sections.
 
 .. _restrictions-1:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1. **name, id, location,** and **ports** must be provided when
    creating the node object.
@@ -381,11 +382,11 @@ Restrictions:
    exact location. More details can be found in the Location Object
    section.
 
+
 .. _example-1:
 
-
-Example:
---------
+Example
+-------
 
 Example of a Node object, where the attribute **ports** is removed to
 simplify the representation. Examples of **ports** are provided in the
@@ -514,8 +515,8 @@ will be available in future versions of this specification.
 
 .. _restrictions-2:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 9.  **name, id, node, type, status,** and **state** must be provided
     when creating the node object.
@@ -556,8 +557,8 @@ Restrictions:
 
 .. _example-2:
 
-Example:
---------
+Example
+-------
 
 .. code-block::
    
@@ -602,8 +603,8 @@ specifies the east–west position of a node on the Earth's surface.
 
 .. _restrictions-3:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1. **address, latitude,** and **longitude** must be provided when
    creating the Location object.
@@ -621,8 +622,8 @@ Restrictions:
    node.
 
 
-Examples:
----------
+Examples
+--------
 
 .. code-block::
 
@@ -778,8 +779,8 @@ is in administrative disabled mode (a.k.a. *shutdown)*, and
 
 .. _restrictions-4:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1.  **name, id, ports, bandwidth, type, status,** and **state** must
     be provided when creating the link object.
