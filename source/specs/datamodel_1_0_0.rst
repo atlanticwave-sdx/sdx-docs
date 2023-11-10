@@ -25,12 +25,12 @@ database will have a few purposes:
 
 1. Finding the best path between endpoints based on multiple user
    criteria;
-   
+
 2. Exporting the AtlanticWave-SDX topology database to external
    science applications to support their operations;
-   
+
 3. Monitoring the quality of the AtlanticWave-SDX network resources.
-   
+
 Each OXP's SDX Local Controller (a.k.a. SDX-LC [sdx-lc]_) must feed
 the SDX Controller with topology data using the data model specified
 in this document. The SDX Controller uses the topology data received
@@ -188,12 +188,12 @@ topology and counters: **version** and **timestamp**:
 
   - When the location of an item changes (node moved to a different
     address).
-    
+
   - A link or node is set to *maintenance mode* and becomes unusable.
-    
+
   - A link that was reconfigured to go through a different location
     (city or country).
-    
+
   - A change on the port/interface bandwidth via configuration
 
 - **timestamp** starts with a timestamp of when the topology was
@@ -204,9 +204,9 @@ topology and counters: **version** and **timestamp**:
   - A port, node, or link that changed from up to down or down to up
     because of a problem (power outage, fiber cut, damaged
     transceiver).
-    
+
   - A change in the bandwidth utilization of a link.
-    
+
   - An increase in packet loss or drops on a port.
 
 **version** and **timestamp** will be used by the SDX-LC and SDX Controller to
@@ -235,7 +235,7 @@ Restrictions:
 
 3. **name** must be an ASCII string with length shorter than 30
    characters.
-   
+
 4. **name** supports only the following special characters: "."
    (period), "," (comma), "-" (dash), "_" (underscore)", and "/"
    (forward slash).
@@ -245,10 +245,10 @@ Restrictions:
 
 6. **version** must be an unsigned integer that starts with 1 and
    increments by 1 when there are administrative topology changes.
-   
+
 7. **version** will be 0 only when the SDX-LC is added for the first
    time to AW-SDX.
-   
+
 8. **timestamp** attribute must be the UNIX timestamp and be updated
    when there are non-administrative topology changes.
 
@@ -260,13 +260,13 @@ Restrictions:
    (white space) separates days from time.
 
 10. **timestamp** must be based on UTC.
-    
+
 11. **model_version** must be "1.0.0".
-    
+
 12. **nodes** attribute must be a non-empty list of Node objects.
-    
+
 13. **links** attribute must be a non-empty list of Link objects.
-    
+
 14. The Topology Object has no attribute that can be set to private
     since all attributes are essential for the SDX operation.
 
@@ -290,7 +290,7 @@ are provided in the next subsections.
        "links": [ {...}, {...} ]
    }
 
-  
+
 Node Object
 ===========
 
@@ -323,7 +323,7 @@ definition. Some examples of IDs:
 - ``"urn:sdx:node:amlight.net:juniper_router01"``
 - ``"urn:sdx:node:sax.net:s1"``
 - ``"urn:sdx:node:tenet.za.ac:tor"``
-  
+
 **location** is used to represent the physical location of the
 node. The Location object is used and it must not be empty.
 
@@ -338,22 +338,22 @@ Restrictions:
 
 1. **name**, **id**, **location**, and **ports** must be provided when
    creating the node object.
-   
+
 2. **name**, **id**, **location**, and **ports** must not be empty.
-   
+
 3. **name** must be an ASCII string with length not to exceed 30
    characters.
-   
+
 4. **name** must not include special characters.
-   
+
 5. **id** must follow the format
    ``"urn:sdx:node:<oxp_url>:<node_name>"`` where ``<oxp_url>`` is the
    OXP's website or operator's website domain name.
 
 6. **location** must be a Location object.
-   
+
 7. **ports** must be a non-empty list of Port Objects.
-   
+
 8. The Node Object has no attributes that can be set to private since
    all attributes are essential for the SDX operation. However, the
    Location Object attributes can be manipulated to not provide the
@@ -369,7 +369,7 @@ simplify the representation. Examples of ports are provided in the
 Port Object subsection.
 
 .. code-block:: javascript
-  
+
    {
        "name": "switch01",
        "id": "urn:sdx:node:amlight.net:switch01",
@@ -381,7 +381,7 @@ Port Object subsection.
        "ports": [ {...}, {...} ]
    }
 
-    
+
 Port Object
 ===========
 
@@ -483,17 +483,17 @@ Restrictions:
 
 9. **name**, **id**, **node**, **type**, **status**, and **state**
    must be provided when creating the node object.
-   
+
 10. **name**, **id**, **node**, **type**, **status**, and **state**
     must not be empty.
-    
+
 11. **name** must be an ASCII string with length not to exceed 30
     characters.
-    
+
 12. **name** supports only the following special characters: "."
     (period), "," (comma), "-" (dash), "_" (underscore)", and "/"
     (forward slash).
-    
+
 13. **id** must follow the format
     ``"urn:sdx:port:<oxp_url>:<node_name>:<port_name>"`` where
     ``<oxp_url>`` is the OXP's website or operator's website domain
@@ -502,16 +502,16 @@ Restrictions:
 
 14. When **mtu** is not set, the port's MTU is considered to be 1,500
     bytes.
-    
+
 15. **mtu** is an integer with minimum value of 1,500 and maximum of
     10,000.
-    
+
 16. When **nni** is not set (empty string), the port is considered an
     UNI.
-    
+
 17. **status** is an enum and only supports one of the following
     values: "up", "down", or "error"
-    
+
 18. **state** is an enum and only supports one of the following
     values: "enabled", "disabled", or "maintenance"
 
@@ -568,29 +568,29 @@ Restrictions:
 
 1. **address**, **latitude**, and **longitude** must be provided when
    creating the Location object.
-   
+
 2. **address**, **latitude**, and **longitude** must not be empty.
-   
+
 3. **latitude** and **longitude** must be represented as a string with
    a floating point number, in the range of -90.0 to 90.0.
 
 4. **address** must be an ASCII string with length no longer than 255
    characters.
-   
+
 5. For privacy reasons, **address**, **latitude**, and **longitude**
    can be provided with content that doesn't show the exact location
    of a node.
-   
+
 .. code-block:: javascript
-  
+
     {
         "address": "Miami, FL, USA",
         "latitude": "25",
         "longitude": "-80"
     }
 
-.. code-block:: javascript    
-    
+.. code-block:: javascript
+
     {
         "address": "Equinix MI3, Boca Raton, FL, USA",
         "latitude": "26.35869",
@@ -727,10 +727,10 @@ Restrictions:
 
 2. **name**, **id**, **ports**, **bandwidth**, **type**, **status**,
    and **state** must not be empty.
-   
+
 3. **name** must be an ASCII string with length not to exceed 30
    characters.
-   
+
 4. **name** supports only the following special characters: "."
    (period), "," (comma), "-" (dash), "_" (underscore)", and "/"
    (forward slash).
@@ -739,7 +739,7 @@ Restrictions:
    ``"urn:sdx:link:<oxp_url>:<link_name>"`` where ``<oxp_url>`` is the
    OXP's website or operator's website domain name and ``<link_name>``
    is the link's name.
-   
+
 6. **type** is an enum with acceptable values either "intra" for
    intra-OXP or "inter" for inter-OXP.
 
@@ -751,10 +751,10 @@ Restrictions:
 
 9. **packet_loss** must be provided as a numerical percentage value
    from 0 to 100.
-   
+
 10. **availability** must be provided as a numerical percentage value
     from 0 to 100.
-    
+
 11. **residual_bandwidth**, **latency**, **packet_loss**, and
     **availability** must be provided as 100, 0, 0, and 100
     respectively when collecting these counters is not possible from
@@ -762,7 +762,7 @@ Restrictions:
 
 12. **status** is an enum and only supports one of the following
     values: "up", "down", or "error".
-    
+
 13. **state** is an enum and only supports one of the following
     values: "enabled", "disabled", or "maintenance".
 
