@@ -477,8 +477,8 @@ will be available in future versions of this specification.
 Restrictions:
 ~~~~~~~~~~~~~
 
-9. **name**, id**, **node**, **type**, **status**, and **state** must
-   be provided when creating the node object.
+9. **name**, **id**, **node**, **type**, **status**, and **state**
+   must be provided when creating the node object.
    
 10. **name**, **id**, **node**, **type**, **status**, and **state**
     must not be empty.
@@ -721,8 +721,8 @@ Restrictions:
 1. **name**, **id**, **ports**, **bandwidth**, **type**, **status**,
    and **state** must be provided when creating the link object.
 
-2. **name**, id**, **ports**, **bandwidth**, **type**, **status**, and
-   **state** must not be empty.
+2. **name**, **id**, **ports**, **bandwidth**, **type**, **status**,
+   and **state** must not be empty.
    
 3. **name** must be an ASCII string with length not to exceed 30
    characters.
