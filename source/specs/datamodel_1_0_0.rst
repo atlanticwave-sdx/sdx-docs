@@ -90,8 +90,8 @@ name of the properties to be considered private. When the private
 property is not empty, the SDX Controller must filter out the content
 of the attributes listed before exporting the topology to external
 users, including science drivers. This specification recommends that
-all attributes be public.  Anonymization is outside of the scope of
-this specification.
+all attributes be public.  Anonymization is **outside** of the scope
+of this specification.
 
 
 Autonomic Network Architecture Properties
@@ -101,16 +101,16 @@ The AW-SDX 2.0 Topology Data Model specification is not affected by
 the Autonomic Network Architecture (ANA) since it is not a service or
 function but a data structure. The SDX Controller components involved
 in the topology data exchange should consider two ANA disciplines:
-self-configuration and self-protection. In the context of the topology
-data exchange, self-configuration applies when the components involved
-(OXPO and SDX-LC) need to discover their configurations
-dynamically. The connections between OXPO and SDX-LC should not be
-statically defined, for instance, via IP addresses. For
-self-protection, the SDX-LC should be protecting itself from bursts of
-topology updates coming from the OXPO due to link flaps and other
+*self-configuration* and *self-protection*. In the context of the
+topology data exchange, *self-configuration* applies when the
+components involved (OXPO and SDX-LC) need to discover their
+configurations dynamically. The connections between OXPO and SDX-LC
+should not be statically defined, for instance, via IP addresses. For
+*self-protection*, the SDX-LC should be protecting itself from bursts
+of topology updates coming from the OXPO due to link flaps and other
 updates at the OXP level. Neither should the SDX-LC burst updates to
 the SDX Controller.  However, the implementation and enforcement of
-the ANA disciplines are outside of the scope of this document.
+the ANA disciplines are **outside** of the scope of this document.
 
 
 Creating the topology
