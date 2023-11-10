@@ -3,8 +3,8 @@ AW-SDX 2.0 Controller - Topology Data Model Specification 1.0.0
 ===============================================================
 
 
-Versioning:
-===========
+Versioning
+==========
 
 +---------+------------+-------------------------------+
 | Version | Date       | Description                   |
