@@ -1,9 +1,11 @@
+
+=========================================================
 AW-SDX 2.0 Controller - Topology Data Model Specification
 =========================================================
 
 
 Versioning:
------------
+===========
 
 +---------+------------+-------------------------------+
 | Version | Date       | Description                   |
@@ -12,8 +14,9 @@ Versioning:
 |         |            | topology specification.       |
 +---------+------------+-------------------------------+
 
+
 Introduction
-------------
+============
 
 The AW-SDX 2.0 Controller (a.k.a. SDX Controller) needs topology data
 from each participant Open Exchange Point (OXP) to compute the
@@ -67,7 +70,7 @@ an OSG Origin node.
 
 
 Requirement Levels
-------------------
+==================
 
 The Topology Data Model specification provides the requirements and
 restrictions for the topology objects and their attributes. To avoid
@@ -79,7 +82,7 @@ interpreted as described in IETF RFC 2119
 
 
 Privacy and Security
---------------------
+====================
 
 For privacy and security reasons, since the SDX topology database will
 be available to SDX users, OXP operators will be able to define which
@@ -95,7 +98,7 @@ of this specification.
 
 
 Autonomic Network Architecture Properties
------------------------------------------
+=========================================
 
 The AW-SDX 2.0 Topology Data Model specification is not affected by
 the Autonomic Network Architecture (ANA) since it is not a service or
@@ -114,7 +117,7 @@ the ANA disciplines are **outside** of the scope of this document.
 
 
 Creating the topology
----------------------
+=====================
 
 The version 1.0 of the AW-SDX 2.0 Topology Data Model specification
 focuses on the physical layer. Different versions will be created to
@@ -137,7 +140,7 @@ subsections as well as its dependencies.
 
 
 Topology Object
----------------
+===============
 
 The Topology object is represented by the following attributes or
 properties:
@@ -221,7 +224,7 @@ specification.
 
 
 Restrictions:
-~~~~~~~~~~~~~
+-------------
 
 1. **name**, **id**, **version**, **model_version**, **timestamp**,
    **nodes**, **links** attributes must be provided when creating the
@@ -267,8 +270,9 @@ Restrictions:
 14. The Topology Object has no attribute that can be set to private
     since all attributes are essential for the SDX operation.
 
+
 Example:
-~~~~~~~~
+--------
 
 Example of a topology object, where the attributes nodes and lists are
 removed to simplify the representation. Examples of nodes and lists
@@ -288,7 +292,7 @@ are provided in the next subsections.
 
   
 Node Object
------------
+===========
 
 The Node object is represented by the following attributes or
 properties of a network device, such as a switch or a router:
@@ -330,7 +334,7 @@ Object is described in the next sections.
 
 
 Restrictions:
-~~~~~~~~~~~~~
+-------------
 
 1. **name**, **id**, **location**, and **ports** must be provided when
    creating the node object.
@@ -358,7 +362,7 @@ Restrictions:
 
 
 Example:
-~~~~~~~~
+--------
 
 Example of a Node object, where the attribute ports is removed to
 simplify the representation. Examples of ports are provided in the
@@ -379,7 +383,7 @@ Port Object subsection.
 
     
 Port Object
------------
+===========
 
 The Port object is represented by the following attributes or
 properties of a network device's port (or interface):
@@ -475,7 +479,7 @@ will be available in future versions of this specification.
 
 
 Restrictions:
-~~~~~~~~~~~~~
+-------------
 
 9. **name**, **id**, **node**, **type**, **status**, and **state**
    must be provided when creating the node object.
@@ -517,7 +521,7 @@ Restrictions:
 
 
 Example:
-~~~~~~~~
+--------
 
 .. code-block:: javascript
 
@@ -536,7 +540,7 @@ Example:
 
 
 Location Object
----------------
+===============
 
 The Location object is represented by the following attributes or
 properties of a physical location:
@@ -560,7 +564,7 @@ specifies the east–west position of a node on the Earth's surface.
 
 
 Restrictions:
-~~~~~~~~~~~~~
+-------------
 
 1. **address**, **latitude**, and **longitude** must be provided when
    creating the Location object.
@@ -595,7 +599,7 @@ Restrictions:
 
 
 Link Object
-------------
+===========
 
 The Link object is represented by the following attributes or
 properties of a network connection between two network devices:
@@ -716,7 +720,7 @@ is in administrative disabled mode (a.k.a. *shutdown*), and
 "maintenance" when link in under maintenance (not available for use).
 
 Restrictions:
-~~~~~~~~~~~~~
+-------------
 
 1. **name**, **id**, **ports**, **bandwidth**, **type**, **status**,
    and **state** must be provided when creating the link object.
@@ -768,7 +772,7 @@ Restrictions:
 
 
 Schemas
--------
+=======
 
 The data model schemas in this specification are provided at [2_] for
 easy implementation and validation.
