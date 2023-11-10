@@ -515,6 +515,7 @@ Restrictions:
     as private attributes although it is highly recommended to keep
     them public.
 
+
 Example:
 ~~~~~~~~
 
@@ -537,50 +538,54 @@ Example:
 Location Object
 ---------------
 
-The Location object is represented by the following attributes or properties of a physical
-location:
+The Location object is represented by the following attributes or
+properties of a physical location:
 
-- address
-- latitude
-- longitude
+- **address**
+- **latitude**
+- **longitude**
 
-The address attribute is a string that represents the physical
+The **address** attribute is a string that represents the physical
 location. It can be a full address, the name of a city or a
-country. address will be used to display a node's address within the
-SDX web user-interface (UI). address is operator-defined. address must
-be limited to 255 (two hundred and fifty five) ASCII characters.
+country. **address** will be used to display a node's address within
+the SDX web user-interface (UI). **address** is
+operator-defined. **address** must be limited to 255 (two hundred and
+fifty five) ASCII characters.
 
-The latitude attribute is the geographic coordinate that specifies the
-north–south position of a node on the Earth's surface.
+The **latitude** attribute is the geographic coordinate that specifies
+the north–south position of a node on the Earth's surface.
 
-The longitude attribute is the geographic coordinate that specifies
-the east–west position of a node on the Earth's surface.
+The **longitude** attribute is the geographic coordinate that
+specifies the east–west position of a node on the Earth's surface.
+
 
 Restrictions:
 ~~~~~~~~~~~~~
 
-1. address, latitude, and longitude must be provided when creating the
-   Location object.
+1. **address**, **latitude**, and **longitude** must be provided when
+   creating the Location object.
    
-2. address, latitude, and longitude must not be empty.
+2. **address**, **latitude**, and **longitude** must not be empty.
    
-3. latitude and longitude must be represented as a string with a
-   floating point number, in the range of -90.0 to 90.0.
+3. **latitude** and **longitude** must be represented as a string with
+   a floating point number, in the range of -90.0 to 90.0.
 
-4. address must be an ASCII string with length no longer than 255
+4. **address** must be an ASCII string with length no longer than 255
    characters.
    
-5. For privacy reasons, address, latitude, and longitude can be
-   provided with content that doesn't show the exact location of a
-   node.
+5. For privacy reasons, **address**, **latitude**, and **longitude**
+   can be provided with content that doesn't show the exact location
+   of a node.
    
-Examples::
+.. code-block:: javascript
   
     {
         "address": "Miami, FL, USA",
         "latitude": "25",
         "longitude": "-80"
     }
+
+.. code-block:: javascript    
     
     {
         "address": "Equinix MI3, Boca Raton, FL, USA",
@@ -595,165 +600,171 @@ Link Object
 The Link object is represented by the following attributes or
 properties of a network connection between two network devices:
 
-- name
-- id
-- ports
-- type
-- bandwidth
-- residual_bandwidth
-- latency
-- packet_loss
-- availability
-- status
-- state
+- **name**
+- **id**
+- **ports**
+- **type**
+- **bandwidth**
+- **residual_bandwidth**
+- **latency**
+- **packet_loss**
+- **availability**
+- **status**
+- **state**
 
-The name attribute is a string that represents the name of the link
-and it will be used to display the link name within the SDX web user
-interface (UI). It is operator defined. The only restriction created
-for the name attribute is its maximum length of 30 (thirty) characters
-and only the following special characters are allowed: "." (period),
-"," (comma), "-" (dash), "_" (underscore)", and "/" (forward slash).
+The **name** attribute is a string that represents the name of the
+link and it will be used to display the link name within the SDX web
+user interface (UI). It is operator defined. The only restriction
+created for the **name** attribute is its maximum length of 30
+(thirty) characters and only the following special characters are
+allowed: "."  (period), "," (comma), "-" (dash), "_" (underscore)",
+and "/" (forward slash).
 
-The id attribute is a Uniform Resource Name (URN) used to uniquely
+The **id** attribute is a Uniform Resource Name (URN) used to uniquely
 identify the link in the AW-SDX context. The OXP operator is
 responsible for guaranteeing the uniqueness of the URN. The link ID
-will follow the format: "urn:sdx:link:<oxp_url>:<link_name>". The
-<oxp_url> is the same URL used to create the Topology Object ID. The
-<link_name> represents the name of the link. Some examples of valid
-link ids are:
+will follow the format: ``"urn:sdx:link:<oxp_url>:<link_name>"``. The
+``<oxp_url>`` is the same URL used to create the Topology
+Object ID. The ``<link_name>`` represents the name of the link. Some
+examples of valid link ids are:
 
-- "urn:sdx:link:amlight.net:saopaulo_miami"
-- "urn:sdx:link:ampath.net:lsst_100G"
-- "urn:sdx:link:rnp.br:ana_100G_dc_paris"
-- "urn:sdx:link:zaoxi.ac:link_to_amlight"
+- ``"urn:sdx:link:amlight.net:saopaulo_miami"``
+- ``"urn:sdx:link:ampath.net:lsst_100G"``
+- ``"urn:sdx:link:rnp.br:ana_100G_dc_paris"``
+- ``"urn:sdx:link:zaoxi.ac:link_to_amlight"``
 
-The ports attribute lists the Port object IDs that create the
+The **ports** attribute lists the Port object IDs that create the
 link. For the scope of the AtlanticWave-SDX, all links will be
-point-to-point. However, since the ports attribute is a list, the list
-structure offers the SDX team some flexibility for future
+point-to-point. However, since the **ports** attribute is a list, the
+list structure offers the SDX team some flexibility for future
 specifications. For the topology data model specification version
-"1.0.0", the ports attribute has two Port objects only.
+"1.0.0", the **ports** attribute has *two* Port objects only.
 
-The type attribute describes if a Link object represents an intra-OXP link (internal) or an
-inter-OXP link (external). Type is an enum with acceptable values either "intra" for intra-OXP or
-"inter" for inter-OXP.
+The **type** attribute describes if a Link object represents an
+intra-OXP link (internal) or an inter-OXP link (external). **Type** is
+an enum with acceptable values either "intra" for intra-OXP or "inter"
+for inter-OXP.
 
-The bandwidth attribute describes the maximum capacity in terms of
+The **bandwidth** attribute describes the maximum capacity in terms of
 bandwidth of a Link object. The bandwidth of a link could be the
 interface's bandwidth or a leased capacity provided by a carrier to
 the OXP. Bandwidth must represent how much bandwidth capacity is
 accessible to be used by the SDX community in units of Gbps. For
-instance, a 50 Gbps link must have the attribute bandwidth set
-to 50. bandwidth accepts a fractional value. For instance, for a 500
-Mbps or 3250 Mbps link, bandwidth must be converted to Gbps, with
-values 0.5 and 3.25 respectively.
+instance, a 50 Gbps link must have the attribute **bandwidth** set
+to 50. **bandwidth** accepts a fractional value. For instance, for a
+500 Mbps or 3250 Mbps link, **bandwidth** must be converted to Gbps,
+with values 0.5 and 3.25 respectively.
 
-The residual_bandwidth attribute describes the average bandwidth
+The **residual_bandwidth** attribute describes the average bandwidth
 available for the Link object. The representation of the
-residual_bandwidth must be provided in percentage from 0 to 100 of the
-bandwidth attribute. For instance, if bandwidth is 40Gbps and the Link
-average utilization is 25Gbps (or 62.5%), the residual_bandwidth must
-have value 37.5, meaning 37.5%. The OXP operator is responsible for
-defining the time interval to be based, for instance, the last 30
-days, the last day, or the last 12 hours. This specification suggests
-that residual_bandwidth to be based on the last 7 to 14 days for
-better accuracy and decision making.
+**residual_bandwidth** must be provided in percentage from 0 to 100 of
+the **bandwidth** attribute. For instance, if **bandwidth** is 40Gbps
+and the Link average utilization is 25Gbps (or 62.5%), the
+**residual_bandwidth** must have value 37.5, meaning 37.5%. The OXP
+operator is responsible for defining the time interval to be based,
+for instance, the last 30 days, the last day, or the last 12
+hours. This specification suggests that **residual_bandwidth** to be
+based on the last 7 to 14 days for better accuracy and decision
+making.
 
-The latency attribute describes the delay introduced by the Link
+The **latency** attribute describes the delay introduced by the Link
 object in milliseconds to the end-to-end path. In optical networks or
 lit services, latency represents the propagation delay between the two
 endpoints (Port objects) and tends to be deterministic. In Carrier
 Ethernet and MPLS networks, latency reports the service delay between
 two endpoints (Port objects) and varies according to the carrier's
-network state at the moment. latency accepts a fractional value.
+network state at the moment. **latency** accepts a fractional value.
 
-The packet_loss attribute describes a percentage of packet loss
-observed for the Link object.  The representation of the packet_loss
-must be provided in percentage from 0 to 100.  packet_loss accepts a
-fraction value. The OXP operator is responsible for defining the time
-interval to be based, for instance, the last 14 days, the last day, or
-the last 12 hours. This specification suggests that packet_loss to be
-based on the last 24 hours or less for better accuracy and decision
-making. This specification leaves it for the OXP operator to decide
-the approach to retrieve the Link's packet loss. As a suggestion, OXP
-operators could use OWAMP installed in perfSONAR nodes, IP SLA, OAM,
-or similar technologies.
+The **packet_loss** attribute describes a percentage of packet loss
+observed for the Link object.  The representation of the
+**packet_loss** must be provided in percentage from 0 to 100.
+**packet_loss** accepts a fraction value. The OXP operator is
+responsible for defining the time interval to be based, for instance,
+the last 14 days, the last day, or the last 12 hours. This
+specification *suggests* that **packet_loss** to be based on the last
+24 hours or less for better accuracy and decision making. This
+specification leaves it for the OXP operator to decide the approach to
+retrieve the Link's packet loss. As a suggestion, OXP operators could
+use OWAMP installed in perfSONAR nodes, IP SLA, OAM, or similar
+technologies.
 
-The availability attribute describes the percentage of time the link
-has been available for data transmission. Also known as reliability,
-the availability attribute is a metric used by the SDX Controller to
-select the best path when provisioning and re-provisioning services
-based on the criticality of the service requested. For instance,
-real-time and interactive applications should be provisioned using
-links with the best availability possible. The representation of the
-availability must be provided in percentage from 0 to 100. The OXP
-operator is responsible for defining the time interval and the formula
-to be used when computing the availability. This specification
-suggests that availability to be based on the last 14 days or less for
-better accuracy and decision making. This specification suggests that
-availability takes into consideration both full outage as well as
-flaps when calculating the resilience of the link.
+The **availability** attribute describes the percentage of time the
+link has been available for data transmission. Also known as
+reliability, the **availability** attribute is a metric used by the
+SDX Controller to select the best path when provisioning and
+re-provisioning services based on the criticality of the service
+requested. For instance, real-time and interactive applications should
+be provisioned using links with the best **availability**
+possible. The representation of the availability must be provided in
+percentage from 0 to 100. The OXP operator is responsible for defining
+the time interval and the formula to be used when computing the
+availability. This specification suggests that availability to be
+based on the last 14 days or less for better accuracy and decision
+making. This specification *suggests* that **availability** takes into
+consideration both full outage as well as flaps when calculating the
+resilience of the link.
 
-The status attribute represents the current operational status of the
-link. Status is an enum with the following values: "down" if the link
-is not operational, "up" if the link is operational, 'error' when
-there is an error with the interface.
+The **status** attribute represents the current operational status of
+the link. **Status** is an enum with the following values: "down" if
+the link is not operational, "up" if the link is operational, 'error'
+when there is an error with the interface.
 
-The state attribute represents the current administrative state of the
-link. State is an enum with the following values: "enabled" if the
-link is in administrative enabled mode, "disabled" when the link is in
-administrative disabled mode (a.k.a. shutdown), and "maintenance" when
-link in under maintenance (not available for use).
+The **state** attribute represents the current administrative state of
+the link. **State** is an enum with the following values: "enabled" if
+the link is in administrative enabled mode, "disabled" when the link
+is in administrative disabled mode (a.k.a. *shutdown*), and
+"maintenance" when link in under maintenance (not available for use).
 
 Restrictions:
 ~~~~~~~~~~~~~
 
-1. name, id, ports, bandwidth, type, status, and state must be
-   provided when creating the link object.
+1. **name**, **id**, **ports**, **bandwidth**, **type**, **status**,
+   and **state** must be provided when creating the link object.
 
-2. name, id, ports, bandwidth, type, status, and state must not be
-   empty.
+2. **name**, id**, **ports**, **bandwidth**, **type**, **status**, and
+   **state** must not be empty.
    
-3. name must be an ASCII string with length not to exceed 30
+3. **name** must be an ASCII string with length not to exceed 30
    characters.
    
-4. name supports only the following special characters: "." (period),
-   "," (comma), "-" (dash), "_" (underscore)", and "/" (forward
-   slash).
+4. **name** supports only the following special characters: "."
+   (period), "," (comma), "-" (dash), "_" (underscore)", and "/"
+   (forward slash).
 
-5. id must follow the format "urn:sdx:link:<oxp_url>:<link_name>"
-   where <oxp_url> is the OXP's website or operator's website domain
-   name and <link_name> is the link's name.
+5. **id** must follow the format
+   ``"urn:sdx:link:<oxp_url>:<link_name>"`` where ``<oxp_url>`` is the
+   OXP's website or operator's website domain name and ``<link_name>``
+   is the link's name.
    
-6. type is an enum with acceptable values either "intra" for intra-OXP
-   or "inter" for inter-OXP.
+6. **type** is an enum with acceptable values either "intra" for
+   intra-OXP or "inter" for inter-OXP.
 
-7. bandwidth must be a numerical value greater than 0 and to be
+7. **bandwidth** must be a numerical value greater than 0 and to be
    provided as a unit in Gbps.
 
-8. residual_bandwidth must be provided as a numerical percentage value
-   from 0 to 100 of the bandwidth attribute.
+8. **residual_bandwidth** must be provided as a numerical percentage
+   value from 0 to 100 of the bandwidth attribute.
 
-9. packet_loss must be provided as a numerical percentage value from 0
-   to 100.
+9. **packet_loss** must be provided as a numerical percentage value
+   from 0 to 100.
    
-10. availability must be provided as a numerical percentage value from
-    0 to 100.
+10. **availability** must be provided as a numerical percentage value
+    from 0 to 100.
     
-11. residual_bandwidth, latency, packet_loss, and availability must be
-    provided as 100, 0, 0, and 100 respectively when collecting these
-    counters is not possible from the OXP Operator. These variables
-    can be assigned fraction values.
+11. **residual_bandwidth**, **latency**, **packet_loss**, and
+    **availability** must be provided as 100, 0, 0, and 100
+    respectively when collecting these counters is not possible from
+    the OXP Operator. These variables can be assigned fraction values.
 
-12. status is an enum and only supports one of the following values:
-    "up", "down", or "error".
+12. **status** is an enum and only supports one of the following
+    values: "up", "down", or "error".
     
-13. state is an enum and only supports one of the following values:
-    "enabled", "disabled", or "maintenance".
+13. **state** is an enum and only supports one of the following
+    values: "enabled", "disabled", or "maintenance".
 
-14. From the Link Object, residual_bandwidth, latency, packet_loss and
-    packet_loss can be set as private attributes although it is highly
-    recommended to keep them public.
+14. From the Link Object, **residual_bandwidth**, **latency**, and
+    **packet_loss** can be set as private attributes although it is
+    highly recommended to keep them public.
 
 
 Schemas
