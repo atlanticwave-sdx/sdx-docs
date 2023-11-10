@@ -130,12 +130,10 @@ of its simplicity to be read by humans and machines.  The diagram
 below will be used to explain the relationship between the topology
 objects.
 
+.. image:: image_0.png
+
 Each topology object will be described in detail in the next
 subsections as well as its dependencies.
-
-.. todo::
-
-   insert image here
 
 
 Topology Object
