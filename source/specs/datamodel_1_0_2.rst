@@ -35,7 +35,7 @@ database will have a few purposes:
 
 3. Monitoring the quality of the AtlanticWave-SDX network resources.
 
-Each OXP's SDX Local Controller (a.k.a. SDX-LC [1]_) must feed the SDX
+Each OXP's SDX Local Controller (a.k.a. SDX-LC [#]_) must feed the SDX
 Controller with topology data using the data model specified in this
 document. The SDX Controller uses the topology data received from each
 SDX-LC to create a network graph. This network graph must be capable
@@ -833,12 +833,15 @@ Restrictions:
 Schemas
 =======
 
-The data model schemas in this specification are provided at [1] for
+The data model schemas in this specification are provided at [1_] for
 easy implementation and validation.
 
-*[1]*\ https://github.com/atlanticwave-sdx/datamodel/blob/main/schemas/
+.. _1: https://github.com/atlanticwave-sdx/datamodel/blob/main/schemas/
 
-.. [1]
-   The SDX Local Controller (SDX-LC) is a major component of the AW-SDX
-   2.0 architecture. A design objective of the SDX-LC is to abstract the
-   distinct physical characteristics of a participant OXP.
+.. rubric:: Footnotes
+
+.. [#] The SDX Local Controller (SDX-LC) is a major component of the
+   AW-SDX 2.0 architecture. A design objective of the SDX-LC is to
+   abstract the distinct physical characteristics of a participant
+   OXP.
+   
