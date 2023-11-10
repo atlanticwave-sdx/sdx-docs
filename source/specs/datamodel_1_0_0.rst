@@ -30,12 +30,12 @@ database will have a few purposes:
 
 3. Monitoring the quality of the AtlanticWave-SDX network resources.
 
-Each OXP's SDX Local Controller (a.k.a. SDX-LC [sdx-lc]_) must feed
-the SDX Controller with topology data using the data model specified
-in this document. The SDX Controller uses the topology data received
-from each SDX-LC to create a network graph. This network graph must be
-capable of supporting Constrained Shortest Path First (CSPF)
-algorithms using user-provided optional requirements, such as:
+Each OXP's SDX Local Controller (a.k.a. SDX-LC [#]_) must feed the SDX
+Controller with topology data using the data model specified in this
+document. The SDX Controller uses the topology data received from each
+SDX-LC to create a network graph. This network graph must be capable
+of supporting Constrained Shortest Path First (CSPF) algorithms using
+user-provided optional requirements, such as:
 
 - Shortest propagation delay
 - Fewest number of OXPs in the path
@@ -785,7 +785,7 @@ easy implementation and validation.
 
 .. rubric:: Footnotes
 
-.. [sdx-lc] The SDX Local Controller (SDX-LC) is a major component of
-   the AW-SDX 2.0 architecture. A design objective of the SDX-LC is to
+.. [#] The SDX Local Controller (SDX-LC) is a major component of the
+   AW-SDX 2.0 architecture. A design objective of the SDX-LC is to
    abstract the distinct physical characteristics of a participant
    OXP.
