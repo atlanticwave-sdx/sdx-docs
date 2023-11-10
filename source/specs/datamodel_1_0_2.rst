@@ -2,7 +2,7 @@
 AW-SDX 2.0 Controller - Topology Data Model Specification 1.0.2
 ===============================================================
 
-Versioning 
+Versioning
 ==========
 
 +---------+------------+-------------------------------+
@@ -289,7 +289,7 @@ Example of a topology object, where the attributes **nodes** and
 **nodes** and **lists** are provided in the next subsections.
 
 .. code-block::
-   
+
     {
         "name": "AmLight-OXP",
         "id": "urn:sdx:topology:amlight.net",
@@ -299,7 +299,7 @@ Example of a topology object, where the attributes **nodes** and
         "nodes": [ {...}, {...} ],
         "links": [ {...}, {...} ]
     }
-   
+
 
 Node Object
 ===========
@@ -404,7 +404,7 @@ Port Object subsection.
         },
         "ports": [ {...}, {...} ]
     }
-   
+
 
 Port Object
 ===========
@@ -561,7 +561,7 @@ Example
 -------
 
 .. code-block::
-   
+
     {
         "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
         "name": "s3-eth2",
@@ -633,8 +633,8 @@ Examples
         "longitude": "-80"
     }
 
-.. code-block::    
-    
+.. code-block::
+
    {
        "address": "Equinix MI3, Boca Raton, FL, USA",
        "latitude": "26.35869",
@@ -845,4 +845,3 @@ easy implementation and validation.
    AW-SDX 2.0 architecture. A design objective of the SDX-LC is to
    abstract the distinct physical characteristics of a participant
    OXP.
-   
