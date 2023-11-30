@@ -19,7 +19,8 @@ is highly automated to allow easy duplication in other PC or Cloud
 platform. Therefore it is imperative for each developer to follow
 certain high-level rules and conventions to contribute.
 
-1. **Writing Code**
+Writing Code
+============
 
    1. Go through and get a clear understanding on functions, data
       models, and interfaces of different system components.
@@ -33,7 +34,9 @@ certain high-level rules and conventions to contribute.
 
    5. Follow Section 2 and 3 for the continuous code development.
 
-2. **Testing Code before submitting a PR request.**
+
+Testing Code before submitting a PR request
+===========================================
 
 We distinguish between two types of code that need to be tested in
 different ways before PR.
@@ -56,7 +59,9 @@ different ways before PR.
    3. VM Testbed test: Deploy your own AW-SDX in the testbed and test
       the endpoints with the mock input data models
 
-3. **How to work with each other**
+
+How to work with each other
+===========================
 
 Each main component has its lead developer. It is important to follow a
 simple workflow between different modules in order to avoid duplicated
