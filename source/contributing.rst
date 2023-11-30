@@ -1,6 +1,6 @@
-=========================================
-Contributing to AtlanticWave-SDX Projects
-=========================================
+================================
+Contributing to AtlanticWave-SDX
+================================
 
 Thank you for taking the time and effort to contribute to
 AtlanticWave-SDX. We would love to have you join the community.
