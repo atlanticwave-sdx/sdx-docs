@@ -5,12 +5,13 @@ Contributing to AtlanticWave-SDX Projects
 Thank you for taking the time and effort to contribute to
 AtlanticWave-SDX. We would love to have you join the community.
 
-The below summarizes the processes that we try to follow. At the moment,
-they mostly list our aspirations. We are working towards making them a
-reality.
+The below summarizes the processes that we try to follow. At the
+moment, they mostly list our aspirations. We are working towards
+making them a reality.
 
-(Note that this document is a work in progress, and will change based on
-feedback.)
+(Note that this document is a work in progress, and will change based
+on feedback.)
+
 
 Reporting Issues
 ================
@@ -31,6 +32,7 @@ it, and to avoid duplicate work.
 If you would like to implement the feature, or fix an issue that you
 have reported, you should use GitHub pull requests.
 
+
 Submitting Pull Requests
 ========================
 
@@ -46,6 +48,7 @@ at least in a subset of our repositories.
 
 When creating a pull request, below are the steps you should follow:
 
+
 1. Create an issue
 ------------------   
 
@@ -54,6 +57,7 @@ request. Describe the feature you want to implement, or the issue you
 want to fix. This will help your collaborators to know what you are up
 to. Issues will be also a good place to discuss your idea, and collect
 feedback.
+
 
 2. Create a branch
 ------------------
@@ -73,6 +77,7 @@ purpose of the branch) is suggested, but not mandatory. This scheme
 however makes it easy to find a branch in your local development setup
 or from GitHub, when you have several branches in progress at a time.
 
+
 3. Make Your Changes
 --------------------   
 
@@ -83,28 +88,31 @@ repository. Make sure that the tests pass. If you are adding a
 nontrivial amount of new code, make sure that your code has adequate
 test coverage.
 
+
 4. Push the branch
 ~~~~~~~~~~~~~~~~~~
 
-If you do not have commit access to the repository, you may need to fork
-the repository, and push the branch there. If you do have commit access
-to the repository, you may be able to push your branch there.
+If you do not have commit access to the repository, you may need to
+fork the repository, and push the branch there. If you do have commit
+access to the repository, you may be able to push your branch there.
 
 .. code:: console
 
    git push origin nn.issue-description-oneliner
 
+
 5. Create a Pull Request
 ------------------------   
 
-See `GitHub’s
-docs <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`__
+See `GitHub’s docs
+<https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`__
 about Pull Requests.
 
 We are in the process of setting up continuous integration on our main
 repositories. We are likely to enforce the policy that (1) tests will
-run against pull requests, and (2) pull requests must pass tests before
-they are merged.
+run against pull requests, and (2) pull requests must pass tests
+before they are merged.
+
 
 6. Wait for Feedback
 --------------------   
@@ -113,22 +121,24 @@ If your collaborators have feedback for you, they will leave the
 feedback on your pull request. Or they may simply approve your pull
 request.
 
+
 7. Address Feedback
 -------------------   
 
 If there is feedback on the pull request, you may want to address the
 feedback by making further changes.
 
+
 8. Wait for the Pull Request to be Merged
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 At this stage, one of these things should happen:
 
--  A collaborator with merge rights will approve and merge your pull
-   request.
+- A collaborator with merge rights will approve and merge your pull
+  request.
 
--  If a collaborator has approved your pull request, and if you have the
-   rights to merge the pull request, you should merge it yourself.
+- If a collaborator has approved your pull request, and if you have
+  the rights to merge the pull request, you should merge it yourself.
 
 
 [PREV] Contributing to AtlanticWave-SDX
