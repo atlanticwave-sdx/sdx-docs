@@ -1,3 +1,4 @@
+=========================================
 Contributing to AtlanticWave-SDX Projects
 =========================================
 
@@ -12,7 +13,7 @@ reality.
 feedback.)
 
 Reporting Issues
-----------------
+================
 
 Please check the existing issues, open and closed, before reporting an
 issue to see that if anyone else has reported your issue already.
@@ -31,7 +32,7 @@ If you would like to implement the feature, or fix an issue that you
 have reported, you should use GitHub pull requests.
 
 Submitting Pull Requests
-------------------------
+========================
 
 We try to follow a pull-request based workflow, as described in
 “`GitHub <https://docs.github.com/en/get-started/quickstart/github-flow>`__”
@@ -46,7 +47,7 @@ at least in a subset of our repositories.
 When creating a pull request, below are the steps you should follow:
 
 1. Create an issue
-~~~~~~~~~~~~~~~~~~
+------------------   
 
 Create an issue, in the repository where you want to create a pull
 request. Describe the feature you want to implement, or the issue you
@@ -55,7 +56,7 @@ to. Issues will be also a good place to discuss your idea, and collect
 feedback.
 
 2. Create a branch
-~~~~~~~~~~~~~~~~~~
+------------------
 
 Check out the source code of the repository, if you have not done so
 already. And then create a branch for the pull request.
@@ -73,7 +74,7 @@ however makes it easy to find a branch in your local development setup
 or from GitHub, when you have several branches in progress at a time.
 
 3. Make Your Changes
-~~~~~~~~~~~~~~~~~~~~
+--------------------   
 
 Make the changes that you want.
 
@@ -94,7 +95,7 @@ to the repository, you may be able to push your branch there.
    git push origin nn.issue-description-oneliner
 
 5. Create a Pull Request
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------   
 
 See `GitHub’s
 docs <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`__
@@ -106,14 +107,14 @@ run against pull requests, and (2) pull requests must pass tests before
 they are merged.
 
 6. Wait for Feedback
-~~~~~~~~~~~~~~~~~~~~
+--------------------   
 
 If your collaborators have feedback for you, they will leave the
 feedback on your pull request. Or they may simply approve your pull
 request.
 
 7. Address Feedback
-~~~~~~~~~~~~~~~~~~~
+-------------------   
 
 If there is feedback on the pull request, you may want to address the
 feedback by making further changes.
@@ -129,9 +130,9 @@ At this stage, one of these things should happen:
 -  If a collaborator has approved your pull request, and if you have the
    rights to merge the pull request, you should merge it yourself.
 
-================================
-Contributing to AtlanticWave-SDX
-================================
+
+[PREV] Contributing to AtlanticWave-SDX
+=======================================
 
 Developer Guidance
 ==================
