@@ -18,6 +18,7 @@ AtlanticWave-SDX project documentation
    :caption: Developing AtlanticWave-SDX
 
    sdx_developer_guidance.rst
+   contributing.rst
    sdx_software_system_design.rst
    sdx_data_model_development_procedure.rst
    sdx_service_data_model_and_test_cases.rst
