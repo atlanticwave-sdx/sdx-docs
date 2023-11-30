@@ -1,8 +1,9 @@
+================================
 Contributing to AtlanticWave-SDX
 ================================
 
 Developer Guidance
-^^^^^^^^^^^^^^^^^^
+==================
 
 AW-SDX software system is based on a service-oriented architecture
 consisting of multiple dockerizable components. While being distributed
@@ -77,10 +78,12 @@ work and inefficiency caused by confusion.
 5. Then integration test will be conducted and PR procedure will be
    followed to accept the new implementation.
 
-Code Style (PEP8) 
-^^^^^^^^^^^^^^^^^
+Code Style (PEP8)
+=================
 
-Pull Request (PR) iteration with the established CI/CD workflow in Github.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pull Request (PR) iteration with the established CI/CD workflow in Github
+=========================================================================
+
 
 .. _section-1:
