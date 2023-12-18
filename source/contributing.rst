@@ -5,12 +5,10 @@ Contributing to AtlanticWave-SDX
 Thank you for taking the time and effort to contribute to
 AtlanticWave-SDX. We would love to have you join the community.
 
-The below summarizes the processes that we try to follow. At the
-moment, they mostly list our aspirations. We are working towards
-making them a reality.
-
-(Note that this document is a work in progress, and will change based
-on feedback.)
+The below summarizes the processes that we try to follow. This
+document is work in progress, somewhat aspirational rather than a
+description of reality, and thus is subject to change based on
+feedback.
 
 
 Reporting Issues
