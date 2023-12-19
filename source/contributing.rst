@@ -48,7 +48,7 @@ When creating a pull request, below are the steps you should follow:
 
 
 1. Create an issue
-------------------   
+------------------
 
 Create an issue, in the repository where you want to create a pull
 request. Describe the feature you want to implement, or the issue you
@@ -77,7 +77,7 @@ or from GitHub, when you have several branches in progress at a time.
 
 
 3. Make Your Changes
---------------------   
+--------------------
 
 Make the changes that you want.
 
@@ -100,7 +100,7 @@ access to the repository, you may be able to push your branch there.
 
 
 5. Create a Pull Request
-------------------------   
+------------------------
 
 See `GitHub’s docs
 <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`__
@@ -113,7 +113,7 @@ before they are merged.
 
 
 6. Wait for Feedback
---------------------   
+--------------------
 
 If your collaborators have feedback for you, they will leave the
 feedback on your pull request. Or they may simply approve your pull
@@ -121,7 +121,7 @@ request.
 
 
 7. Address Feedback
--------------------   
+-------------------
 
 If there is feedback on the pull request, you may want to address the
 feedback by making further changes.
@@ -233,5 +233,3 @@ AtlanticWave-SDX software team consists of a few developers and does
 not have a separate QA team.  Therefore it is important for each
 developer to follow certain high-level rules and conventions that are
 laid out above.
-
-
