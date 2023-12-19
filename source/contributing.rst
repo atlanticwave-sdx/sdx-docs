@@ -10,6 +10,17 @@ document is work in progress, somewhat aspirational rather than a
 description of reality, and thus is subject to change based on
 feedback.
 
+In summary, you are expected to follow a lightweight process that is
+known as `GitHub flow`_.  You will need to:
+
+- Report issues when you find them, or create an issue when you intend
+  to develop a new feature.
+
+- Make code changes with GitHub pull requests, ask for feedback on
+  your changes, and address feedback.
+
+.. _`GitHub flow`: https://docs.github.com/en/get-started/quickstart/github-flow  
+  
 
 Reporting Issues
 ================
