@@ -113,7 +113,7 @@ It would be a good idea to check your code using a linter such as
 
 
 5. Push the branch
-~~~~~~~~~~~~~~~~~~
+------------------   
 
 If you do not have commit access to the repository, you may need to
 fork the repository, and push the branch there. If you do have commit
