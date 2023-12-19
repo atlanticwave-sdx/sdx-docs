@@ -11,23 +11,6 @@ description of reality, and thus is subject to change based on
 feedback.
 
 
-Developer Guidance
-==================
-
-AtlanticWave-SDX is based on a service-oriented architecture
-consisting of multiple containerizable components.  While being
-distributed and deployable independently, these components are
-developed with REST API endpoints and message queues, with data models
-and messages following carefully designed specifications so that they
-communicate with each other to accomplish the end-to-end provisioning
-and other control workflows.
-
-AtlanticWave-SDX software team consists of a few developers and does
-not have a separate QA team.  Therefore it is important for each
-developer to follow certain high-level rules and conventions to
-contribute.
-
-
 Reporting Issues
 ================
 
@@ -233,5 +216,22 @@ Code Style (PEP8)
 Pull Request (PR) iteration with the established CI/CD workflow in Github
 =========================================================================
 
+
+
+Developer Guidance
+==================
+
+AtlanticWave-SDX is based on a service-oriented architecture
+consisting of multiple containerizable components.  While being
+distributed and deployable independently, these components are
+developed with REST API endpoints and message queues, with data models
+and messages following carefully designed specifications so that they
+communicate with each other to accomplish the end-to-end provisioning
+and other control workflows.
+
+AtlanticWave-SDX software team consists of a few developers and does
+not have a separate QA team.  Therefore it is important for each
+developer to follow certain high-level rules and conventions to
+contribute.
 
 
