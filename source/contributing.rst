@@ -96,7 +96,21 @@ test coverage.
 
 
 4. Test your changes
-~~~~~~~~~~~~~~~~~~~~
+--------------------
+
+You should test your changes manually.  You should also write some
+unit and integration tests to automate testing of your changes.
+
+In general, we use `pytest`_ framework to write the tests, and `tox`_
+to run the tests in an isolated environment.  Look for existing
+examples in the repository you are working on.  In most cases, you can
+run the tests by setting some environment variables when necessary,
+and running ``tox``.
+
+You are also expected to format your code using `black`_ and `isort`_.
+It would be a good idea to check your code using a linter such as
+`ruff`_ or `flake8`_.
+
 
 5. Push the branch
 ~~~~~~~~~~~~~~~~~~
@@ -247,3 +261,10 @@ laid out above.
 
 
 .. _`GitHub flow`: https://docs.github.com/en/get-started/quickstart/github-flow
+
+.. _`pytest`: https://pypi.org/project/pytest/
+.. _`tox`: https://pypi.org/project/tox/
+.. _`black`: https://pypi.org/project/black/
+.. _`isort`: https://pypi.org/project/isort/
+.. _`ruff`: https://pypi.org/project/ruff/
+.. _`flake8`: https://pypi.org/project/flake8/
