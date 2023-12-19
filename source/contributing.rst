@@ -19,9 +19,6 @@ known as `GitHub flow`_.  You will need to:
 - Make code changes with GitHub pull requests, ask for feedback on
   your changes, and address feedback.
 
-.. _`GitHub flow`: https://docs.github.com/en/get-started/quickstart/github-flow  
-  
-
 Reporting Issues
 ================
 
@@ -244,3 +241,6 @@ AtlanticWave-SDX software team consists of a few developers and does
 not have a separate QA team.  Therefore it is important for each
 developer to follow certain high-level rules and conventions that are
 laid out above.
+
+
+.. _`GitHub flow`: https://docs.github.com/en/get-started/quickstart/github-flow
