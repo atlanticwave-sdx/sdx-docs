@@ -47,10 +47,9 @@ Submitting Pull Requests
 ========================
 
 We try to follow a pull-request based workflow, as described in
-“`GitHub <https://docs.github.com/en/get-started/quickstart/github-flow>`__”
-document. A pull-request based workflow will ensure that we are better
-coordinated. It will ensure that changes are better understood by
-everyone, not just the person making the changes.
+`GitHub flow`_ document. A pull-request based workflow will ensure
+that we are better coordinated. It will ensure that changes are better
+understood by everyone, not just the person making the changes.
 
 Pushing commits directly to ``main`` branch is discouraged. In order to
 enforce a pull-request based workflow, we protect the ``main`` branches,
