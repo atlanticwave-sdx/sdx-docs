@@ -231,7 +231,7 @@ and other control workflows.
 
 AtlanticWave-SDX software team consists of a few developers and does
 not have a separate QA team.  Therefore it is important for each
-developer to follow certain high-level rules and conventions to
-contribute.
+developer to follow certain high-level rules and conventions that are
+laid out above.
 
 
