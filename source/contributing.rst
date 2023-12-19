@@ -14,19 +14,18 @@ feedback.
 Developer Guidance
 ==================
 
-AW-SDX software system is based on a service-oriented architecture
-consisting of multiple dockerizable components. While being distributed
-and deployable independently, these components are developed with
-RestAPI endpoints and message queues with data models and messages
-following carefully designed specifications so that they communicate
-with each other to accomplish the end-to-end provisioning and other
-control workflows.
+AtlanticWave-SDX is based on a service-oriented architecture
+consisting of multiple containerizable components.  While being
+distributed and deployable independently, these components are
+developed with REST API endpoints and message queues, with data models
+and messages following carefully designed specifications so that they
+communicate with each other to accomplish the end-to-end provisioning
+and other control workflows.
 
-AW-SDX software team consists of a few developers and does not have
-testers. However, we have built a virtualized testing environment that
-is highly automated to allow easy duplication in other PC or Cloud
-platform. Therefore it is imperative for each developer to follow
-certain high-level rules and conventions to contribute.
+AtlanticWave-SDX software team consists of a few developers and does
+not have a separate QA team.  Therefore it is important for each
+developer to follow certain high-level rules and conventions to
+contribute.
 
 
 Reporting Issues
