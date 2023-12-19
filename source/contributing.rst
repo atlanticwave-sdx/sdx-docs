@@ -95,7 +95,10 @@ nontrivial amount of new code, make sure that your code has adequate
 test coverage.
 
 
-4. Push the branch
+4. Test your changes
+~~~~~~~~~~~~~~~~~~~~
+
+5. Push the branch
 ~~~~~~~~~~~~~~~~~~
 
 If you do not have commit access to the repository, you may need to
@@ -107,7 +110,7 @@ access to the repository, you may be able to push your branch there.
    git push origin nn.issue-description-oneliner
 
 
-5. Create a Pull Request
+6. Create a Pull Request
 ------------------------
 
 See `GitHub’s docs
@@ -120,7 +123,7 @@ run against pull requests, and (2) pull requests must pass tests
 before they are merged.
 
 
-6. Wait for Feedback
+7. Wait for Feedback
 --------------------
 
 If your collaborators have feedback for you, they will leave the
@@ -128,14 +131,14 @@ feedback on your pull request. Or they may simply approve your pull
 request.
 
 
-7. Address Feedback
+8. Address Feedback
 -------------------
 
 If there is feedback on the pull request, you may want to address the
 feedback by making further changes.
 
 
-8. Wait for the Pull Request to be Merged
+9. Wait for the Pull Request to be Merged
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 At this stage, one of these things should happen:
