@@ -218,8 +218,8 @@ Pull Request (PR) iteration with the established CI/CD workflow in Github
 
 
 
-Developer Guidance
-==================
+Closing Remarks
+===============
 
 AtlanticWave-SDX is based on a service-oriented architecture
 consisting of multiple containerizable components.  While being
