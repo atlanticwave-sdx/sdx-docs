@@ -110,26 +110,19 @@ You are also expected to format your code using `black`_ and `isort`_.
 It would be a good idea to check your code using a linter such as
 `ruff`_ or `flake8`_.
 
-We distinguish between two types of code that need to be tested in
-different ways before PR.
+In general, we have two kinds of tests:
 
-1. Function test: The developer is responsible to provide the basic
-   test cases for every major class and function, such as those in the
-   PCE and DataModel repos, with an example input either through
-   providing a main function or unittest.
+1. Unit tests: basic test cases are expected for every major class and
+   function whenever possible (such as those in pce and datamodel
+   repositories).  You can use mock input data here, such as JSON
+   files representing network topology and connection requests.
 
-2. Component test: integration/interaction with other components, like
-   SDX-LC to OXP and SDX-LC to SDX-Controller, or the RabbitMQ Message
-   Queue subsystem with SDX-LC and SDX-controller.
+2. Integration tests: tests for integration and interaction with other
+   components, like SDX-LC to OXP and SDX-LC to SDX-Controller, or
+   RabbitMQ Message Queue subsystem with SDX-LC and SDX-controller.
 
-   1. Unittest: Device the input and the expected output data models
-      in JSON: (1) Mock topology in JSON; (2) mock request in JSON.
-
-   2. RestAPI test: Swagger mock test for both end points and data
-      model validation
-
-   3. VM Testbed test: Deploy your own AW-SDX in the testbed and test
-      the endpoints with the mock input data models
+When possible, you should also deploy your code on in the testbed and
+test it there.  Ask for help if you are unsure how to do this.
 
 
 5. Push the branch
