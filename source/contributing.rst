@@ -171,8 +171,8 @@ At this stage, one of these things should happen:
   the rights to merge the pull request, you should merge it yourself.
 
 
-[PREV] Contributing to AtlanticWave-SDX
-=======================================
+General notes
+=============
 
 
 1. Writing Code
