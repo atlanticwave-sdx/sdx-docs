@@ -186,35 +186,6 @@ At this stage, one of these things should happen:
   the rights to merge the pull request, you should merge it yourself.
 
 
-General notes
-=============
-
-
-3. How to work with each other
-==============================
-
-Each main component has its lead developer. It is important to follow
-a simple workflow between different modules in order to avoid
-duplicated work and inefficiency caused by confusion.
-
-1. When review and integrate with other modules, please first review
-   and test with their specifications, APIs and main functions.
-
-2. If you think something is missing or not correct in another’s
-   module, please first write a **feature request** to be reviewed by
-   that module’s developer.
-
-3. After an agreement is reached, the module’s developer is
-   responsible to design the new feature and get the approval with the
-   requester.
-
-4. The module’s developer is responsible to implement and test the new
-   feature.
-
-5. Then integration test will be conducted and PR procedure will be
-   followed to accept the new implementation.
-
-
 Closing Remarks
 ===============
 
