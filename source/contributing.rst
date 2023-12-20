@@ -25,10 +25,8 @@ Reporting Issues
 
 If you find a new issue, please consider reporting it.  Be sure to
 include enough details for a developer to be able to reproduce the
-issue.
-
-Please check the existing issues, open and closed, before reporting an
-issue to see that if anyone else has already reported it.
+issue. Be sure to check existing issues, open and closed, before
+reporting an issue to see that if anyone else has already reported it.
 
 Do you want to add a feature in AtlanticWave-SDX?  Please create an
 issue for that too, and label it as an “enhancement”.  Describe the
