@@ -93,6 +93,8 @@ repository. Make sure that the tests pass. If you are adding a
 nontrivial amount of new code, make sure that your code has adequate
 test coverage.
 
+Be sure that your Python code adheres to `pep8`_ style.
+
 
 4. Test your changes
 --------------------
@@ -214,12 +216,6 @@ duplicated work and inefficiency caused by confusion.
    followed to accept the new implementation.
 
 
-Code Style (PEP8)
-=================
-
-.. todo:: write this.
-
-
 Closing Remarks
 ===============
 
@@ -240,6 +236,8 @@ laid out above.
 .. _`GitHub flow`: https://docs.github.com/en/get-started/quickstart/github-flow
 .. _`pull requests`: https://docs.github.com/en/pull-requests
 .. _`creating`: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+
+.. _`pep8`: https://pep8.org/
 
 .. _`pytest`: https://pypi.org/project/pytest/
 .. _`tox`: https://pypi.org/project/tox/
