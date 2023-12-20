@@ -126,10 +126,22 @@ access to the repository, you may be able to push your branch there.
 6. Create a Pull Request
 ------------------------
 
-We are in the process of setting up continuous integration on our main
-repositories. We are likely to enforce the policy that (1) tests will
-run against pull requests, and (2) pull requests must pass tests
-before they are merged.
+You might want to refer GitHub's documentation about `creating`_ pull
+requests.
+
+AtlanticWave-SDX repositories are set up to run some checks against
+pull requests when you create them or update them.  The checks
+include:
+
+- Unit and integration tests,
+- Packaging checks to ensure that there are no broken dependencies,
+- Code coverage checks to ensure that new code has test coverage,
+- Code formatting checks, and  
+- Linters and other possible checks.
+
+Pull requests cannot be merged to ``main`` branch if they do not pass
+these checks.  One or more approving reviews are also required before
+a pull request can be merged.
 
 
 7. Wait for Feedback
@@ -254,6 +266,7 @@ laid out above.
 
 .. _`GitHub flow`: https://docs.github.com/en/get-started/quickstart/github-flow
 .. _`pull requests`: https://docs.github.com/en/pull-requests
+.. _`creating`: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 
 .. _`pytest`: https://pypi.org/project/pytest/
 .. _`tox`: https://pypi.org/project/tox/
