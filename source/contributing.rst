@@ -232,6 +232,7 @@ duplicated work and inefficiency caused by confusion.
 Code Style (PEP8)
 =================
 
+.. todo:: write this.
 
 
 Closing Remarks
