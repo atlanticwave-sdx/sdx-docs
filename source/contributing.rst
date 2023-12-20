@@ -20,7 +20,7 @@ known as `GitHub flow`_.  You will need to:
   your changes, and address feedback.
 
 
-Reporting Issues
+Reporting issues
 ================
 
 If you find a new issue, please consider reporting it.  Be sure to
@@ -39,7 +39,7 @@ If you would like to implement the feature, or fix an issue that you
 have reported, you should use GitHub pull requests.
 
 
-Submitting Pull Requests
+Submitting pull requests
 ========================
 
 We try to follow a pull-request based workflow, as described in
@@ -83,7 +83,7 @@ however makes it easy to find a branch in your local development setup
 or from GitHub, when you have several branches in progress at a time.
 
 
-3. Make Your Changes
+3. Make your changes
 --------------------
 
 Make the changes that you want.
@@ -123,7 +123,7 @@ access to the repository, you may be able to push your branch there.
    git push origin nn.issue-description-oneliner
 
 
-6. Create a Pull Request
+6. Create a pull request
 ------------------------
 
 You might want to refer GitHub's documentation about `creating`_ pull
@@ -144,7 +144,7 @@ these checks.  One or more approving reviews are also required before
 a pull request can be merged.
 
 
-7. Wait for Feedback
+7. Wait for feedback
 --------------------
 
 If your collaborators have feedback for you, they will leave the
@@ -152,14 +152,14 @@ feedback on your pull request. Or they may simply approve your pull
 request.
 
 
-8. Address Feedback
+8. Address feedback
 -------------------
 
 If there is feedback on the pull request, you may want to address the
 feedback by making further changes.
 
 
-9. Wait for the Pull Request to be Merged
+9. Wait for the pull request to be merged
 -----------------------------------------
 
 At this stage, one of these things should happen:
