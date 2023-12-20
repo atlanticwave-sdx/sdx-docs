@@ -16,8 +16,9 @@ known as `GitHub flow`_.  You will need to:
 - Report issues when you find them, or create an issue when you intend
   to develop a new feature.
 
-- Make code changes with GitHub pull requests, ask for feedback on
+- Make code changes with GitHub `pull requests`_, ask for feedback on
   your changes, and address feedback.
+
 
 Reporting Issues
 ================
@@ -126,10 +127,6 @@ access to the repository, you may be able to push your branch there.
 
 6. Create a Pull Request
 ------------------------
-
-See `GitHub’s docs
-<https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`__
-about Pull Requests.
 
 We are in the process of setting up continuous integration on our main
 repositories. We are likely to enforce the policy that (1) tests will
@@ -261,6 +258,7 @@ laid out above.
 
 
 .. _`GitHub flow`: https://docs.github.com/en/get-started/quickstart/github-flow
+.. _`pull requests`: https://docs.github.com/en/pull-requests
 
 .. _`pytest`: https://pypi.org/project/pytest/
 .. _`tox`: https://pypi.org/project/tox/
