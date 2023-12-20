@@ -100,11 +100,11 @@ test coverage.
 You should test your changes manually.  You should also write some
 unit and integration tests to automate testing of your changes.
 
-In general, we use `pytest`_ framework to write the tests, and `tox`_
-to run the tests in an isolated environment.  Look for existing
-examples in the repository you are working on.  In most cases, you can
-run the tests by setting some environment variables when necessary,
-and running ``tox``.
+We use `pytest`_ framework to write the tests, and `tox`_ to run the
+tests in an isolated environment.  Look for existing examples in the
+repository you are working on.  In most cases, you can run the tests
+by setting some environment variables when necessary, and running
+``tox``.
 
 You are also expected to format your code using `black`_ and `isort`_.
 It would be a good idea to check your code using a linter such as
