@@ -3,7 +3,7 @@ Contributing to AtlanticWave-SDX
 ================================
 
 Thank you for taking the time and effort to contribute to
-AtlanticWave-SDX. We would love to have you join the community.
+AtlanticWave-SDX. We would love to have you join the project.
 
 The below summarizes the processes that we try to follow. This
 document is work in progress, somewhat aspirational rather than a
