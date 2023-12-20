@@ -110,6 +110,27 @@ You are also expected to format your code using `black`_ and `isort`_.
 It would be a good idea to check your code using a linter such as
 `ruff`_ or `flake8`_.
 
+We distinguish between two types of code that need to be tested in
+different ways before PR.
+
+1. Function test: The developer is responsible to provide the basic
+   test cases for every major class and function, such as those in the
+   PCE and DataModel repos, with an example input either through
+   providing a main function or unittest.
+
+2. Component test: integration/interaction with other components, like
+   SDX-LC to OXP and SDX-LC to SDX-Controller, or the RabbitMQ Message
+   Queue subsystem with SDX-LC and SDX-controller.
+
+   1. Unittest: Device the input and the expected output data models
+      in JSON: (1) Mock topology in JSON; (2) mock request in JSON.
+
+   2. RestAPI test: Swagger mock test for both end points and data
+      model validation
+
+   3. VM Testbed test: Deploy your own AW-SDX in the testbed and test
+      the endpoints with the mock input data models
+
 
 5. Push the branch
 ------------------   
@@ -173,31 +194,6 @@ At this stage, one of these things should happen:
 
 General notes
 =============
-
-
-2. Testing Code before submitting a PR request
-==============================================
-
-We distinguish between two types of code that need to be tested in
-different ways before PR.
-
-1. Function test: The developer is responsible to provide the basic
-   test cases for every major class and function, such as those in the
-   PCE and DataModel repos, with an example input either through
-   providing a main function or unittest.
-
-2. Component test: integration/interaction with other components, like
-   SDX-LC to OXP and SDX-LC to SDX-Controller, or the RabbitMQ Message
-   Queue subsystem with SDX-LC and SDX-controller.
-
-   1. Unittest: Device the input and the expected output data models
-      in JSON: (1) Mock topology in JSON; (2) mock request in JSON.
-
-   2. RestAPI test: Swagger mock test for both end points and data
-      model validation
-
-   3. VM Testbed test: Deploy your own AW-SDX in the testbed and test
-      the endpoints with the mock input data models
 
 
 3. How to work with each other
