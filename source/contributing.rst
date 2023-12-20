@@ -160,7 +160,7 @@ feedback by making further changes.
 
 
 9. Wait for the Pull Request to be Merged
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
 At this stage, one of these things should happen:
 
