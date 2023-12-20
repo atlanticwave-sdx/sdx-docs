@@ -175,22 +175,6 @@ General notes
 =============
 
 
-1. Writing Code
-===============
-
-1. Go through and get a clear understanding on functions, data models,
-   and interfaces of different system components.
-
-2. Propose the implementation design to be reviewed within the team.
-
-3. Create a meta issue in identify the implementation goals, modules,
-   and functions agreed upon by the team review.
-
-4. Create a branch to develop the code.
-
-5. Follow Section 2 and 3 for the continuous code development.
-
-
 2. Testing Code before submitting a PR request
 ==============================================
 
