@@ -89,11 +89,10 @@ or from GitHub, when you have several branches in progress at a time.
 Make the changes that you want.
 
 You will want to follow the guidelines documented in the relevant
-repository. Make sure that the tests pass. If you are adding a
-nontrivial amount of new code, make sure that your code has adequate
-test coverage.
+repository. Be sure that your Python code adheres to `pep8`_ style.
 
-Be sure that your Python code adheres to `pep8`_ style.
+If you are adding a nontrivial amount of new code, make sure that you
+have written tests for them.  Make sure that the tests pass.
 
 
 4. Test your changes
