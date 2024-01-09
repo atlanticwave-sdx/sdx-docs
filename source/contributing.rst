@@ -19,6 +19,19 @@ known as `GitHub flow`_.  You will need to:
 - Make code changes with GitHub `pull requests`_, ask for feedback on
   your changes, and address feedback.
 
+Why are we following such a process?  The main reason is this: so that
+other members of the team know what you are doing.  Sometimes they
+might have suggestions; sometimes a discussion might ensue about the
+right course of action. However, in general, the main intent of
+writing down issues and getting your code reviewed is to communicate
+what you are doing.
+
+The quality and correctness of your work also could be a concern, but
+it is not the main concern of code reviews.  Ideally we should be able
+to catch errors in testing.  There are some automated tests that will
+check your pull requests.  Sometimes you will need to write some new
+tests.  We will also need to test things manually, as necessary.
+
 
 Reporting issues
 ================
