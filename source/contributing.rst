@@ -85,7 +85,7 @@ already. And then create a branch for the pull request.
 
 .. code:: console
 
-   git fetch
+   git fetch origin
    git checkout -b nn.issue-description-oneliner origin/main
 
 A branch name scheme like ``nn.issue-description-oneliner`` (where
