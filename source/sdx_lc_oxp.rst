@@ -72,7 +72,14 @@ OXP Site Software and SDX Integration
    configuration file, for example, in the docker-compose file, so that
    no hard-coding or over-generalization is needed.
 
+.. image:: ./media/LC_OXP.png
+   :width: 6.5in
+   :height: 4.77778in
+
 a. Option 1: Kytos netapp supports SDX data model schema
+   
+      1.1. Kytos NAPP: tightly coupled with kytos core.
+      1.2  Standalone service or endpoints for LC to pull and push
 
 b. Option 2: OXP does not support SDX data model schema
 
