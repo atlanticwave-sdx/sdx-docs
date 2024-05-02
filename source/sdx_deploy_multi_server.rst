@@ -55,7 +55,8 @@ Pre-requirements
 ================
 
 In order to be able to run this step-by-step, you need to have:
-- all vms above created and running. For the setup documented here,
+
+- All vms above created and running. For the setup documented here,
   Debian 11 was utilized
 - Docker installed each server (https://docs.docker.com/engine/install/debian/)
 - Servers should have proper firewall rules in place to allow communication,
