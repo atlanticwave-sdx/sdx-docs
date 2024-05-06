@@ -1,0 +1,359 @@
+===============================================================
+Deploying AtlanticWave-SDX into multiple servers
+===============================================================
+
+Introduction
+============
+
+This page list the steps necessary for building the AW-SDX whole environment
+into multiple servers, also using Docker and Docker-compose on each one of them.
+
+
+The following table ilustrates roles and responsabilities for the multiple servers.
+IP addresses there are just for ilustration, your setup can use
+different addresses, as long as you adapt the configs throughout
+this guide.
+
++----------------+----------------+---------------------------+
+| Server         | IP address     | Description               |
++================+================+===========================+
+| sdx-controller | 192.168.56.104 | Runs SDX-Controller:      |
+|                |                |  - sdx-controller         |
+|                |                |  - Mongo                  |
+|                |                |  - RabbitMQ               |
+|                |                |  - Mininet                |
++----------------+----------------+---------------------------+
+| meican         | 192.168.56.105 | runs Meican system        |
++----------------+----------------+---------------------------+
+| oxp-ampath     | 192.168.56.100 | Runs Amlight/AMPATH OXP:  |
+|                |                |  - Kytos                  |
+|                |                |  - SDX-LC                 |
+|                |                |  - Mongo                  |
++----------------+----------------+---------------------------+
+| oxp-sax        | 192.168.56.102 | Runs SAX OXP:             |
+|                |                |  - Kytos                  |
+|                |                |  - SDX-LC                 |
+|                |                |  - Mongo                  |
++----------------+----------------+---------------------------+
+| oxp-tenet      | 192.168.56.103 | Runs Tenet OXP:           |
+|                |                |  - Kytos                  |
+|                |                |  - SDX-LC                 |
+|                |                |  - Mongo                  |
++----------------+----------------+---------------------------+
+
+Note that Mininet was deployed on the sdx-controller just for
+simplicity, but it is okay if you decide to have a separed server
+only for that. Another approach would be run mininet on each OXP
+and the leverage VXLAN or L2TP to create inter-domain links.
+
+Note also that RabbitMQ was created on sdx-controller for simplicity.
+It can also be created on a separated server.
+
+All build process will be based on **main** branches.
+
+Pre-requirements
+================
+
+In order to be able to run this step-by-step, you need to have:
+
+- All vms above created and running. For the setup documented here,
+  Debian 11 was utilized
+- Docker installed each server (https://docs.docker.com/engine/install/debian/)
+- Servers should have proper firewall rules in place to allow communication,
+  specially the following ports
+  - RabbitMQ between oxp-ampath/oxp-sax/oxp-tenet and sdx-controller (port 5672/tcp)
+  - OpenFlow between oxp-ampath/oxp-sax/oxp-tenet and Mininet (sdx-controller) (6653/tcp)
+  - HTTP between sdx-controller and Meican (8080/tcp)
+
+Deploying SDX-Controller
+========================
+
+1. Create an instance for RabbitMQ:
+
+.. code-block :: RST
+
+	docker run -d --name mq1 -e RABBITMQ_DEFAULT_USER=testsdx1 -e RABBITMQ_DEFAULT_PASS=testsdx1 -p 5672:5672 rabbitmq:latest
+
+2. Create an instance for MongoDB and configure a database/username/password:
+
+.. code-block :: RST
+
+	docker run -d --name mongo mongo:5.0
+	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdxctl").createUser({user: "sdxctl", pwd: "sdxctl", roles: [ { role: "dbAdmin", db: "sdxctl" } ]})'
+
+3. Install dependencies and build sdx-controller:
+
+.. code-block :: RST
+
+	sudo apt-get  install -y git vim jq
+	git clone https://github.com/atlanticwave-sdx/sdx-controller
+	cd sdx-controller
+	docker build -t sdx-controller .
+
+4. Create an instance for sdx-controller based on a set of environment variables:
+
+.. code-block :: RST
+
+	cat >sdx-controller.env <<EOF
+	MONGODB_CONNSTRING=mongodb://sdxctl:sdxctl@mongo:27017/sdxctl
+	DB_NAME=sdxctl
+	DB_CONFIG_TABLE_NAME=sdxctl_table
+	SUB_QUEUE=topo
+	SUB_TOPIC=sdx_q1
+	MQ_HOST=192.168.56.104
+	MQ_PORT=5672
+	MQ_USER=testsdx1
+	MQ_PASS=testsdx1
+	EOF
+	
+	docker run -d --name sdx-controller --link mongo --env-file sdx-controller.env -p 8080:8080 sdx-controller:latest
+
+5. Create an instance for Mininet point to the OXPO that will be created later on:
+
+.. code-block :: RST
+
+	docker run -d --name mininet -it --privileged -v /lib/modules:/lib/modules italovalcy/mininet:latest https://raw.githubusercontent.com/atlanticwave-sdx/sdx-continuous-development/main/data-plane/container-mininet/link-hosts.py 192.168.56.100 192.168.56.102 192.168.56.103
+
+Deploying OXP-Ampath
+========================
+
+1. Create an instance for Mongo along with database/username/password for Kytos and SDX-LC:
+
+.. code-block :: RST
+
+	docker run -d --name mongo mongo:5.0
+	docker exec -it mongo mongo --eval 'db.getSiblingDB("amlight").createUser({user: "amlight", pwd: "amlight", roles: [ { role: "dbAdmin", db: "amlight" } ]})'
+	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
+
+2. Run Kytos:
+
+.. code-block :: RST
+
+	docker pull amlight/kytos:latest
+	docker run  --name ampath-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=amlight" -e "MONGO_USERNAME=amlight" -e "MONGO_PASSWORD=amlight" -e "SDXLC_URL=http://192.168.56.100:8080/SDX-LC/1.0.0/topology" -e "OXPO_NAME=Ampath-OXP" -e "OXPO_URL=ampath.net" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+
+3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
+
+.. code-block :: RST
+
+	docker exec -it ampath-kytos bash
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
+	cd /src/kytos-sdx-topology/app/
+	python3 setup.py develop
+	tmux new-session -d -s kytosserver "kytosd -f"
+	exit
+
+4. Build and create the SDX-LC container:
+
+.. code-block :: RST
+
+	sudo apt-get  install git
+	git clone https://github.com/atlanticwave-sdx/sdx-lc
+	cd sdx-lc/
+	docker build -t sdx-lc .
+	
+	cat >amlight-sdx-lc.env <<EOF
+	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
+	OXP_CONNECTION_URL=http://192.168.56.100:8181/api/kytos/sdx_topology/v1/l2vpn_ptp
+	DB_NAME=sdx_lc
+	DB_CONFIG_TABLE_NAME=ampath_sdx_lc
+	OXP_PULL_URL=http://192.168.56.100:8181/api/kytos/sdx_topology/v1/shelve/topology
+	OXP_PULL_INTERVAL=180
+	SDXLC_DOMAIN=ampath.net
+	SUB_QUEUE=connection
+	SUB_EXCHANGE=connection
+	SUB_TOPIC=ampath.net
+	MQ_HOST=192.168.56.104
+	MQ_PORT=5672
+	MQ_USER=testsdx1
+	MQ_PASS=testsdx1
+	EOF
+	
+	docker run -d --name ampath-sdx-lc --link mongo --env-file ampath-sdx-lc.env -p 8080:8080 sdx-lc:latest
+
+Deploying OXP-SAX
+========================
+
+1. Create an instance for Mongo along with database/username/password for Kytos and SDX-LC:
+
+.. code-block :: RST
+
+	docker run -d --name mongo mongo:5.0
+	docker exec -it mongo mongo --eval 'db.getSiblingDB("sax").createUser({user: "sax", pwd: "sax", roles: [ { role: "dbAdmin", db: "sax" } ]})'
+	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
+
+2. Run Kytos:
+
+.. code-block :: RST
+
+	docker pull amlight/kytos:latest
+	docker run  --name sax-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=sax" -e "MONGO_USERNAME=sax" -e "MONGO_PASSWORD=sax" -e "SDXLC_URL=http://192.168.56.102:8080/SDX-LC/1.0.0/topology" -e "OXPO_NAME=SAX-OXP" -e "OXPO_URL=sax.net"  -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+
+3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
+
+.. code-block :: RST
+
+	docker exec -it sax-kytos bash
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
+	cd /src/kytos-sdx-topology/app/
+	python3 setup.py develop
+	tmux new-session -d -s kytosserver "kytosd -f"
+	exit
+
+4. Build and create the SDX-LC container:
+
+.. code-block :: RST
+
+	sudo apt-get  install git
+	git clone https://github.com/atlanticwave-sdx/sdx-lc
+	cd sdx-lc/
+	docker build -t sdx-lc .
+
+	cat >sax-sdx-lc.env <<EOF
+	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
+	OXP_CONNECTION_URL=http://192.168.56.102:8181/api/kytos/sdx_topology/v1/l2vpn_ptp
+	DB_NAME=sdx_lc
+	DB_CONFIG_TABLE_NAME=sax_sdx_lc
+	OXP_PULL_URL=http://192.168.56.102:8181/api/kytos/sdx_topology/v1/shelve/topology
+	OXP_PULL_INTERVAL=180
+	SDXLC_DOMAIN=sax.net
+	SUB_QUEUE=connection
+	SUB_EXCHANGE=connection
+	SUB_TOPIC=sax.net
+	MQ_HOST=192.168.56.104
+	MQ_PORT=5672
+	MQ_USER=testsdx1
+	MQ_PASS=testsdx1
+	EOF
+	
+	docker run -d --name sax-sdx-lc --link mongo --env-file sax-sdx-lc.env -p 8080:8080 sdx-lc:latest
+
+Deploying OXP-Tenet
+========================
+
+1. Create an instance for Mongo along with database/username/password for Kytos and SDX-LC:
+
+.. code-block :: RST
+
+	docker run -d --name mongo mongo:5.0
+	docker exec -it mongo mongo --eval 'db.getSiblingDB("tenet").createUser({user: "tenet", pwd: "tenet", roles: [ { role: "dbAdmin", db: "tenet" } ]})'
+	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
+
+2. Run Kytos:
+
+.. code-block :: RST
+
+	docker pull amlight/kytos:latest
+	docker run  --name tenet-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=tenet" -e "MONGO_USERNAME=tenet" -e "MONGO_PASSWORD=tenet" -e "SDXLC_URL=http://192.168.56.103:8080/SDX-LC/1.0.0/topology" -e "OXPO_NAME=Tenet-OXP" -e "OXPO_URL=tenet.ac.za" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+
+3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
+
+.. code-block :: RST
+
+	docker exec -it sax-kytos bash
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
+	cd /src/kytos-sdx-topology/app/
+	python3 setup.py develop
+	tmux new-session -d -s kytosserver "kytosd -f"
+	exit
+
+4. Build and create the SDX-LC container:
+
+.. code-block :: RST
+
+	sudo apt-get  install git
+	git clone https://github.com/atlanticwave-sdx/sdx-lc
+	cd sdx-lc/
+	docker build -t sdx-lc .
+
+	cat >tenet-sdx-lc.env <<EOF
+	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
+	OXP_CONNECTION_URL=http://192.168.56.103:8181/api/kytos/sdx_topology/v1/l2vpn_ptp
+	DB_NAME=sdx_lc
+	DB_CONFIG_TABLE_NAME=tenet_sdx_lc
+	OXP_PULL_URL=http://192.168.56.103:8181/api/kytos/sdx_topology/v1/shelve/topology
+	OXP_PULL_INTERVAL=180
+	SDXLC_DOMAIN=tenet.ac.za
+	SUB_QUEUE=connection
+	SUB_EXCHANGE=connection
+	SUB_TOPIC=tenet.ac.za
+	MQ_HOST=192.168.56.104
+	MQ_PORT=5672
+	MQ_USER=testsdx1
+	MQ_PASS=testsdx1
+	EOF
+	
+	docker run -d --name tenet-sdx-lc --link mongo --env-file tenet-sdx-lc.env -p 8080:8080 sdx-lc:latest
+
+Final config on SDX-Controller
+==============================
+
+- Configure the OXPs to enable switches, interfaces and links, as well as enable Kytos-SDX-Topology to send the topology to SDX-LC:
+
+.. code-block :: RST
+
+	curl -LO https://raw.githubusercontent.com/atlanticwave-sdx/kytos-sdx-topology/main/curl/2.enable_all.sh
+	sed -i 's/0.0.0.0:8181/192.168.56.100:8181/g' 2.enable_all.sh
+	sed -i 's/0.0.0.0:8282/192.168.56.102:8181/g' 2.enable_all.sh
+	sed -i 's/0.0.0.0:8383/192.168.56.103:8181/g' 2.enable_all.sh
+	bash 2.enable_all.sh
+	
+	curl -s http://192.168.56.100:8181/api/kytos/sdx_topology/v1/version/control | jq -r
+	curl -s http://192.168.56.102:8181/api/kytos/sdx_topology/v1/version/control | jq -r
+	curl -s http://192.168.56.103:8181/api/kytos/sdx_topology/v1/version/control | jq -r
+
+- Check if the Nodes, and Links were loaded to SDX-Controller:
+
+.. code-block :: RST
+
+	curl -s http://192.168.56.104:8080/SDX-Controller/1.0.0/topology | jq -r '.nodes[] | (.ports[] | .id)'
+	curl -s http://192.168.56.104:8080/SDX-Controller/1.0.0/topology | jq -r '.links[] | .id + " " + .ports[0].id + " " + .ports[1].id'
+
+- Create a connection:
+
+.. code-block :: RST
+
+	curl -X POST http://192.168.56.104:8080/SDX-Controller/1.0.0/connection -H 'Content-Type: application/json' -d '{"id": "3", "name": "Test connection request 22", "start_time": "2000-01-23T04:56:07.000Z", "end_time": "2000-01-23T04:56:07.000Z", "bandwidth_required": 10, "latency_required": 300, "egress_port": {"id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "name": "Tenet03:50", "node": "urn:sdx:port:tenet.ac.za:Tenet03", "status": "up"}, "ingress_port": {"id": "urn:sdx:port:ampath.net:Ampath3:50", "name": "Ampath3:50", "node": "urn:sdx:port:ampath.net:Ampath3", "status": "up"}}'
+
+- List the breakouts created on the OXPs:
+
+.. code-block :: RST
+
+	sdx-controller:~$ curl -s http://192.168.56.100:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[] | .id + " " + .name + " active=" + (.active|tostring)'
+	73eb822faf6745 AMPATH_vlan_100_100 active=true
+	
+	sdx-controller:~$ curl -s http://192.168.56.102:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[] | .id + " " + .name + " active=" + (.active|tostring)'
+	089d976599a44e SAX_vlan_100_100 active=true
+	
+	sdx-controller:~$ curl -s http://192.168.56.103:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[] | .id + " " + .name + " active=" + (.active|tostring)'
+	0050f201917949 TENET_vlan_100_100 active=false
+
+Meican
+=======
+
+1. The next step will be bringing SDX-Meican UP and integrate it with SDX-Controller. To do that, execute the following steps:
+
+.. code-block :: RST
+
+	cd ~
+	git clone https://github.com/atlanticwave-sdx/sdx-meican
+	cd sdx-meican
+
+2. Adjust some configs on Meican's `.env` file to comply with your environment:
+
+.. code-block :: RST
+
+	vim .env
+
+Some of the parameters you might want to change:
+
+- **ORCID_CLIENT_ID**: Client ID and Client Secret must be obtained from ORCID (following the instructions in https://info.orcid.org/documentation/api-tutorials/api-tutorial-get-and-authenticated-orcid-id/). Example: `APP-S7XXXXXXXXXXXXXX`
+- **ORCID_CLIENT_SECRET**: same here, this have to be obtained from ORCID. Example: `bbxxxxxx-9x0x-4xx1-xxxx-xxxxxxxxxxxxxx`
+- **MEICAN_HOST**:  This will be the IP address of the meican host, or DNS. Typically, you can insert here the IP address of the host where you are running docker. You can use a IP address but using the DNS name makes it easy for ORCID registration, where you have to provide the URL (IP address can change, while DNS name will remain the same). Example: `192.168.56.104`
+- **SDX_CONTROLLER_URL**: This will be the URL of the SDX-Controller. Since we are running everything on the same machine, you just provide here the IP address of the host where docker is running formated to the sdx-controller URL. Example: `http://192.168.56.104:8080/SDX-Controller/1.0.0/`
+
+3. Build Meican:
+
+.. code-block :: RST
+
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
