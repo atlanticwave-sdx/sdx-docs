@@ -32,16 +32,15 @@ submodules accordingly:
 .. code-block :: RST
 
 	git clone https://github.com/atlanticwave-sdx/sdx-continuous-development
-	cd sdx-continuous-development
+	cd sdx-continuous-development/data-plane
 	git checkout main
 	git pull
-	for repo in sdx-lc sdx-controller kytos-sdx-topology; do cd data-plane/; git clone https://github.com/atlanticwave-sdx/$repo container-$repo; cd ..; done
+	for repo in sdx-lc sdx-controller kytos-sdx-topology; do folder=container-$repo; git -C $folder pull || git clone https://github.com/atlanticwave-sdx/$repo $folder; done
 
 2. Next step will be to use the template env file to be our actual `.env` file:
 
 .. code-block :: RST
 
-	cd data-plane
 	cp template.env .env
 
 3. Now it is time to build the containers that will be used to setup the environment:
@@ -52,9 +51,6 @@ submodules accordingly:
 	./2_build_oxpos.sh
 	./3_build_local_controllers.sh
 	./4_build_mongo.sh
-	cd container-sdx-controller
-	docker build -t sdx-controller .
-	cd ..
 
 
 You should note from the commands above that we built sdx-controller from upstream Dockerfile to make sure dependencies are met properly.
@@ -79,15 +75,13 @@ At this point all the components are booting up, which should take a few seconds
 
 .. code-block :: RST
 
-	./container-kytos-sdx-topology/curl/2.enable_all.sh
+	./scripts/curl/2.enable_all.sh
 
 7. The next step will be activating the Kytos-SDX-Topology Napp to send the topology to SDX-LC. This step is required because the Kytos-SDX-Topology Napp was designed in a way that the Network Operator has to first initialize the versioning system to enable it sending the topology updates.
 
 .. code-block :: RST
 
-	./container-kytos-sdx-topology/curl/0a.version_control.sh
-	./container-kytos-sdx-topology/curl/0b.version_control.sh
-	./container-kytos-sdx-topology/curl/0c.version_control.sh
+	./scripts/curl/0.version_control.sh
 
 8. The next step will be bringing SDX-Meican UP and integrate it with SDX-Controller. To do that, execute the following steps:
 
