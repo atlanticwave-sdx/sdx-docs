@@ -99,7 +99,6 @@ Deploying SDX-Controller
 	DB_NAME=sdxctl
 	DB_CONFIG_TABLE_NAME=sdxctl_table
 	SUB_QUEUE=topo
-	SUB_TOPIC=sdx_q1
 	MQ_HOST=192.168.56.104
 	MQ_PORT=5672
 	MQ_USER=testsdx1
@@ -130,15 +129,15 @@ Deploying OXP-Ampath
 .. code-block :: RST
 
 	docker pull amlight/kytos:latest
-	docker run  --name ampath-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=amlight" -e "MONGO_USERNAME=amlight" -e "MONGO_PASSWORD=amlight" -e "SDXLC_URL=http://192.168.56.100:8080/SDX-LC/1.0.0/topology" -e "OXPO_NAME=Ampath-OXP" -e "OXPO_URL=ampath.net" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+	docker run  --name ampath-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=amlight" -e "MONGO_USERNAME=amlight" -e "MONGO_PASSWORD=amlight" -e "SDXLC_URL=http://192.168.56.100:8080/SDX-LC/2.0.0/topology" -e "OXPO_NAME=Ampath-OXP" -e "OXPO_URL=ampath.net" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
 
 3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
 
 .. code-block :: RST
 
 	docker exec -it ampath-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
-	cd /src/kytos-sdx-topology/app/
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
+	cd /src/kytos-sdx/
 	python3 setup.py develop
 	tmux new-session -d -s kytosserver "kytosd -f"
 	exit
@@ -161,8 +160,6 @@ Deploying OXP-Ampath
 	OXP_PULL_INTERVAL=180
 	SDXLC_DOMAIN=ampath.net
 	SUB_QUEUE=connection
-	SUB_EXCHANGE=connection
-	SUB_TOPIC=ampath.net
 	MQ_HOST=192.168.56.104
 	MQ_PORT=5672
 	MQ_USER=testsdx1
@@ -187,15 +184,15 @@ Deploying OXP-SAX
 .. code-block :: RST
 
 	docker pull amlight/kytos:latest
-	docker run  --name sax-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=sax" -e "MONGO_USERNAME=sax" -e "MONGO_PASSWORD=sax" -e "SDXLC_URL=http://192.168.56.102:8080/SDX-LC/1.0.0/topology" -e "OXPO_NAME=SAX-OXP" -e "OXPO_URL=sax.net"  -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+	docker run  --name sax-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=sax" -e "MONGO_USERNAME=sax" -e "MONGO_PASSWORD=sax" -e "SDXLC_URL=http://192.168.56.102:8080/SDX-LC/2.0.0/topology" -e "OXPO_NAME=SAX-OXP" -e "OXPO_URL=sax.net"  -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
 
 3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
 
 .. code-block :: RST
 
 	docker exec -it sax-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
-	cd /src/kytos-sdx-topology/app/
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
+	cd /src/kytos-sdx/
 	python3 setup.py develop
 	tmux new-session -d -s kytosserver "kytosd -f"
 	exit
@@ -244,15 +241,15 @@ Deploying OXP-Tenet
 .. code-block :: RST
 
 	docker pull amlight/kytos:latest
-	docker run  --name tenet-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=tenet" -e "MONGO_USERNAME=tenet" -e "MONGO_PASSWORD=tenet" -e "SDXLC_URL=http://192.168.56.103:8080/SDX-LC/1.0.0/topology" -e "OXPO_NAME=Tenet-OXP" -e "OXPO_URL=tenet.ac.za" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+	docker run  --name tenet-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=tenet" -e "MONGO_USERNAME=tenet" -e "MONGO_PASSWORD=tenet" -e "SDXLC_URL=http://192.168.56.103:8080/SDX-LC/2.0.0/topology" -e "OXPO_NAME=Tenet-OXP" -e "OXPO_URL=tenet.ac.za" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
 
 3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
 
 .. code-block :: RST
 
 	docker exec -it sax-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
-	cd /src/kytos-sdx-topology/app/
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
+	cd /src/kytos-sdx/
 	python3 setup.py develop
 	tmux new-session -d -s kytosserver "kytosd -f"
 	exit
@@ -292,7 +289,7 @@ Final config on SDX-Controller
 
 .. code-block :: RST
 
-	curl -LO https://raw.githubusercontent.com/atlanticwave-sdx/kytos-sdx-topology/main/curl/2.enable_all.sh
+	curl -LO https://raw.githubusercontent.com/atlanticwave-sdx/sdx-continuous-development/main/data-plane/scripts/curl/2.enable_all.sh
 	sed -i 's/0.0.0.0:8181/192.168.56.100:8181/g' 2.enable_all.sh
 	sed -i 's/0.0.0.0:8282/192.168.56.102:8181/g' 2.enable_all.sh
 	sed -i 's/0.0.0.0:8383/192.168.56.103:8181/g' 2.enable_all.sh
