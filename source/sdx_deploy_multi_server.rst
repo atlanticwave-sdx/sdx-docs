@@ -136,8 +136,8 @@ Deploying OXP-Ampath
 .. code-block :: RST
 
 	docker exec -it ampath-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
-	cd /src/kytos-sdx-topology/
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
+	cd /src/kytos-sdx/
 	python3 setup.py develop
 	tmux new-session -d -s kytosserver "kytosd -f"
 	exit
@@ -191,8 +191,8 @@ Deploying OXP-SAX
 .. code-block :: RST
 
 	docker exec -it sax-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
-	cd /src/kytos-sdx-topology/
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
+	cd /src/kytos-sdx/
 	python3 setup.py develop
 	tmux new-session -d -s kytosserver "kytosd -f"
 	exit
@@ -248,8 +248,8 @@ Deploying OXP-Tenet
 .. code-block :: RST
 
 	docker exec -it sax-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx-topology /src/kytos-sdx-topology
-	cd /src/kytos-sdx-topology/
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
+	cd /src/kytos-sdx/
 	python3 setup.py develop
 	tmux new-session -d -s kytosserver "kytosd -f"
 	exit

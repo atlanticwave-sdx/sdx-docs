@@ -35,7 +35,7 @@ submodules accordingly:
 	cd sdx-continuous-development/data-plane
 	git checkout main
 	git pull
-	for repo in sdx-lc sdx-controller kytos-sdx-topology; do folder=container-$repo; git -C $folder pull || git clone https://github.com/atlanticwave-sdx/$repo $folder; done
+	for repo in sdx-lc sdx-controller kytos-sdx; do folder=container-$repo; git -C $folder pull || git clone https://github.com/atlanticwave-sdx/$repo $folder; done
 
 2. Next step will be to use the template env file to be our actual `.env` file:
 
