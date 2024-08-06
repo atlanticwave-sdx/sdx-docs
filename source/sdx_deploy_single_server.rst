@@ -26,8 +26,7 @@ https://docs.docker.com/engine/install/debian/
 Deploying AW-SDX
 ================
 
-1. First step is to clone the sdx-continuous-development and clone the respective
-submodules accordingly:
+1. First step is to clone the sdx-continuous-development:
 
 .. code-block :: RST
 
@@ -35,7 +34,6 @@ submodules accordingly:
 	cd sdx-continuous-development/data-plane
 	git checkout main
 	git pull
-	for repo in sdx-lc sdx-controller kytos-sdx; do folder=container-$repo; git -C $folder pull || git clone https://github.com/atlanticwave-sdx/$repo $folder; done
 
 2. Next step will be to use the template env file to be our actual `.env` file:
 
@@ -47,13 +45,8 @@ submodules accordingly:
 
 .. code-block :: RST
 
-	./1_build_kytos.sh
-	./2_build_oxpos.sh
-	./3_build_local_controllers.sh
-	./4_build_mongo.sh
+	for repo in sdx-lc sdx-controller kytos-sdx; do git -C $folder pull || git clone https://github.com/atlanticwave-sdx/$repo; cd $repo/; docker build -t $repo .; cd ..; done
 
-
-You should note from the commands above that we built sdx-controller from upstream Dockerfile to make sure dependencies are met properly.
 
 4. Now we can finally bring the environment UP, by running:
 
@@ -77,11 +70,11 @@ At this point all the components are booting up, which should take a few seconds
 
 	./scripts/curl/2.enable_all.sh
 
-7. The next step will be activating the Kytos-SDX-Topology Napp to send the topology to SDX-LC. This step is required because the Kytos-SDX-Topology Napp was designed in a way that the Network Operator has to first initialize the versioning system to enable it sending the topology updates.
+7. At this point the SDX-LC will pull the topology from OXPO (Kytos-ng) periodically. You can force the OXPO to push the topology to SDX-LC by running the following command:
 
 .. code-block :: RST
 
-	./scripts/curl/0.version_control.sh
+	for oxp in 8181 8282 8383; do echo $oxp; curl -s -X POST http://127.0.0.1:$oxp/api/kytos/sdx/topology/2.0.0; done
 
 8. The next step will be bringing SDX-Meican UP and integrate it with SDX-Controller. To do that, execute the following steps:
 
@@ -124,7 +117,7 @@ Testing
 
 .. code-block :: RST
 
-	curl -X POST http://0.0.0.0:8080/SDX-Controller/1.0.0/connection -H 'Content-Type: application/json' -d '{"id": "3", "name": "Test connection request 22", "start_time": "2000-01-23T04:56:07.000Z", "end_time": "2000-01-23T04:56:07.000Z", "bandwidth_required": 10, "latency_required": 300, "egress_port": {"id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "name": "Tenet03:50", "node": "urn:sdx:port:tenet.ac.za:Tenet03", "status": "up"}, "ingress_port": {"id": "urn:sdx:port:ampath.net:Ampath3:50", "name": "Ampath3:50", "node": "urn:sdx:port:ampath.net:Ampath3", "status": "up"}}'
+	curl -s -X POST -H 'Content-type: application/json' http://0.0.0.0:8080/SDX-Controller/1.0.0/connection -d '{"name": "VLAN between AMPATH/300 and TENET/300", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "300"}]}'
 
 - Check if the connection was created on each OXP:
 
