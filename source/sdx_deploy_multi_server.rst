@@ -124,23 +124,30 @@ Deploying OXP-Ampath
 	docker exec -it mongo mongo --eval 'db.getSiblingDB("amlight").createUser({user: "amlight", pwd: "amlight", roles: [ { role: "dbAdmin", db: "amlight" } ]})'
 	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
 
-2. Run Kytos:
+2. Install dependencies and build Kytos-ng OXPO:
 
 .. code-block :: RST
 
-	docker pull amlight/kytos:latest
-	docker run  --name ampath-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=amlight" -e "MONGO_USERNAME=amlight" -e "MONGO_PASSWORD=amlight" -e "SDXLC_URL=http://192.168.56.100:8080/SDX-LC/2.0.0/topology" -e "OXPO_NAME=Ampath-OXP" -e "OXPO_URL=ampath.net" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+	sudo apt-get  install -y git vim jq
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx
+	cd kytos-sdx
+	docker build -t kytos-sdx .
 
-3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
+3. Create an instance for Kytos-ng OXPO based on a set of environment variables:
 
 .. code-block :: RST
 
-	docker exec -it ampath-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
-	cd /src/kytos-sdx/
-	python3 setup.py develop
-	tmux new-session -d -s kytosserver "kytosd -f"
-	exit
+	cat >kytos-sdx.env <<EOF
+	MONGO_HOST_SEEDS=mongo:27017
+	MONGO_DBNAME=amlight
+	MONGO_USERNAME=amlight
+	MONGO_PASSWORD=amlight
+	SDXLC_URL=http://192.168.56.100:8080/SDX-LC/2.0.0/topology
+	OXPO_NAME=Ampath-OXP
+	OXPO_URL=ampath.net
+	EOF
+
+	docker run  --name ampath-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo --env-file kytos-sdx.env kytos-sdx:latest
 
 4. Build and create the SDX-LC container:
 
@@ -153,10 +160,10 @@ Deploying OXP-Ampath
 	
 	cat >amlight-sdx-lc.env <<EOF
 	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
-	OXP_CONNECTION_URL=http://192.168.56.100:8181/api/kytos/sdx_topology/v1/l2vpn_ptp
+	OXP_CONNECTION_URL=http://192.168.56.100:8181/api/kytos/sdx/v1/l2vpn_ptp
 	DB_NAME=sdx_lc
 	DB_CONFIG_TABLE_NAME=ampath_sdx_lc
-	OXP_PULL_URL=http://192.168.56.100:8181/api/kytos/sdx_topology/v1/shelve/topology
+	OXP_PULL_URL=http://192.168.56.100:8181/api/kytos/sdx/topology/2.0.0
 	OXP_PULL_INTERVAL=180
 	SDXLC_DOMAIN=ampath.net
 	SUB_QUEUE=connection
@@ -179,23 +186,30 @@ Deploying OXP-SAX
 	docker exec -it mongo mongo --eval 'db.getSiblingDB("sax").createUser({user: "sax", pwd: "sax", roles: [ { role: "dbAdmin", db: "sax" } ]})'
 	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
 
-2. Run Kytos:
+2. Install dependencies and build Kytos-ng OXPO:
 
 .. code-block :: RST
 
-	docker pull amlight/kytos:latest
-	docker run  --name sax-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=sax" -e "MONGO_USERNAME=sax" -e "MONGO_PASSWORD=sax" -e "SDXLC_URL=http://192.168.56.102:8080/SDX-LC/2.0.0/topology" -e "OXPO_NAME=SAX-OXP" -e "OXPO_URL=sax.net"  -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+	sudo apt-get  install -y git vim jq
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx
+	cd kytos-sdx
+	docker build -t kytos-sdx .
 
-3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
+3. Create an instance for Kytos-ng OXPO based on a set of environment variables:
 
 .. code-block :: RST
 
-	docker exec -it sax-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
-	cd /src/kytos-sdx/
-	python3 setup.py develop
-	tmux new-session -d -s kytosserver "kytosd -f"
-	exit
+	cat >kytos-sdx.env <<EOF
+	MONGO_HOST_SEEDS=mongo:27017
+	MONGO_DBNAME=sax
+	MONGO_USERNAME=sax
+	MONGO_PASSWORD=sax
+	SDXLC_URL=http://192.168.56.102:8080/SDX-LC/2.0.0/topology
+	OXPO_NAME=SAX-OXP
+	OXPO_URL=sax.net
+	EOF
+
+	docker run  --name sax-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo --env-file kytos-sdx.env kytos-sdx:latest
 
 4. Build and create the SDX-LC container:
 
@@ -208,10 +222,10 @@ Deploying OXP-SAX
 
 	cat >sax-sdx-lc.env <<EOF
 	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
-	OXP_CONNECTION_URL=http://192.168.56.102:8181/api/kytos/sdx_topology/v1/l2vpn_ptp
+	OXP_CONNECTION_URL=http://192.168.56.102:8181/api/kytos/sdx/v1/l2vpn_ptp
 	DB_NAME=sdx_lc
 	DB_CONFIG_TABLE_NAME=sax_sdx_lc
-	OXP_PULL_URL=http://192.168.56.102:8181/api/kytos/sdx_topology/v1/shelve/topology
+	OXP_PULL_URL=http://192.168.56.102:8181/api/kytos/sdx/topology/2.0.0
 	OXP_PULL_INTERVAL=180
 	SDXLC_DOMAIN=sax.net
 	SUB_QUEUE=connection
@@ -236,23 +250,30 @@ Deploying OXP-Tenet
 	docker exec -it mongo mongo --eval 'db.getSiblingDB("tenet").createUser({user: "tenet", pwd: "tenet", roles: [ { role: "dbAdmin", db: "tenet" } ]})'
 	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
 
-2. Run Kytos:
+2. Install dependencies and build Kytos-ng OXPO:
 
 .. code-block :: RST
 
-	docker pull amlight/kytos:latest
-	docker run  --name tenet-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo -e "MONGO_HOST_SEEDS=mongo:27017" -e "MONGO_DBNAME=tenet" -e "MONGO_USERNAME=tenet" -e "MONGO_PASSWORD=tenet" -e "SDXLC_URL=http://192.168.56.103:8080/SDX-LC/2.0.0/topology" -e "OXPO_NAME=Tenet-OXP" -e "OXPO_URL=tenet.ac.za" -e SDXTOPOLOGY_VALIDATOR=disabled -e "KYTOS_TOPOLOGY=http://127.0.0.1:8181/api/kytos/topology/v3/" amlight/kytos:latest /usr/bin/tail -f /dev/null
+	sudo apt-get  install -y git vim jq
+	git clone https://github.com/atlanticwave-sdx/kytos-sdx
+	cd kytos-sdx
+	docker build -t kytos-sdx .
 
-3. Go inside Kytos and install/enable the Kytos-SDX-Topology Napp:
+3. Create an instance for Kytos-ng OXPO based on a set of environment variables:
 
 .. code-block :: RST
 
-	docker exec -it sax-kytos bash
-	git clone https://github.com/atlanticwave-sdx/kytos-sdx /src/kytos-sdx
-	cd /src/kytos-sdx/
-	python3 setup.py develop
-	tmux new-session -d -s kytosserver "kytosd -f"
-	exit
+	cat >kytos-sdx.env <<EOF
+	MONGO_HOST_SEEDS=mongo:27017
+	MONGO_DBNAME=tenet
+	MONGO_USERNAME=tenet
+	MONGO_PASSWORD=tenet
+	SDXLC_URL=http://192.168.56.103:8080/SDX-LC/2.0.0/topology
+	OXPO_NAME=Tenet-OXP
+	OXPO_URL=tenet.ac.za
+	EOF
+
+	docker run  --name tenet-kytos -d --init -p 8181:8181 -p 6653:6653 --link mongo --env-file kytos-sdx.env kytos-sdx:latest
 
 4. Build and create the SDX-LC container:
 
@@ -265,10 +286,10 @@ Deploying OXP-Tenet
 
 	cat >tenet-sdx-lc.env <<EOF
 	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
-	OXP_CONNECTION_URL=http://192.168.56.103:8181/api/kytos/sdx_topology/v1/l2vpn_ptp
+	OXP_CONNECTION_URL=http://192.168.56.103:8181/api/kytos/sdx/v1/l2vpn_ptp
 	DB_NAME=sdx_lc
 	DB_CONFIG_TABLE_NAME=tenet_sdx_lc
-	OXP_PULL_URL=http://192.168.56.103:8181/api/kytos/sdx_topology/v1/shelve/topology
+	OXP_PULL_URL=http://192.168.56.103:8181/api/kytos/sdx/topology/2.0.0
 	OXP_PULL_INTERVAL=180
 	SDXLC_DOMAIN=tenet.ac.za
 	SUB_QUEUE=connection
@@ -295,9 +316,14 @@ Final config on SDX-Controller
 	sed -i 's/0.0.0.0:8383/192.168.56.103:8181/g' 2.enable_all.sh
 	bash 2.enable_all.sh
 	
-	curl -s http://192.168.56.100:8181/api/kytos/sdx_topology/v1/version/control | jq -r
-	curl -s http://192.168.56.102:8181/api/kytos/sdx_topology/v1/version/control | jq -r
-	curl -s http://192.168.56.103:8181/api/kytos/sdx_topology/v1/version/control | jq -r
+
+- At this point the SDX-LC will pull the topology from OXPO (Kytos-ng) periodically on each OXP. You can force the OXPO to push the topology to SDX-LC by running the following command:
+
+.. code-block :: RST
+
+	curl -s -X POST http://192.168.56.100:8181/api/kytos/sdx/topology/2.0.0
+	curl -s -X POST http://192.168.56.102:8181/api/kytos/sdx/topology/2.0.0
+	curl -s -X POST http://192.168.56.103:8181/api/kytos/sdx/topology/2.0.0
 
 - Check if the Nodes, and Links were loaded to SDX-Controller:
 
@@ -310,7 +336,7 @@ Final config on SDX-Controller
 
 .. code-block :: RST
 
-	curl -X POST http://192.168.56.104:8080/SDX-Controller/1.0.0/connection -H 'Content-Type: application/json' -d '{"id": "3", "name": "Test connection request 22", "start_time": "2000-01-23T04:56:07.000Z", "end_time": "2000-01-23T04:56:07.000Z", "bandwidth_required": 10, "latency_required": 300, "egress_port": {"id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "name": "Tenet03:50", "node": "urn:sdx:port:tenet.ac.za:Tenet03", "status": "up"}, "ingress_port": {"id": "urn:sdx:port:ampath.net:Ampath3:50", "name": "Ampath3:50", "node": "urn:sdx:port:ampath.net:Ampath3", "status": "up"}}'
+	curl -s -X POST -H 'Content-type: application/json' http://0.0.0.0:8080/SDX-Controller/1.0.0/connection -d '{"name": "VLAN between AMPATH/300 and TENET/300", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300    "}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "300"}]}'
 
 - List the breakouts created on the OXPs:
 
