@@ -432,28 +432,19 @@ Example of a Node object, where the attribute **ports** is removed to
 simplify the representation. Examples of **ports** are provided in the
 Port Object subsection.
 
+.. code-block::
+
    {
-
-   "name": "switch01",
-
-   "id": "urn:sdx:node:amlight.net:switch01",
-
-   "location": {
-
-   "address": "Miami,FL,USA",
-
-   "latitude": "25.761681",
-
-   "longitude": "-80.191788"
-
-   },
-
-   "ports": [ {...}, {...} ],
-
-   "status": "up",
-
-   "state": "enabled"
-
+       "name": "switch01",
+       "id": "urn:sdx:node:amlight.net:switch01",
+       "location": {
+           "address": "Miami,FL,USA",
+           "latitude": "25.761681",
+           "longitude": "-80.191788"
+       },
+       "ports": [ {...}, {...} ],
+       "status": "up",
+       "state": "enabled"
    }
 
 Port Object
@@ -629,74 +620,45 @@ Restrictions
 Examples
 --------
 
-   {
-
-   "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
-
-   "name": "s3-eth2",
-
-   "node": "urn:sdx:node:amlight.net:s3",
-
-   "type": "10GE",
-
-   "mtu": 10000,
-
-   "status": "up",
-
-   "state": "enabled",
-
-   "nni": "urn:sdx:link:amlight.net:Novi03/2_s3/s3-eth2",
-
-   "services": {
-
-   "l2vpn-ptp": {
-
-   "vlan_range": [[1,100], [300,305], [1000,1500]]
-
-   }
-
-   },
-
-   "private": ["state", "mtu"]
-
-   }
+.. code-block::
 
    {
-
-   "id": "urn:sdx:port:amlight.net:s3:s3-eth4",
-
-   "name": "s3-eth4",
-
-   "node": "urn:sdx:node:amlight.net:s3",
-
-   "type": "100GE",
-
-   "mtu": 9000,
-
-   "status": "up",
-
-   "state": "enabled",
-
-   "nni": "",
-
-   "services": {
-
-   "l2vpn-ptp": {
-
-   "vlan_range": [[1,4000]]
-
-   },
-
-   "l2vpn-ptmp": {
-
-   "vlan_range": [[1,1000], [2000,3000]]
-
+       "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
+       "name": "s3-eth2",
+       "node": "urn:sdx:node:amlight.net:s3",
+       "type": "10GE",
+       "mtu": 10000,
+       "status": "up",
+       "state": "enabled",
+       "nni": "urn:sdx:link:amlight.net:Novi03/2_s3/s3-eth2",
+       "services": {
+           "l2vpn-ptp": {
+               "vlan_range": [[1,100], [300,305], [1000,1500]]
+           }
+       },
+       "private": ["state", "mtu"]
    }
 
-   },
+.. code-block::   
 
-   "private": ["state", "mtu"]
-
+   {
+       "id": "urn:sdx:port:amlight.net:s3:s3-eth4",
+       "name": "s3-eth4",
+       "node": "urn:sdx:node:amlight.net:s3",
+       "type": "100GE",
+       "mtu": 9000,
+       "status": "up",
+       "state": "enabled",
+       "nni": "",
+       "services": {
+           "l2vpn-ptp": {
+               "vlan_range": [[1,4000]]
+           },
+           "l2vpn-ptmp": {
+               "vlan_range": [[1,1000], [2000,3000]]
+           }
+       },
+       "private": ["state", "mtu"]
    }
 
 Location Object
