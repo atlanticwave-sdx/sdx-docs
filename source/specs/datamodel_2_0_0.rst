@@ -2,8 +2,8 @@
 AW-SDX 2.0 Controller - Topology Data Model Specification 2.0.0
 ===============================================================
 
-Versioning: 
-============
+Versioning
+==========
 
 +--------+---------+--------------------------------------------------+
 | V      | Date    | Description                                      |
@@ -83,7 +83,7 @@ network characteristics, for instance, the closest OSG Cache node to an
 OSG Origin node.
 
 Requirement Levels
-------------------
+==================
 
 The Topology Data Model specification provides the requirements and
 restrictions for the topology objects and their attributes. To avoid
@@ -93,7 +93,7 @@ confusion and misinterpretation, the key words "must", "must not",
 described in IETF RFC 2119 [https://www.ietf.org/rfc/rfc2119.txt].
 
 Privacy and Security
---------------------
+====================
 
 For privacy and security reasons, since the SDX topology database will
 be available to SDX users, OXP operators will be able to define which
@@ -124,7 +124,7 @@ SDX Controller. However, the implementation and enforcement of the ANA
 disciplines are *outside* of the scope of this document.
 
 Creating the topology
----------------------
+=====================
 
 Version 1.0 of the AW-SDX 2.0 Topology Data Model specification focused
 on the physical layer. Version 2.0 of the AW-SDX 2.0 Topology Data Model
@@ -149,7 +149,7 @@ Each topology object will be described in detail in the next subsections
 as well as its dependencies.
 
 Topology Object
-~~~~~~~~~~~~~~~
+===============
 
 The Topology object is represented by the following attributes or
 properties:
@@ -250,7 +250,7 @@ not provided, the SDX Controller must assume that the OXP supports
 "l2vpn-ptp".
 
 Restrictions:
-'''''''''''''
+-------------
 
 1.  **name, id, version, model_version, timestamp, nodes, links**
     attributes must be provided when creating the topology data.
@@ -307,7 +307,7 @@ Restrictions:
     since all attributes are essential for the SDX operation.
 
 Example:
-''''''''
+--------
 
 Example of a topology object, where the attributes **nodes** and
 **lists** are removed to simplify the representation. Examples of
@@ -334,7 +334,7 @@ Example of a topology object, where the attributes **nodes** and
    }
 
 Node Object
-~~~~~~~~~~~
+===========
 
 The Node object is represented by the following attributes or properties
 of a network device, such as a switch or a router:
@@ -397,7 +397,7 @@ under maintenance (not available for use).
 .. _restrictions-1:
 
 Restrictions:
-'''''''''''''
+-------------
 
 1.  **name, id, location,** and **ports** must be provided when creating
     the node object.
@@ -432,7 +432,7 @@ Restrictions:
 .. _example-1:
 
 Example:
-''''''''
+--------
 
 Example of a Node object, where the attribute **ports** is removed to
 simplify the representation. Examples of **ports** are provided in the
@@ -463,7 +463,7 @@ Port Object subsection.
    }
 
 Port Object
-~~~~~~~~~~~
+===========
 
 The Port object is represented by the following attributes or properties
 of a network device's port (or interface):
@@ -576,7 +576,7 @@ instance, "vlan_range" for the range of VLAN IDs supported by the Port.
 .. _restrictions-2:
 
 Restrictions:
-'''''''''''''
+-------------
 
 1.  **name, id, node, type, status,** and **state** must be provided
     when creating the node object.
@@ -633,7 +633,7 @@ Restrictions:
     to keep them public.
 
 Examples:
-'''''''''
+---------
 
    {
 
@@ -706,7 +706,7 @@ Examples:
    }
 
 Location Object
-~~~~~~~~~~~~~~~
+===============
 
 The Location object is represented by the following attributes or
 properties of a physical location:
@@ -739,7 +739,7 @@ to countries and their subdivisions.
 .. _restrictions-3:
 
 Restrictions:
-'''''''''''''
+-------------
 
 1. **address, latitude, longitude,** and **iso3166_2_lvl4** must be
    provided when creating the Location object.
@@ -767,7 +767,7 @@ Restrictions:
 .. _examples-1:
 
 Examples:
-'''''''''
+---------
 
    {
 
@@ -794,7 +794,7 @@ Examples:
    }
 
 Link Object
-~~~~~~~~~~~
+===========
 
 The Link object is represented by the following attributes or properties
 of a network connection between two network devices:
@@ -930,7 +930,7 @@ when link in under maintenance (not available for use).
 .. _restrictions-4:
 
 Restrictions:
-'''''''''''''
+-------------
 
 1.  **name, id, ports, bandwidth, status,** and **state** must be
     provided when creating the link object.
@@ -982,7 +982,7 @@ Restrictions:
 .. _example-2:
 
 Example:
-''''''''
+--------
 
    {
 
@@ -1013,7 +1013,7 @@ Example:
    }
 
 Schemas
-~~~~~~~
+=======
 
 The data model schemas in this specification are provided at [1] for
 easy implementation and validation.
