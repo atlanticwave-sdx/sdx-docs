@@ -314,24 +314,17 @@ Example of a topology object, where the attributes **nodes** and
 **lists** are removed to simplify the representation. Examples of
 **nodes** and **lists** are provided in the next subsections.
 
+.. code-block::
+
    {
-
-   "name": "AmLight-OXP",
-
-   "id": "urn:sdx:topology:amlight.net",
-
-   "version": 2,
-
-   "timestamp": "2021-07-07 21:19:40",
-
-   "model_version": "2.0.0",
-
-   "nodes": [ {...}, {...} ],
-
-   "links": [ {...}, {...} ],
-
-   "services": ["l2vpn-ptp", "l2vpn-ptmp"]
-
+       "name": "AmLight-OXP",
+       "id": "urn:sdx:topology:amlight.net",
+       "version": 2,
+       "timestamp": "2021-07-07 21:19:40",
+       "model_version": "2.0.0",
+       "nodes": [ {...}, {...} ],
+       "links": [ {...}, {...} ],
+       "services": ["l2vpn-ptp", "l2vpn-ptmp"]
    }
 
 Node Object
