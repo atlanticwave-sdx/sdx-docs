@@ -1,3 +1,4 @@
+=========================================================
 AW-SDX 2.0 Controller - Topology Data Model Specification
 =========================================================
 
@@ -1024,6 +1025,6 @@ easy implementation and validation.
    2.0 architecture. A design objective of the SDX-LC is to abstract the
    distinct physical characteristics of a participant OXP.
 
-.. |image1| image:: ./media/image1.png
+.. |image1| image:: ../../figures/topology-objects.png
    :width: 3.31771in
    :height: 2.58473in
