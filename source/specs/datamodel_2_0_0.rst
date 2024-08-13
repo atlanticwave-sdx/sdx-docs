@@ -935,32 +935,23 @@ Restrictions
 Example
 -------
 
+.. code-block::
+
    {
-
-   "id": "urn:sdx:link:amlight.net:saopaulo_miami",
-
-   "name": "100G Sao Paulo to Miami",
-
-   "ports":["urn:sdx:port:amlight.net:s3:s3-eth2",
-
-   "urn:sdx:port:amlight.net:s2:s2-eth1"],
-
-   "bandwidth": 100,
-
-   "residual_bandwidth": 50,
-
-   "latency": 108,
-
-   "packet_loss": 0,
-
-   "availability": 100,
-
-   "state": "enabled",
-
-   "status": "maintenance",,
-
-   "private": ["packet_loss"]
-
+       "id": "urn:sdx:link:amlight.net:saopaulo_miami",
+       "name": "100G Sao Paulo to Miami",
+       "ports": [
+           "urn:sdx:port:amlight.net:s3:s3-eth2",
+           "urn:sdx:port:amlight.net:s2:s2-eth1"
+       ],
+       "bandwidth": 100,
+       "residual_bandwidth": 50,
+       "latency": 108,
+       "packet_loss": 0,
+       "availability": 100,
+       "state": "enabled",
+       "status": "maintenance",,
+       "private": ["packet_loss"]
    }
 
 Schemas
