@@ -107,6 +107,7 @@ science drivers. This specification recommends that all attributes be
 public. Anonymization is *outside* of the scope of this specification.
 
 Autonomic Network Architecture Properties
+=========================================
 
 The AW-SDX 2.0 Topology Data Model specification is not affected by the
 Autonomic Network Architecture (ANA) since it is not a service or
