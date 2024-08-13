@@ -429,7 +429,6 @@ Restrictions
 10. **state** is an enum and only supports one of the following values:
     "enabled", "disabled", or "maintenance"
 
-.. _example-1:
 
 Example
 -------
