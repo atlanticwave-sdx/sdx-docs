@@ -388,7 +388,6 @@ the node is in administrative enabled mode, "disabled" when the node is
 in administrative disabled mode, and "maintenance" when the node is
 under maintenance (not available for use).
 
-.. _restrictions-1:
 
 Restrictions
 ------------
@@ -558,7 +557,6 @@ services listed in the Topology object, for instance "l2vpn-ptp". And
 each key is another dictionary with values specific to the service, for
 instance, "vlan_range" for the range of VLAN IDs supported by the Port.
 
-.. _restrictions-2:
 
 Restrictions
 ------------
@@ -692,7 +690,6 @@ the ISO3611 codes for location. The ISO3611 defines internationally
 recognized codes of letters and/or numbers that we can use when we refer
 to countries and their subdivisions.
 
-.. _restrictions-3:
 
 Restrictions
 ------------
@@ -720,7 +717,6 @@ Restrictions
    in use in the country concerned, but may also be developed by the ISO
    itself.
 
-.. _examples-1:
 
 Examples
 --------
@@ -878,7 +874,6 @@ the link is in administrative enabled mode, "disabled" when the link is
 in administrative disabled mode (a.k.a. *shutdown)*, and "maintenance"
 when link in under maintenance (not available for use).
 
-.. _restrictions-4:
 
 Restrictions
 ------------
@@ -930,7 +925,6 @@ Restrictions
     **packet_loss** can be set as private attributes although it is
     highly recommended to keep them public.
 
-.. _example-2:
 
 Example
 -------
