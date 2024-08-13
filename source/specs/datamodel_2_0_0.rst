@@ -250,8 +250,8 @@ compatibility with previous versions, when the **services** attribute is
 not provided, the SDX Controller must assume that the OXP supports
 "l2vpn-ptp".
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1.  **name, id, version, model_version, timestamp, nodes, links**
     attributes must be provided when creating the topology data.
@@ -307,8 +307,8 @@ Restrictions:
 15. The Topology Object has no attribute that can be set to private
     since all attributes are essential for the SDX operation.
 
-Example:
---------
+Example
+-------
 
 Example of a topology object, where the attributes **nodes** and
 **lists** are removed to simplify the representation. Examples of
@@ -390,8 +390,8 @@ under maintenance (not available for use).
 
 .. _restrictions-1:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1.  **name, id, location,** and **ports** must be provided when creating
     the node object.
@@ -425,8 +425,8 @@ Restrictions:
 
 .. _example-1:
 
-Example:
---------
+Example
+-------
 
 Example of a Node object, where the attribute **ports** is removed to
 simplify the representation. Examples of **ports** are provided in the
@@ -569,8 +569,8 @@ instance, "vlan_range" for the range of VLAN IDs supported by the Port.
 
 .. _restrictions-2:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1.  **name, id, node, type, status,** and **state** must be provided
     when creating the node object.
@@ -626,8 +626,8 @@ Restrictions:
     can be set as private attributes although it is highly recommended
     to keep them public.
 
-Examples:
----------
+Examples
+--------
 
    {
 
@@ -732,8 +732,8 @@ to countries and their subdivisions.
 
 .. _restrictions-3:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1. **address, latitude, longitude,** and **iso3166_2_lvl4** must be
    provided when creating the Location object.
@@ -760,8 +760,8 @@ Restrictions:
 
 .. _examples-1:
 
-Examples:
----------
+Examples
+--------
 
    {
 
@@ -923,8 +923,8 @@ when link in under maintenance (not available for use).
 
 .. _restrictions-4:
 
-Restrictions:
--------------
+Restrictions
+------------
 
 1.  **name, id, ports, bandwidth, status,** and **state** must be
     provided when creating the link object.
@@ -975,8 +975,8 @@ Restrictions:
 
 .. _example-2:
 
-Example:
---------
+Example
+-------
 
    {
 
