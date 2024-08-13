@@ -725,29 +725,24 @@ Restrictions
 Examples
 --------
 
-   {
-
-   "address": "Miami, FL, USA",
-
-   "latitude": "25",
-
-   "longitude": "-80",
-
-   "iso3166_2_lvl4": "US-FL"
-
-   }
+.. code-block::
 
    {
-
-   "address": "Equinix MI3, Boca Raton, FL, USA",
-
-   "latitude": "26.35869",
-
-   "longitude": "-80.0831",
-
-   "iso3166_2_lvl4": "US-FL"
-
+       "address": "Miami, FL, USA",
+       "latitude": "25",
+       "longitude": "-80",
+       "iso3166_2_lvl4": "US-FL"
    }
+
+.. code-block::   
+
+   {
+       "address": "Equinix MI3, Boca Raton, FL, USA",
+       "latitude": "26.35869",
+       "longitude": "-80.0831",
+       "iso3166_2_lvl4": "US-FL"
+   }
+
 
 Link Object
 ===========
