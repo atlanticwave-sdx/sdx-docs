@@ -466,19 +466,19 @@ Below are two examples to create L2VPNs with optional attributes:
 .. code-block::
 
    {
-     "name”: "VLAN between AMPATH/Any and SAX/Any”,
-     "endpoints”: [
-       {"port_id”: "urn:sdx:port:sax.br:Rtr01:50”, "vlan”: "any”},
-       {"port_id”: "urn:sdx:port:ampath.net:Ampath3:50”, "vlan”: "any”}
+     "name": "VLAN between AMPATH/Any and SAX/Any",
+     "endpoints": [
+       {"port_id": "urn:sdx:port:sax.br:Rtr01:50", "vlan": "any"},
+       {"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "any"}
      ],
-     "qos_metrics”: {
-       "max_number_oxps”: {
-         "value”: 3,
-         "strict”: true
+     "qos_metrics": {
+       "max_number_oxps": {
+         "value": 3,
+         "strict": true
        }
      },
-     "notifications”: [
-       {"email”: "user3@domain.com”}
+     "notifications": [
+       {"email": "user3@domain.com"}
      ]
    }
 
