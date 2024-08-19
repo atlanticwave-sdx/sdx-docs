@@ -623,16 +623,16 @@ Request Format
 Return Codes
 ^^^^^^^^^^^^
 
-| 201: L2VPN Service Created
-| 400: Request does not have a valid JSON or body is
+- 201: L2VPN Service Created
+- 400: Request does not have a valid JSON or body is
   incomplete/incorrect
-| 401: Not Authorized
-| 402: Request not compatible (For instance, when a L2VPN P2MP is
+- 401: Not Authorized
+- 402: Request not compatible (For instance, when a L2VPN P2MP is
   requested but only L2VPN P2P is supported)
-| 409: L2VPN Service already exists.
-| 410: Can’t fulfill the strict QoS requirements
-| 411: Scheduling not possible
-| 422: Attribute not supported by the SDX-LC/OXPO
+- 409: L2VPN Service already exists.
+- 410: Can’t fulfill the strict QoS requirements
+- 411: Scheduling not possible
+- 422: Attribute not supported by the SDX-LC/OXPO
 
 Return Body if Successful
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -709,16 +709,16 @@ Request Format
 Return Codes
 ^^^^^^^^^^^^
 
-| 201: L2VPN Service Modified
-| 400: Request does not have a valid JSON or body is
+- 201: L2VPN Service Modified
+- 400: Request does not have a valid JSON or body is
   incomplete/incorrect
-| 401: Not Authorized
-| 402: Request not compatible (For instance, when a L2VPN P2MP is
+- 401: Not Authorized
+- 402: Request not compatible (For instance, when a L2VPN P2MP is
   requested but only L2VPN P2P is supported)
-| 404: L2VPN Service ID not found.
-| 409: Conflicts with a different L2VPN
-| 410: Can’t fulfill the strict QoS requirements
-| 411: Scheduling not possible
+- 404: L2VPN Service ID not found.
+- 409: Conflicts with a different L2VPN
+- 410: Can’t fulfill the strict QoS requirements
+- 411: Scheduling not possible
 
 Return Body in case of success
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -770,9 +770,9 @@ body provided must be ignored by the SDX Controller.
 Return Codes
 ^^^^^^^^^^^^
 
-| 200: OK
-| 401: Not Authorized
-| 404: Service ID not found
+- 200: OK
+- 401: Not Authorized
+- 404: Service ID not found
 
 Return Body
 ^^^^^^^^^^^
@@ -1006,9 +1006,9 @@ Request Format
 Return Codes
 ^^^^^^^^^^^^
 
-| 201: L2VPN Deleted
-| 401: Not Authorized
-| 404: L2VPN Service ID provided does not exist.
+- 201: L2VPN Deleted
+- 401: Not Authorized
+- 404: L2VPN Service ID provided does not exist.
 
 Return Body
 ^^^^^^^^^^^^
