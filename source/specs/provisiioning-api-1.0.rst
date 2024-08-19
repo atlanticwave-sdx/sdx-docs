@@ -844,15 +844,14 @@ they own. This query is not based on SDX Service IDs.
 Request Format:
 ^^^^^^^^^^^^^^^
 
-GET /l2vpn/1.0/ HTTP/1.1 - Retrieve all active L2VPNs, meaning L2VPN
-with **archived_date** has value 0.
+``GET /l2vpn/1.0/ HTTP/1.1`` - Retrieve all active L2VPNs, meaning
+L2VPN with **archived_date** has value 0.
 
-GET /l2vpn/1.0/archived HTTP/1.1 - Retrieve all archived L2VPNs, meaning
-L2VPN with **archived_date** value different than 0.
+``GET /l2vpn/1.0/archived HTTP/1.1`` - Retrieve all archived L2VPNs,
+meaning L2VPN with **archived_date** value different than 0.
 
-::
-
-   No request body is needed. This specification assumes that any request body provided must be ignored by the SDX Controller.
+No request body is needed. This specification assumes that any request
+body provided must be ignored by the SDX Controller.
 
 .. _return-codes-3:
 
