@@ -388,7 +388,7 @@ submitting a request for the creation of a SDX L2VPN service:
          .. code-block::
 
             {"max_delay": {"value": 200, "strict": true }}
-         
+
 
       -  **max_number_oxps:** The **max_number_oxps** sub-attribute
          describes the total number of OXPs in the path. When requesting
@@ -400,13 +400,13 @@ submitting a request for the creation of a SDX L2VPN service:
 
          .. code-block::
 
-            {"max_number_oxps": {"value": 4 }} 
+            {"max_number_oxps": {"value": 4 }}
 
          or:
 
          .. code-block::
 
-            {"max_number_oxps": {"value": 4, "strict": false }} 
+            {"max_number_oxps": {"value": 4, "strict": false }}
 
          or:
 
@@ -429,33 +429,33 @@ Below are two examples to create L2VPNs with optional attributes:
    -  Strict max delay of 150 milliseconds
    -  Notifications to be sent to user@domain.com and user2@domain2.com
 
-| {
-| “name”: “VLAN between AMPATH/300 and TENET/150”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:tenet.ac.za:Tenet03:50”, “vlan”: “150”},
-| {“port_id”: “urn:sdx:port:ampath.net:Ampath3:50”, “vlan”: “300”}
-| ],
-| “description”: “This is an example to demonstrate a L2VPN with
-  optional
-  attributes”,
-| “scheduling”: {
-| “end_time”: “2025-12-31T12:00:00Z”
-| },
-| “qos_metrics”: {
-| “min_bw”: {
-| “value”: 5,
-| “strict”: false
-| },
-| “max_delay”: {
-| “value”: 150,
-| “strict”: true
-| }
-| },
-| “notifications”: [
-| {“email”: “user@domain.com”},
-| {“email”: “user2@domain2.com”}
-| ]
-| }
+.. code-block::
+
+   {
+     "name": "VLAN between AMPATH/300 and TENET/150",
+     "endpoints": [
+       {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "150"},
+       {"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}
+     ],
+     "description": "This is an example to demonstrate a L2VPN with optional attributes",
+     "scheduling": {
+       "end_time": "2025-12-31T12:00:00Z"
+     },
+     "qos_metrics": {
+       "min_bw": {
+         "value": 5,
+         "strict": false
+       },
+       "max_delay": {
+         "value": 150,
+         "strict": true
+       }
+     },
+     "notifications": [
+       {"email": "user@domain.com"},
+       {"email": "user2@domain2.com"}
+     ]
+   }
 
 -  Example 2:
 
@@ -463,22 +463,24 @@ Below are two examples to create L2VPNs with optional attributes:
    -  **Strict** max number of OXPs in the path of 3
    -  **Notifications** to be sent to user3@domain.com
 
-| {
-| “name”: “VLAN between AMPATH/Any and SAX/Any”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:sax.br:Rtr01:50”, “vlan”: “any”},
-| {“port_id”: “urn:sdx:port:ampath.net:Ampath3:50”, “vlan”: “any”}
-| ],
-| “qos_metrics”: {
-| “max_number_oxps”: {
-| “value”: 3,
-| “strict”: true
-| }
-| },
-| “notifications”: [
-| {“email”: “user3@domain.com”}
-| ]
-| }
+.. code-block::
+
+   {
+     "name”: "VLAN between AMPATH/Any and SAX/Any”,
+     "endpoints”: [
+       {"port_id”: "urn:sdx:port:sax.br:Rtr01:50”, "vlan”: "any”},
+       {"port_id”: "urn:sdx:port:ampath.net:Ampath3:50”, "vlan”: "any”}
+     ],
+     "qos_metrics”: {
+       "max_number_oxps”: {
+         "value”: 3,
+         "strict”: true
+       }
+     },
+     "notifications”: [
+       {"email”: "user3@domain.com”}
+     ]
+   }
 
 Actions
 =======
