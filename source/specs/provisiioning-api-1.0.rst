@@ -995,7 +995,9 @@ described in this section.
 Request Format
 ^^^^^^^^^^^^^^
 
-DELETE /l2vpn/1.0/{service_id} HTTP/1.1
+.. code-block::
+
+   DELETE /l2vpn/1.0/{service_id} HTTP/1.1
 
 .. _return-codes-4:
 
