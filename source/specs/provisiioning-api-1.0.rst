@@ -613,10 +613,12 @@ approach:
 Request Format
 ^^^^^^^^^^^^^^
 
-| POST /l2vpn/1.0 HTTP/1.1
-| Content-Type: application/json
+.. code-block::
 
-<L2VPN data model attributes>
+   POST /l2vpn/1.0 HTTP/1.1
+   Content-Type: application/json
+   
+   <L2VPN data model attributes>
 
 Return Codes
 ^^^^^^^^^^^^
@@ -635,13 +637,18 @@ Return Codes
 Return Body if Successful
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-{“service_id”: <*UUID>* }
+.. code-block::
+
+   {"service_id": <UUID> }
+
 
 Return Body if NOT successful
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-{*“description”: “text description that would help the user identify the
-reason for failure.”* }
+.. code-block::
+
+   {"description": "text description that would help the user identify the reason for failure."}
+
 
 Editing/Changing a SDX L2VPN
 ----------------------------
@@ -690,10 +697,12 @@ should be propagated to all OXP L2VPN VLANs when it applies.
 Request Format
 ^^^^^^^^^^^^^^
 
-| PATCH /l2vpn/1.0/{service_id} HTTP/1.1
-| Content-Type: application/json
+.. code-block::
 
-<L2VPN attributes>
+   PATCH /l2vpn/1.0/{service_id} HTTP/1.1
+   Content-Type: application/json
+   
+   <L2VPN attributes>
 
 .. _return-codes-1:
 
@@ -721,8 +730,10 @@ None
 Return Body if NOT successful
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-{*“description”: “text description that would help the user identify the
-reason for failure.”* }
+.. code-block::
+
+   {"description": "text description that would help the user identify the reason for failure."}
+
 
 Listing/Retrieving one SDX L2VPN
 --------------------------------
@@ -747,11 +758,12 @@ Archived L2VPNs are not returned when **service_id** is specified.
 Request Format:
 ^^^^^^^^^^^^^^^
 
-GET /l2vpn/1.0/{service_id} HTTP/1.1
+.. code-block::
 
-::
+   GET /l2vpn/1.0/{service_id} HTTP/1.1
 
-   No request body is needed. This specification assumes that any request body provided must be ignored by the SDX Controller.
+No request body is needed. This specification assumes that any request
+body provided must be ignored by the SDX Controller.
 
 .. _return-codes-2:
 
@@ -771,46 +783,50 @@ return body will be provided.
 The content of the dictionary will be the **service_id** as the key and
 the L2VPN will be provided as another dictionary. For example:
 
-| Request: GET /l2vpn/1.0/c73da8e1-5d03-4620-a1db-7cdf23e8978c
-| Return Code: 200
-| Return body:
+.. code-block::
 
-| {
-| “c73da8e1-5d03-4620-a1db-7cdf23e8978c”: {
-| “service_id”: “c73da8e1-5d03-4620-a1db-7cdf23e8978c”,
-| “name”: “VLAN between AMPATH/300 and TENET/150”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:tenet.ac.za:Tenet03:50”, “vlan”: “150”},
-| {“port_id”: “urn:sdx:port:ampath.net:Ampath3:50”, “vlan”: “300”}
-| ],
-| “description”: “This is an example to demonstrate a L2VPN with
-  optional attributes”,
-| “qos_metrics”: {
-| “min_bw”: {
-| “value”: 5,
-| “strict”: false
-| },
-| “max_delay”: {
-| “value”: 150,
-| “strict”: true
-| }
-| },
-| “notifications”: [
-| {“email”: “user@domain.com”},
-| {“email”: “user2@domain2.com”}
-| ],
-| “ownership”: “user1”,
-| “creation_date”: “20240522T00:00:00Z”,
-| “archived_date”: “0”,
-| “status”: “up”,
-| “state”: “enabled”,
-| “counters_location”: “https://my.aw-sdx.net/l2vpn/7cdf23e8978c”,
-| “last_modified”: “0”,
-| “current_path”: [“urn:sdx:link:tenet.ac.za:LinkToAmpath”],
-| “oxp_service_ids”: {“ampath.net”: [“c73da8e1”],
-| “tenet.ac.za”: [“5d034620”]}
-| }
-| }
+   Request: GET /l2vpn/1.0/c73da8e1-5d03-4620-a1db-7cdf23e8978c
+   Return Code: 200
+   Return body:
+   
+   {
+     "c73da8e1-5d03-4620-a1db-7cdf23e8978c": {
+       "service_id": "c73da8e1-5d03-4620-a1db-7cdf23e8978c",
+       "name": "VLAN between AMPATH/300 and TENET/150",
+       "endpoints": [
+         {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "150"},
+         {"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}
+       ],
+       "description": "This is an example to demonstrate a L2VPN with
+       optional attributes",
+         "qos_metrics": {
+           "min_bw": {
+             "value": 5,
+             "strict": false
+         },
+         "max_delay": {
+           "value": 150,
+           "strict": true
+         }
+       },
+       "notifications": [
+         {"email": "user@domain.com"},
+         {"email": "user2@domain2.com"}
+       ],
+       "ownership": "user1",
+       "creation_date": "20240522T00:00:00Z",
+       "archived_date": "0",
+       "status": "up",
+       "state": "enabled",
+       "counters_location": "https://my.aw-sdx.net/l2vpn/7cdf23e8978c",
+       "last_modified": "0",
+       "current_path": ["urn:sdx:link:tenet.ac.za:LinkToAmpath"],
+       "oxp_service_ids": {
+         "ampath.net": ["c73da8e1"],
+         "tenet.ac.za": ["5d034620"]
+       }
+     }
+   }
 
 Listing/Retrieving multiple SDX L2VPNs
 --------------------------------------
