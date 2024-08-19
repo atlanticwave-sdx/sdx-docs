@@ -2,6 +2,13 @@
 AtlanticWave-SDX 2.0: Service Provisioning Data Model Specification 1.0
 =======================================================================
 
+.. note::
+
+   This specification is originally developed here_.
+
+.. _here: https://docs.google.com/document/d/1YKIvNgOaoSA30coT0hvhjVGb8KSu5bNxz3fbfdOBdUY/view
+
+
 Versioning
 ==========
 
@@ -47,8 +54,8 @@ document’s structure uses the following format:
 
 -  Second, a message body and return codes explain the SDX API actions.
 
-.. note::   
-   
+.. note::
+
    This specification could also guide the communication between the
    SDX Controller and OXP orchestrators via SDX-LC, even though it
    primarily focuses on the interface between a user (researcher,
@@ -111,7 +118,7 @@ provisioning. Future specifications are encouraged to expand the list of
 attributes supported.
 
 .. note::
-   
+
    In the *AtlanticWave-SDX 2.0 Service Provisioning Specification
    version 1.0* (this document), the data model is the same for both
    point-to-point and point-to-multipoint L2VPNs. When a service
