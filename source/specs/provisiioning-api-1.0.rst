@@ -578,11 +578,13 @@ its own **service_id** as below:
 Using the data above, the **oxp_service_ids** attribute would be
 populated as:
 
-| “oxp_service_ids”: {
-| “AmLight.net”: [“c73da8e1”],
-| “TENET.ac.za”: [“5d034620”],
-| “SAX.br”: [“7cdf23e8978c”]
-| }
+.. code-block::
+
+   "oxp_service_ids": {
+     "AmLight.net": ["c73da8e1"],
+     "TENET.ac.za": ["5d034620"],
+     "SAX.br": ["7cdf23e8978c"]
+   }
 
 **Provisioning L2VPNs with VLAN range**: The AtlanticWave-SDX 2.0
 Topology Data Model Specification 2.0 does not have an option for OXP
