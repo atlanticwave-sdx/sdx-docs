@@ -110,18 +110,20 @@ scope with primary attributes focusing on intra- and inter-domain
 provisioning. Future specifications are encouraged to expand the list of
 attributes supported.
 
-| **Note:**
-| In the *AtlanticWave-SDX 2.0 Service Provisioning Specification
-  version 1.0* (this document), the data model is the same for both
-  point-to-point and point-to-multipoint L2VPNs. When a service
-  provisioning request is submitted by a SDX user, the SDX Controller
-  must confirm that the OXP orchestrators involved have advertised
-  support for the specific service (point-to-point or
-  point-to-multipoint) in the Topology attribute named “**services**”.
-  An error code is defined when incompatibility is observed. For more
-  details of how OXPs can advertise SDX services, please refer to the
-  `AtlanticWave-SDX 2.0 Topology Data Model
-  specification <https://docs.google.com/document/d/1lgxjIT144EFu1G_OVcU19hN1cSUT_v2-tE0Z-7UlkNg/edit?usp=sharing>`__.
+.. note::
+   
+   In the *AtlanticWave-SDX 2.0 Service Provisioning Specification
+   version 1.0* (this document), the data model is the same for both
+   point-to-point and point-to-multipoint L2VPNs. When a service
+   provisioning request is submitted by a SDX user, the SDX Controller
+   must confirm that the OXP orchestrators involved have advertised
+   support for the specific service (point-to-point or
+   point-to-multipoint) in the Topology attribute named
+   “**services**”.  An error code is defined when incompatibility is
+   observed. For more details of how OXPs can advertise SDX services,
+   please refer to the `AtlanticWave-SDX 2.0 Topology Data Model
+   specification
+   <https://docs.google.com/document/d/1lgxjIT144EFu1G_OVcU19hN1cSUT_v2-tE0Z-7UlkNg/edit?usp=sharing>`__.
 
 Mandatory Attributes
 ^^^^^^^^^^^^^^^^^^^^
