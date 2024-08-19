@@ -426,11 +426,12 @@ Below are two examples to create L2VPNs with optional attributes:
 
 -  Example 1:
 
-   -  VLAN ID 300 at AMPATH and VLAN ID 150 at TENET
-   -  End time at December 31st, 2025, 12:00 PM UTC
-   -  Optional/non-strict minimum bandwidth of 5 Gbps
-   -  Strict max delay of 150 milliseconds
-   -  Notifications to be sent to user@domain.com and user2@domain2.com
+   - VLAN ID 300 at AMPATH and VLAN ID 150 at TENET
+   - End time at December 31st, 2025, 12:00 PM UTC
+   - Optional/non-strict minimum bandwidth of 5 Gbps
+   - Strict max delay of 150 milliseconds
+   - Notifications to be sent to ``user@domain.com`` and
+     ``user2@domain2.com``.
 
 .. code-block::
 
@@ -462,9 +463,9 @@ Below are two examples to create L2VPNs with optional attributes:
 
 -  Example 2:
 
-   -  **Any** VLAN ID at AMPATH and SAX
-   -  **Strict** max number of OXPs in the path of 3
-   -  **Notifications** to be sent to user3@domain.com
+   - **Any** VLAN ID at AMPATH and SAX
+   - **Strict** max number of OXPs in the path of 3
+   - **Notifications** to be sent to ``user3@domain.com``.
 
 .. code-block::
 
