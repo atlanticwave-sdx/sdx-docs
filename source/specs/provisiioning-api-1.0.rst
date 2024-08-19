@@ -203,13 +203,15 @@ Below are some examples to create L2VPNs:
 -  P2P with VLAN translation: VLAN ID 300 at AMPATH and VLAN ID 150 at
    TENET”
 
-| {
-| “name”: “VLAN between AMPATH/300 and TENET/150”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:tenet.ac.za:Tenet03:50”, “vlan”: “150”},
-| {“port_id”: “urn:sdx:port:ampath.net:Ampath3:50”, “vlan”: “300”}
-| ]
-| }
+.. code-block::  
+   
+   {
+     "name": "VLAN between AMPATH/300 and TENET/150",
+     "endpoints": [
+       {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "150"},
+       {"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}
+     ]
+   }
 
 -  P2MP: VLAN ID 300 at AMPATH, TENET, at SAX”
 
