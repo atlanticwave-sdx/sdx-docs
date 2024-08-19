@@ -869,15 +869,15 @@ dictionaries must be used, where the key to each L2VPN will be its
 
 -  No L2VPNs exist
 
-   Request: GET /l2vpn/1.0/
+   Request: ``GET /l2vpn/1.0/``
 
    Return code: 200
 
-   Return body: {}
+   Return body: ``{}``
 
 -  One or More L2VPNs exist:
 
-   Request: GET /l2vpn/1.0/
+   Request: ``GET /l2vpn/1.0/``
 
    Return code: 200
 
