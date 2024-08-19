@@ -229,7 +229,7 @@ Below are some examples to create L2VPNs:
 -  P2P with option “any”: VLAN ID 59 at AMPATH and any VLAN ID at TENET”
 
 .. code-block::
-   
+
    {
      "name": "VLAN between AMPATH/59 and TENET/any",
      "endpoints": [
@@ -254,7 +254,7 @@ Below are some examples to create L2VPNs:
    SAX”
 
 .. code-block::
-   
+
    {
      "name": "VLAN between AMPATH/10 and SAX/untagged",
      "endpoints": [
@@ -346,9 +346,22 @@ submitting a request for the creation of a SDX L2VPN service:
          expected is 20Gbps, the SDX user must set the subkey
          “\ **value”** with value of 20:
 
-         | {“min_bw”: {“value”: 20 }} or
-         | {“min_bw”: {“value”: 20, “strict”: false }} or
-         | {“min_bw”: {“value”: 20, “strict”: true }}
+         .. code-block::
+
+           {"min_bw": {"value": 20 }}
+
+         or:
+
+         .. code-block::
+
+           {"min_bw": {"value": 20, "strict": false }}
+
+         or:
+
+         .. code-block::
+
+           {"min_bw": {"value": 20, "strict": true }}
+
 
       -  **max_delay:** The **max_delay** sub-attribute describes the
          total delay acceptable for the path in milliseconds between the
@@ -360,11 +373,22 @@ submitting a request for the creation of a SDX L2VPN service:
          if the maximum delay is 200 milliseconds, the SDX user must the
          set the subkey “**value**” with value of 200:
 
-         {“max_delay”: {“value”: 200 }} or
+         .. code-block::
 
-         {“max_delay”: {“value”: 200, “strict”: false }} or
+            {"max_delay": {"value": 200 }}
 
-         {“max_delay”: {“value”: 200, “strict”: true }}
+         or:
+
+         .. code-block::
+
+            {"max_delay": {"value": 200, "strict": false }}
+
+         or:
+
+         .. code-block::
+
+            {"max_delay": {"value": 200, "strict": true }}
+         
 
       -  **max_number_oxps:** The **max_number_oxps** sub-attribute
          describes the total number of OXPs in the path. When requesting
@@ -374,11 +398,21 @@ submitting a request for the creation of a SDX L2VPN service:
          is 4, the SDX user must the set the subkey “**value**” with
          value of 4:
 
-         {“max_number_oxps”: {“value”: 4 }} or
+         .. code-block::
 
-         {“max_number_oxps”: {“value”: 4, “strict”: false }} or
+            {"max_number_oxps": {"value": 4 }} 
 
-         {“max_number_oxps”: {“value”: 4, “strict”: true }}
+         or:
+
+         .. code-block::
+
+            {"max_number_oxps": {"value": 4, "strict": false }} 
+
+         or:
+
+         .. code-block::
+
+            {"max_number_oxps": {"value": 4, "strict": true }}
 
    Attention: From the AtlanticWave-SDX 2.0 perspective, these QoS
    metrics will be used by the SDX PCE (Path Computation Element) to
