@@ -215,45 +215,53 @@ Below are some examples to create L2VPNs:
 
 -  P2MP: VLAN ID 300 at AMPATH, TENET, at SAX”
 
-| {
-| “name”: “P2MP: VLAN ID 300 at AMPATH, TENET, at SAX”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:tenet.ac.za:Tenet03:50”, “vlan”: “300”},
-| {“port_id”: “urn:sdx:port:sax.br:router_01:50”, “vlan”: “300”},
-| {“port_id”: “urn:sdx:port:ampath.net:Ampath3:50”, “vlan”: “300”}
-| ]
-| }
+.. code-block::
+
+   {
+     "name": "P2MP: VLAN ID 300 at AMPATH, TENET, at SAX",
+     "endpoints": [
+       {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "300"},
+       {"port_id": "urn:sdx:port:sax.br:router_01:50", "vlan": "300"},
+       {"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}
+     ]
+   }
 
 -  P2P with option “any”: VLAN ID 59 at AMPATH and any VLAN ID at TENET”
 
-| {
-| “name”: “VLAN between AMPATH/59 and TENET/any”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:tenet.ac.za:router_03:5”, “vlan”: “any”},
-| {“port_id”: “urn:sdx:port:ampath.net:mia-mi1-sw01:5”, “vlan”: “59”}
-| ]
-| }
+.. code-block::
+   
+   {
+     "name": "VLAN between AMPATH/59 and TENET/any",
+     "endpoints": [
+       {"port_id": "urn:sdx:port:tenet.ac.za:router_03:5", "vlan": "any"},
+       {"port_id": "urn:sdx:port:ampath.net:mia-mi1-sw01:5", "vlan": "59"}
+     ]
+   }
 
 -  P2P with VLAN range: VLAN range 10-99 at AMPATH and at SAX”
 
-| {
-| “name”: “VLANs 10-99 between AMPATH and SAX”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:sax.br:rtr_03:eth1”, “vlan”: “10:99”},
-| {“port_id”: “urn:sdx:port:ampath.net:sw01:5”, “vlan”: “10:99”}
-| ]
-| }
+.. code-block::
+
+   {
+     "name": "VLANs 10-99 between AMPATH and SAX",
+     "endpoints": [
+       {"port_id": "urn:sdx:port:sax.br:rtr_03:eth1", "vlan": "10:99"},
+       {"port_id": "urn:sdx:port:ampath.net:sw01:5", "vlan": "10:99"}
+     ]
+   }
 
 -  P2P with untagged and a VLAN ID: VLAN ID 10 at AMPATH and untagged at
    SAX”
 
-| {
-| “name”: “VLAN between AMPATH/10 and SAX/untagged”,
-| “endpoints”: [
-| {“port_id”: “urn:sdx:port:sax.br:rtr_03:eth2”, “vlan”: “untagged”},
-| {“port_id”: “urn:sdx:port:ampath.net:sw01:40”, “vlan”: “10”}
-| ]
-| }
+.. code-block::
+   
+   {
+     "name": "VLAN between AMPATH/10 and SAX/untagged",
+     "endpoints": [
+       {"port_id": "urn:sdx:port:sax.br:rtr_03:eth2", "vlan": "untagged"},
+       {"port_id": "urn:sdx:port:ampath.net:sw01:40", "vlan": "10"}
+     ]
+   }
 
 Optional Attributes
 ^^^^^^^^^^^^^^^^^^^
