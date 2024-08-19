@@ -121,9 +121,7 @@ attributes supported.
    point-to-multipoint) in the Topology attribute named
    “**services**”.  An error code is defined when incompatibility is
    observed. For more details of how OXPs can advertise SDX services,
-   please refer to the `AtlanticWave-SDX 2.0 Topology Data Model
-   specification
-   <https://docs.google.com/document/d/1lgxjIT144EFu1G_OVcU19hN1cSUT_v2-tE0Z-7UlkNg/edit?usp=sharing>`__.
+   please refer to :doc:`datamodel_2_0_0`.
 
 Mandatory Attributes
 ^^^^^^^^^^^^^^^^^^^^
@@ -146,9 +144,7 @@ user when submitting a request for the creation of a SDX L2VPN service:
    the following attributes:
 
    -  **port_id**: the **port_id** attribute is the URN (Uniform
-      Resource Name) of a network device’s Port, following the
-      `AtlanticWave-SDX Topology Data Model
-      Specification <https://docs.google.com/document/d/1lgxjIT144EFu1G_OVcU19hN1cSUT_v2-tE0Z-7UlkNg/edit?usp=sharing>`__.
+      Resource Name) of a network device’s Port, following :doc:`datamodel_2_0_0`.
    -  **vlan**: the **VLAN** attribute describes how the SDX and OXPs
       should treat L2VPN frames with or without an IEEE 802.1Q
       Ethertype. The values accepted are:
@@ -300,9 +296,7 @@ submitting a request for the creation of a SDX L2VPN service:
       the request as to be provisioned immediately and never scheduled
       to be removed.
    -  ISO8601 must be used to represent the desired date and time,
-      following the same format specified by the `AtlanticWave-SDX 2.0
-      Topology Data Model
-      specification <https://docs.google.com/document/d/1lgxjIT144EFu1G_OVcU19hN1cSUT_v2-tE0Z-7UlkNg/edit?usp=sharing>`__.
+      following the same format specified by :doc:`datamodel_2_0_0`.
    -  The **end_time** attribute, when present, must be greater than the
       **start_time**, when also present, otherwise the standard HTTP 400
       error code must be sent back to the user.
@@ -552,8 +546,7 @@ the SDX user when queries are submitted:
 -  **last_modified**: the datetime of the last modification performed on
    the L2VPN. Initial value is 0.
 -  **current_path**: the URI of the interdomain links in the path
-   following the `AtlanticWave-SDX Topology Data Model
-   Specification <https://docs.google.com/document/d/1lgxjIT144EFu1G_OVcU19hN1cSUT_v2-tE0Z-7UlkNg/edit?usp=sharing>`__.
+   following :doc:`datamodel_2_0_0`.
    The internal OXP topology must NOT be provided, only the links
    between OXPs.
 -  **oxp_service_ids**: list of the OXPs’ service_ids for the OXP’s
