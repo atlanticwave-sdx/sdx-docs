@@ -784,11 +784,11 @@ return body will be provided.
 The content of the dictionary will be the **service_id** as the key and
 the L2VPN will be provided as another dictionary. For example:
 
-.. code-block::
+- Request: ``GET /l2vpn/1.0/c73da8e1-5d03-4620-a1db-7cdf23e8978c``
+- Return Code: 200
+- Return body:
 
-   Request: GET /l2vpn/1.0/c73da8e1-5d03-4620-a1db-7cdf23e8978c
-   Return Code: 200
-   Return body:
+.. code-block::
 
    {
      "c73da8e1-5d03-4620-a1db-7cdf23e8978c": {
