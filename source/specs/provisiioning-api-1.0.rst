@@ -2,8 +2,8 @@
 AtlanticWave-SDX 2.0: Service Provisioning Data Model Specification 1.0
 =======================================================================
 
-Versioning:
-===========
+Versioning
+==========
 
 +-----------------------+-----------------------+-----------------------+
 | Version               | Date                  | Description           |
