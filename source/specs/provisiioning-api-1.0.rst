@@ -47,8 +47,10 @@ document’s structure uses the following format:
 
 -  Second, a message body and return codes explain the SDX API actions.
 
-   Note: This specification could also guide the communication between
-   the SDX Controller and OXP orchestrators via SDX-LC, even though it
+.. note::   
+   
+   This specification could also guide the communication between the
+   SDX Controller and OXP orchestrators via SDX-LC, even though it
    primarily focuses on the interface between a user (researcher,
    network operator, science workflow) and the OXP orchestrator.
 
