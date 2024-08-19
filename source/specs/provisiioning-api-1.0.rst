@@ -203,8 +203,8 @@ Below are some examples to create L2VPNs:
 -  P2P with VLAN translation: VLAN ID 300 at AMPATH and VLAN ID 150 at
    TENET”
 
-.. code-block::  
-   
+.. code-block::
+
    {
      "name": "VLAN between AMPATH/300 and TENET/150",
      "endpoints": [
@@ -888,7 +888,7 @@ dictionaries must be used, where the key to each L2VPN will be its
 
    ::
 
-                  "oxp\_service\_ids": {"ampath.net": \["c73da8e1"\],   
+                  "oxp\_service\_ids": {"ampath.net": \["c73da8e1"\],
 
    | “Tenet.ac.za”: [“5d034620”]}
    | },
