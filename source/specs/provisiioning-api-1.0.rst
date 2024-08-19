@@ -206,7 +206,7 @@ user when submitting a request for the creation of a SDX L2VPN service:
 Below are some examples to create L2VPNs:
 
 -  P2P with VLAN translation: VLAN ID 300 at AMPATH and VLAN ID 150 at
-   TENET”
+   TENET
 
 .. code-block::
 
@@ -218,7 +218,7 @@ Below are some examples to create L2VPNs:
      ]
    }
 
--  P2MP: VLAN ID 300 at AMPATH, TENET, at SAX”
+-  P2MP: VLAN ID 300 at AMPATH, TENET, at SAX
 
 .. code-block::
 
@@ -231,7 +231,7 @@ Below are some examples to create L2VPNs:
      ]
    }
 
--  P2P with option “any”: VLAN ID 59 at AMPATH and any VLAN ID at TENET”
+-  P2P with option “any”: VLAN ID 59 at AMPATH and any VLAN ID at TENET
 
 .. code-block::
 
@@ -243,7 +243,7 @@ Below are some examples to create L2VPNs:
      ]
    }
 
--  P2P with VLAN range: VLAN range 10-99 at AMPATH and at SAX”
+-  P2P with VLAN range: VLAN range 10-99 at AMPATH and at SAX
 
 .. code-block::
 
@@ -256,7 +256,7 @@ Below are some examples to create L2VPNs:
    }
 
 -  P2P with untagged and a VLAN ID: VLAN ID 10 at AMPATH and untagged at
-   SAX”
+   SAX
 
 .. code-block::
 
