@@ -755,8 +755,8 @@ Archived L2VPNs are not returned when **service_id** is specified.
 
 .. _request-format-2:
 
-Request Format:
-^^^^^^^^^^^^^^^
+Request Format
+^^^^^^^^^^^^^^
 
 .. code-block::
 
@@ -767,14 +767,15 @@ body provided must be ignored by the SDX Controller.
 
 .. _return-codes-2:
 
-Return Codes:
-^^^^^^^^^^^^^
+Return Codes
+^^^^^^^^^^^^
 
 | 200: OK
 | 401: Not Authorized
 | 404: Service ID not found
 
-Return Body:
+Return Body
+^^^^^^^^^^^
 
 The return body must be a dictionary, if the requested **service_id**
 exists and the user is authorized to have access to it. Otherwise no
@@ -841,8 +842,8 @@ they own. This query is not based on SDX Service IDs.
 
 .. _request-format-3:
 
-Request Format:
-^^^^^^^^^^^^^^^
+Request Format
+^^^^^^^^^^^^^^
 
 ``GET /l2vpn/1.0/ HTTP/1.1`` - Retrieve all active L2VPNs, meaning
 L2VPN with **archived_date** has value 0.
@@ -855,12 +856,13 @@ body provided must be ignored by the SDX Controller.
 
 .. _return-codes-3:
 
-Return Codes:
-^^^^^^^^^^^^^
+Return Codes
+^^^^^^^^^^^^
 
 200: OK
 
-Return Body:
+Return Body
+^^^^^^^^^^^
 
 The return body must be a dictionary. If there are no L2VPNs, the
 dictionary will be empty. If there are L2VPNs, a dictionary of
@@ -1008,7 +1010,8 @@ Return Codes
 | 401: Not Authorized
 | 404: L2VPN Service ID provided does not exist.
 
-Return Body:
+Return Body
+^^^^^^^^^^^^
 
 None
 
