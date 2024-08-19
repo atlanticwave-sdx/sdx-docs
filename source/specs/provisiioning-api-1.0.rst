@@ -617,7 +617,7 @@ Request Format
 
    POST /l2vpn/1.0 HTTP/1.1
    Content-Type: application/json
-   
+
    <L2VPN data model attributes>
 
 Return Codes
@@ -701,7 +701,7 @@ Request Format
 
    PATCH /l2vpn/1.0/{service_id} HTTP/1.1
    Content-Type: application/json
-   
+
    <L2VPN attributes>
 
 .. _return-codes-1:
@@ -788,7 +788,7 @@ the L2VPN will be provided as another dictionary. For example:
    Request: GET /l2vpn/1.0/c73da8e1-5d03-4620-a1db-7cdf23e8978c
    Return Code: 200
    Return body:
-   
+
    {
      "c73da8e1-5d03-4620-a1db-7cdf23e8978c": {
        "service_id": "c73da8e1-5d03-4620-a1db-7cdf23e8978c",
@@ -883,99 +883,70 @@ dictionaries must be used, where the key to each L2VPN will be its
 
    Return Body:
 
-   {
+   .. code-block::
 
-   “c73da8e1-5d03-4620-a1db-7cdf23e8978c”: {
+      {
+         "c73da8e1-5d03-4620-a1db-7cdf23e8978c": {
+           "service_id": "c73da8e1-5d03-4620-a1db-7cdf23e8978c",
+           "name": "VLAN between AMPATH/300 and TENET/150",
+           "endpoints": [
+             {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "150"},
+             {"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}
+           ],
+           "description": "Example 1",
+           "qos_metrics": {
+             "min_bw": {
+             "value": 5,
+             "strict": false
+           },
+           "max_delay": {
+             "value": 150,
+             "strict": true
+           }
+         },
+         "notifications": [
+           {"email": "user@domain.com"},
+           {"email": "user2@domain2.com"}
+         ],
+         "ownership": "user1",
+         "creation_date": "20240522T00:00:00Z",
+         "archived_date": "0",
+         "status": "up",
+         "state": "enabled",
+         "counters_location": "https://my.aw-sdx.net/l2vpn/7cdf23e8978c",
+         "last_modified": "0",
+         "current_path": ["urn:sdx:link:tenet.ac.za:LinkToAmpath"],
+         "oxp_service_ids": {
+           "ampath.net": ["c73da8e1"],
+           "Tenet.ac.za": ["5d034620"]}
+        },
+        "fa2c99ca-30a9-4b51-8491-683c52e326a6": {
+          "service_id": "fa2c99ca-30a9-4b51-8491-683c52e326a6",
+          "name": "Example 2",
+          "endpoints": [
+            {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "3500"},
+            {"port_id": "urn:sdx:port:sax.br:router_01:50", "vlan": "3500"},
+            {"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "3500"}
+          ],
+          "ownership": "user2",
+          "creation_date": "20240422T00:00:00Z",
+          "archived_date": "0",
+          "status": "up",
+          "state": "disabled",
+          "counters_location": "https://my.aw-sdx.net/l2vpn/52e326a6",
+          "last_modified": "0",
+          "current_path": [
+            "urn:sdx:link:tenet.ac.za:LinkToSAX",
+            "urn:sdx:link:tenet.ac.za:LinkToAmpath",
+            "urn:sdx:link:ampath.net:LinkToSAX"],
+          "oxp_service_ids": {
+            "ampath.net": ["d82da7f9"],
+            "tenet.ac.za": ["ab034673"],
+            "sax.br": ["bb834633"]
+          }
+        }
+      }
 
-   ::
-
-        "service\_id": "c73da8e1-5d03-4620-a1db-7cdf23e8978c",
-
-   “name”: “VLAN between AMPATH/300 and TENET/150”,
-
-   “endpoints”: [
-
-   {“port_id”: “urn:sdx:port:tenet.ac.za:Tenet03:50”, “vlan”: “150”},
-
-   {“port_id”: “urn:sdx:port:ampath.net:Ampath3:50”, “vlan”: “300”}
-
-   ],
-
-   “description”: “Example 1”,
-
-   “qos_metrics”: {
-
-   “min_bw”: {
-
-   “value”: 5,
-
-   “strict”: false
-
-   },
-
-   “max_delay”: {
-
-   “value”: 150,
-
-   “strict”: true
-
-   }
-
-   },
-
-   “notifications”: [
-
-   {“email”: “user@domain.com”},
-
-   {“email”: “user2@domain2.com”}
-
-   ],
-
-   “ownership”: “user1”,
-
-   “creation_date”: “20240522T00:00:00Z”,
-
-   “archived_date”: “0”,
-
-   “status”: “up”,
-
-   “state”: “enabled”,
-
-   “counters_location”: “https://my.aw-sdx.net/l2vpn/7cdf23e8978c”,
-
-   “last_modified”: “0”,
-
-   “current_path”: [“urn:sdx:link:tenet.ac.za:LinkToAmpath”],
-
-   ::
-
-                  "oxp\_service\_ids": {"ampath.net": \["c73da8e1"\],
-
-   | “Tenet.ac.za”: [“5d034620”]}
-   | },
-   | “fa2c99ca-30a9-4b51-8491-683c52e326a6”: {
-   | “service_id”: “fa2c99ca-30a9-4b51-8491-683c52e326a6”,
-   | “name”: “Example 2”,
-   | “endpoints”: [
-   | {“port_id”: “urn:sdx:port:tenet.ac.za:Tenet03:50”, “vlan”: “3500”},
-   | {“port_id”: “urn:sdx:port:sax.br:router_01:50”, “vlan”: “3500”},
-   | {“port_id”: “urn:sdx:port:ampath.net:Ampath3:50”, “vlan”: “3500”}
-   | ],
-   | “ownership”: “user2”,
-   | “creation_date”: “20240422T00:00:00Z”,
-   | “archived_date”: “0”,
-   | “status”: “up”,
-   | “state”: “disabled”,
-   | “counters_location”: “https://my.aw-sdx.net/l2vpn/52e326a6”,
-   | “last_modified”: “0”,
-   | “current_path”: [“urn:sdx:link:tenet.ac.za:LinkToSAX”,
-   | “urn:sdx:link:tenet.ac.za:LinkToAmpath”,
-   | “urn:sdx:link:ampath.net:LinkToSAX”],
-   | “oxp_service_ids”: {“ampath.net”: [“d82da7f9”],
-   | “tenet.ac.za”: [“ab034673”],
-   | “sax.br”: [“bb834633”]}
-   | }
-   | }
 
 Deleting a SDX L2VPN
 --------------------
