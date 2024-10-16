@@ -72,14 +72,14 @@ Deploying SDX-Controller
 
 .. code-block :: RST
 
-	docker run -d --name mq1 -e RABBITMQ_DEFAULT_USER=testsdx1 -e RABBITMQ_DEFAULT_PASS=testsdx1 -p 5672:5672 rabbitmq:latest
+	docker run -d --name mq1 --pull always -e RABBITMQ_DEFAULT_USER=testsdx1 -e RABBITMQ_DEFAULT_PASS=testsdx1 -p 5672:5672 rabbitmq:latest
 
 2. Create an instance for MongoDB and configure a database/username/password:
 
 .. code-block :: RST
 
-	docker run -d --name mongo mongo:5.0
-	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdxctl").createUser({user: "sdxctl", pwd: "sdxctl", roles: [ { role: "dbAdmin", db: "sdxctl" } ]})'
+	docker run -d --name mongo --pull always mongo:7.0
+	docker exec -it mongo mongosh --eval 'db.getSiblingDB("sdxctl").createUser({user: "sdxctl", pwd: "sdxctl", roles: [ { role: "dbAdmin", db: "sdxctl" } ]})'
 
 3. Install dependencies and build sdx-controller:
 
@@ -111,7 +111,9 @@ Deploying SDX-Controller
 
 .. code-block :: RST
 
-	docker run -d --name mininet -it --privileged -v /lib/modules:/lib/modules italovalcy/mininet:latest https://raw.githubusercontent.com/atlanticwave-sdx/sdx-continuous-development/main/data-plane/container-mininet/link-hosts.py 192.168.56.100 192.168.56.102 192.168.56.103
+	curl -LO https://raw.githubusercontent.com/atlanticwave-sdx/sdx-continuous-development/main/data-plane/container-mininet/link-hosts.py
+	sed -i '1s/python/python3/g' link-hosts.py
+	docker run --pull always -d --name mininet -it --privileged -v /lib/modules:/lib/modules -v ./link-hosts.py:/link-hosts.py italovalcy/mininet:latest file:///link-hosts.py 192.168.56.100 192.168.56.102 192.168.56.103
 
 Deploying OXP-Ampath
 ========================
@@ -120,9 +122,9 @@ Deploying OXP-Ampath
 
 .. code-block :: RST
 
-	docker run -d --name mongo mongo:5.0
-	docker exec -it mongo mongo --eval 'db.getSiblingDB("amlight").createUser({user: "amlight", pwd: "amlight", roles: [ { role: "dbAdmin", db: "amlight" } ]})'
-	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
+	docker run --pull always -d --name mongo mongo:7.0
+	docker exec -it mongo mongosh --eval 'db.getSiblingDB("amlight").createUser({user: "amlight", pwd: "amlight", roles: [ { role: "dbAdmin", db: "amlight" } ]})'
+	docker exec -it mongo mongosh --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
 
 2. Install dependencies and build Kytos-ng OXPO:
 
@@ -131,7 +133,7 @@ Deploying OXP-Ampath
 	sudo apt-get  install -y git vim jq
 	git clone https://github.com/atlanticwave-sdx/kytos-sdx
 	cd kytos-sdx
-	docker build -t kytos-sdx .
+	docker build --pull -t kytos-sdx .
 
 3. Create an instance for Kytos-ng OXPO based on a set of environment variables:
 
@@ -159,6 +161,7 @@ Deploying OXP-Ampath
 	docker build -t sdx-lc .
 	
 	cat >amlight-sdx-lc.env <<EOF
+	SDXLC_PORT=8080
 	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
 	OXP_CONNECTION_URL=http://192.168.56.100:8181/api/kytos/sdx/v1/l2vpn_ptp
 	DB_NAME=sdx_lc
@@ -173,7 +176,7 @@ Deploying OXP-Ampath
 	MQ_PASS=testsdx1
 	EOF
 	
-	docker run -d --name ampath-sdx-lc --link mongo --env-file ampath-sdx-lc.env -p 8080:8080 sdx-lc:latest
+	docker run -d --name ampath-sdx-lc --link mongo --env-file amlight-sdx-lc.env -p 8080:8080 sdx-lc:latest
 
 Deploying OXP-SAX
 ========================
@@ -182,9 +185,9 @@ Deploying OXP-SAX
 
 .. code-block :: RST
 
-	docker run -d --name mongo mongo:5.0
-	docker exec -it mongo mongo --eval 'db.getSiblingDB("sax").createUser({user: "sax", pwd: "sax", roles: [ { role: "dbAdmin", db: "sax" } ]})'
-	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
+	docker run --pull always -d --name mongo mongo:7.0
+	docker exec -it mongo mongosh --eval 'db.getSiblingDB("sax").createUser({user: "sax", pwd: "sax", roles: [ { role: "dbAdmin", db: "sax" } ]})'
+	docker exec -it mongo mongosh --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
 
 2. Install dependencies and build Kytos-ng OXPO:
 
@@ -193,7 +196,7 @@ Deploying OXP-SAX
 	sudo apt-get  install -y git vim jq
 	git clone https://github.com/atlanticwave-sdx/kytos-sdx
 	cd kytos-sdx
-	docker build -t kytos-sdx .
+	docker build --pull -t kytos-sdx .
 
 3. Create an instance for Kytos-ng OXPO based on a set of environment variables:
 
@@ -221,6 +224,7 @@ Deploying OXP-SAX
 	docker build -t sdx-lc .
 
 	cat >sax-sdx-lc.env <<EOF
+	SDXLC_PORT=8080
 	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
 	OXP_CONNECTION_URL=http://192.168.56.102:8181/api/kytos/sdx/v1/l2vpn_ptp
 	DB_NAME=sdx_lc
@@ -229,8 +233,6 @@ Deploying OXP-SAX
 	OXP_PULL_INTERVAL=180
 	SDXLC_DOMAIN=sax.net
 	SUB_QUEUE=connection
-	SUB_EXCHANGE=connection
-	SUB_TOPIC=sax.net
 	MQ_HOST=192.168.56.104
 	MQ_PORT=5672
 	MQ_USER=testsdx1
@@ -246,9 +248,9 @@ Deploying OXP-Tenet
 
 .. code-block :: RST
 
-	docker run -d --name mongo mongo:5.0
-	docker exec -it mongo mongo --eval 'db.getSiblingDB("tenet").createUser({user: "tenet", pwd: "tenet", roles: [ { role: "dbAdmin", db: "tenet" } ]})'
-	docker exec -it mongo mongo --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
+	docker run --pull always -d --name mongo mongo:7.0
+	docker exec -it mongo mongosh --eval 'db.getSiblingDB("tenet").createUser({user: "tenet", pwd: "tenet", roles: [ { role: "dbAdmin", db: "tenet" } ]})'
+	docker exec -it mongo mongosh --eval 'db.getSiblingDB("sdx_lc").createUser({user: "sdxlcmongo_user", pwd: "sdxlcmongo_pw", roles: [ { role: "dbAdmin", db: "sdx_lc" } ]})'
 
 2. Install dependencies and build Kytos-ng OXPO:
 
@@ -257,7 +259,7 @@ Deploying OXP-Tenet
 	sudo apt-get  install -y git vim jq
 	git clone https://github.com/atlanticwave-sdx/kytos-sdx
 	cd kytos-sdx
-	docker build -t kytos-sdx .
+	docker build --pull -t kytos-sdx .
 
 3. Create an instance for Kytos-ng OXPO based on a set of environment variables:
 
@@ -285,6 +287,7 @@ Deploying OXP-Tenet
 	docker build -t sdx-lc .
 
 	cat >tenet-sdx-lc.env <<EOF
+	SDXLC_PORT=8080
 	MONGODB_CONNSTRING=mongodb://sdxlcmongo_user:sdxlcmongo_pw@mongo:27017/sdx_lc
 	OXP_CONNECTION_URL=http://192.168.56.103:8181/api/kytos/sdx/v1/l2vpn_ptp
 	DB_NAME=sdx_lc
@@ -293,8 +296,6 @@ Deploying OXP-Tenet
 	OXP_PULL_INTERVAL=180
 	SDXLC_DOMAIN=tenet.ac.za
 	SUB_QUEUE=connection
-	SUB_EXCHANGE=connection
-	SUB_TOPIC=tenet.ac.za
 	MQ_HOST=192.168.56.104
 	MQ_PORT=5672
 	MQ_USER=testsdx1
@@ -329,27 +330,27 @@ Final config on SDX-Controller
 
 .. code-block :: RST
 
-	curl -s http://192.168.56.104:8080/SDX-Controller/1.0.0/topology | jq -r '.nodes[] | (.ports[] | .id)'
-	curl -s http://192.168.56.104:8080/SDX-Controller/1.0.0/topology | jq -r '.links[] | .id + " " + .ports[0].id + " " + .ports[1].id'
+	curl -s http://192.168.56.104:8080/SDX-Controller/topology | jq -r '.nodes[] | (.ports[] | .id)'
+	curl -s http://192.168.56.104:8080/SDX-Controller/topology | jq -r '.links[] | .id + " " + .ports[0] + " " + .ports[1]'
 
 - Create a connection:
 
 .. code-block :: RST
 
-	curl -s -X POST -H 'Content-type: application/json' http://0.0.0.0:8080/SDX-Controller/1.0.0/connection -d '{"name": "VLAN between AMPATH/300 and TENET/300", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300    "}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "300"}]}'
+	curl -s -X POST -H 'Content-type: application/json' http://0.0.0.0:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "VLAN between AMPATH/300 and TENET/300", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "300"}]}'
 
 - List the breakouts created on the OXPs:
 
 .. code-block :: RST
 
 	sdx-controller:~$ curl -s http://192.168.56.100:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[] | .id + " " + .name + " active=" + (.active|tostring)'
-	73eb822faf6745 AMPATH_vlan_100_100 active=true
+	73eb822faf6745 AMPATH_vlan_100_4095 active=true
 	
 	sdx-controller:~$ curl -s http://192.168.56.102:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[] | .id + " " + .name + " active=" + (.active|tostring)'
-	089d976599a44e SAX_vlan_100_100 active=true
+	089d976599a44e SAX_vlan_4095_4095 active=true
 	
 	sdx-controller:~$ curl -s http://192.168.56.103:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[] | .id + " " + .name + " active=" + (.active|tostring)'
-	0050f201917949 TENET_vlan_100_100 active=false
+	0050f201917949 TENET_vlan_4095_100 active=true
 
 Meican
 =======
