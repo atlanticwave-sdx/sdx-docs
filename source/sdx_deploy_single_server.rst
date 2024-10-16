@@ -15,6 +15,10 @@ a docker compose file, template env file, and some useful scripts.
 All build process will be based on **main** branches (note that we even
 ignore the submodules and force cloning from main branch).
 
+The topology being used on this setup is the following one:
+
+.. image:: ./media/sdx-single3oxps.png
+
 Pre-requirements
 ================
 
@@ -45,7 +49,7 @@ Deploying AW-SDX
 
 .. code-block :: RST
 
-	for repo in sdx-lc sdx-controller kytos-sdx; do git -C $folder pull || git clone https://github.com/atlanticwave-sdx/$repo; cd $repo/; docker build -t $repo .; cd ..; done
+	for repo in sdx-lc sdx-controller kytos-sdx; do git -C $repo pull || git clone https://github.com/atlanticwave-sdx/$repo; cd $repo/; docker build -t $repo .; cd ..; done
 
 
 4. Now we can finally bring the environment UP, by running:
@@ -110,14 +114,14 @@ Testing
 
 .. code-block :: RST
 
-	curl -s http://0.0.0.0:8080/SDX-Controller/1.0.0/topology | jq -r '.nodes[] | (.ports[] | .id)'
-	curl -s http://0.0.0.0:8080/SDX-Controller/1.0.0/topology | jq -r '.links[] | .id + " " + .ports[0].id + " " + .ports[1].id'
+	curl -s http://0.0.0.0:8080/SDX-Controller/topology | jq -r '.nodes[] | (.ports[] | .id)'
+	curl -s http://0.0.0.0:8080/SDX-Controller/topology | jq -r '.links[] | .id + " " + .ports[0] + " " + .ports[1]'
 
 - Try to create a connection creation request to SDX-Controller which should span requests to all other OXPs:
 
 .. code-block :: RST
 
-	curl -s -X POST -H 'Content-type: application/json' http://0.0.0.0:8080/SDX-Controller/1.0.0/connection -d '{"name": "VLAN between AMPATH/300 and TENET/300", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "300"}]}'
+	curl -s -X POST -H 'Content-type: application/json' http://0.0.0.0:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "VLAN between AMPATH/300 and TENET/300", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "300"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "300"}]}'
 
 - Check if the connection was created on each OXP:
 
