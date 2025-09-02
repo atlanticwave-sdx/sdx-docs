@@ -143,6 +143,7 @@ B) Let's check the L2VPN status and current path
 
 
 .. code-block :: RST
+
 	./scripts/show-sdx-controller.sh l2vpn
 	
 	ID=a52ec767-dd0e-44ed-9071-1e06a914ea9c
@@ -157,6 +158,7 @@ C) Let's now configure the hosts with proper VLAN and test connectivity:
 D) Let's simulate a UNI port Down, test connectivity again and check L2VPN status
 
 .. code-block :: RST
+
 	docker compose exec -it mininet ip link set down Ampath3-eth50
 	
 	./scripts/test-l2vpn.sh $ID
@@ -180,14 +182,16 @@ E) Let's simulate a UNI port UP, test connectivity again and check L2VPN status
 Let's check for any error or exception on the SDX-Controller logs:
 
 .. code-block :: RST
-docker compose logs -t sdx-controller | egrep -i "error|except"
+
+	docker compose logs -t sdx-controller | egrep -i "error|except"
 
 
 F) Let's remove the L2VPN
 
 .. code-block :: RST
-docker compose exec -it mininet curl -s -X DELETE http://sdx-controller:8080/SDX-Controller/l2vpn/1.0/$ID
-./scripts/show-sdx-controller.sh l2vpn
+
+	docker compose exec -it mininet curl -s -X DELETE http://sdx-controller:8080/SDX-Controller/l2vpn/1.0/$ID
+	./scripts/show-sdx-controller.sh l2vpn
 
 
 Use Case 3: Inter-domain port down and up
@@ -202,14 +206,15 @@ We will assume a topology and scenario similar to Use Case 2, however we will no
 A) Create the L2VPN, test connectivity and check the current path
 
 .. code-block :: RST
-docker compose exec -it mininet curl -s -X POST -H 'Content-type: application/json' http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "L2VPN-use-case3", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "301"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "301"}]}'
 
-./scripts/show-sdx-controller.sh l2vpn
-
-ID=524bb3c2-e651-404e-95b3-68d7e501b23c
-./scripts/show-sdx-controller.sh l2vpn $ID
-
-./scripts/test-l2vpn.sh $ID
+	docker compose exec -it mininet curl -s -X POST -H 'Content-type: application/json' http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "L2VPN-use-case3", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "301"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50", "vlan": "301"}]}'
+	
+	./scripts/show-sdx-controller.sh l2vpn
+	
+	ID=524bb3c2-e651-404e-95b3-68d7e501b23c
+	./scripts/show-sdx-controller.sh l2vpn $ID
+	
+	./scripts/test-l2vpn.sh $ID
 
 
 B) Let's simulate the first link down and check the connectivity and current path. For this test we will need two terminals: one we will leave the PING test running and the second we will continue to execute our commands:
@@ -217,56 +222,63 @@ B) Let's simulate the first link down and check the connectivity and current pat
 Terminal one:
 
 .. code-block :: RST
-./scripts/test-l2vpn.sh $ID ping-only
+
+	./scripts/test-l2vpn.sh $ID ping-only
 
 
 Terminal two:
 
 .. code-block :: RST
-docker compose exec -it mininet ip link set down Ampath1-eth40
 
-./scripts/show-sdx-controller.sh l2vpn $ID
+	docker compose exec -it mininet ip link set down Ampath1-eth40
+	
+	./scripts/show-sdx-controller.sh l2vpn $ID
 
 
 C) Let's simulate the second link down and check the connectivity and current path
 
 .. code-block :: RST
-docker compose exec -it mininet ip link set down Tenet01-eth41
 
-./scripts/show-sdx-controller.sh l2vpn $ID
+	docker compose exec -it mininet ip link set down Tenet01-eth41
+	
+	./scripts/show-sdx-controller.sh l2vpn $ID
 
 
 D) Let's simulate the third link down and check the L2VPN status
 
 .. code-block :: RST
-docker compose exec -it mininet ip link set down Sax02-eth41
 
-./scripts/show-sdx-controller.sh l2vpn $ID
+	docker compose exec -it mininet ip link set down Sax02-eth41
+	
+	./scripts/show-sdx-controller.sh l2vpn $ID
 
 
 E) Let's simulate the link up on the last port, test connectivity again and check L2VPN status
 
 .. code-block :: RST
-docker compose exec -it mininet ip link set up Sax02-eth41
 
-./scripts/show-sdx-controller.sh l2vpn $ID
+	docker compose exec -it mininet ip link set up Sax02-eth41
+	
+	./scripts/show-sdx-controller.sh l2vpn $ID
 
 
 F) Let's simulate the link up on the other ports, and check the L2VPN status
 
 .. code-block :: RST
-docker compose exec -it mininet ip link set up Ampath1-eth40
-docker compose exec -it mininet ip link set up Tenet01-eth41
 
-./scripts/show-sdx-controller.sh l2vpn $ID
-
-./scripts/show-sdx-controller.sh links
+	docker compose exec -it mininet ip link set up Ampath1-eth40
+	docker compose exec -it mininet ip link set up Tenet01-eth41
+	
+	./scripts/show-sdx-controller.sh l2vpn $ID
+	
+	./scripts/show-sdx-controller.sh links
 
 
 G) Let's remove the L2VPN
 
 .. code-block :: RST
-docker compose exec -it mininet curl -s -X DELETE http://sdx-controller:8080/SDX-Controller/l2vpn/1.0/$ID
+
+	docker compose exec -it mininet curl -s -X DELETE http://sdx-controller:8080/SDX-Controller/l2vpn/1.0/$ID
 
 
 Use Case 4: OXP failed to install L2VPN
@@ -279,6 +291,7 @@ We will create a L2VPN service provisioned between port 50 at Ampath3/OXP1 (host
 A) Edit the OXP3 Orchestrator to introduce a failure on purpose for L2VPN of interest (we will use the criteria of VLAN being 777 as a way to differentiate that L2VPN of interest):
 
 .. code-block :: RST
+
 	docker compose exec -it tenet bash
 	source /sdx-end-to-end-tests/env/tenet.env
 	cd /src/kytos-sdx/
@@ -314,18 +327,21 @@ B) Create the L2VPN that triggers the failure above
 C) Check the status of the L2VPN
 
 .. code-block :: RST
+
 	./scripts/show-sdx-controller.sh l2vpn
 
 
 D) Check the L2VPNs created into each OXP (breakdowns):
 
 .. code-block :: RST
+
 	for OXP in ampath sax tenet; do echo "=> $OXP"; docker compose exec -it mininet curl -s -X GET http://$OXP:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[]|.id + " " + .status + " " + .name'; done
 
 
 E) Remove the L2VPN
 
 .. code-block :: RST
+
 	ID=986fae5e-e346-4270-82d0-3eb40e280c91
 	docker compose exec -it mininet curl -s -X DELETE http://sdx-controller:8080/SDX-Controller/l2vpn/1.0/$ID
 
@@ -338,6 +354,7 @@ In this scenario we will restart the SDX-Controller and evaluate if all its serv
 A) Create a L2VPN (with bandwidth qos requirements), check status and test connectivity
 
 .. code-block :: RST
+
 	docker compose exec -it mininet curl -s -X POST -H 'Content-type: application/json' http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "L2VPN-use-case5-1", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "any"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet01:50", "vlan": "any"}], "qos_metrics": {"min_bw": {"value": 8, "strict": true}}}'
 	
 	./scripts/show-sdx-controller.sh l2vpn
@@ -349,6 +366,7 @@ A) Create a L2VPN (with bandwidth qos requirements), check status and test conne
 B) Force SDX-Controller to restart
 
 .. code-block :: RST
+
 	docker compose up -d sdx-controller --force-recreate
 	
 	docker compose logs sdx-controller -t -n 100
@@ -357,6 +375,7 @@ B) Force SDX-Controller to restart
 C) Check the topology, L2VPNs and test connectivity
 
 .. code-block :: RST
+
 	./scripts/show-sdx-controller.sh nodes
 	
 	./scripts/show-sdx-controller.sh links
@@ -369,6 +388,7 @@ C) Check the topology, L2VPNs and test connectivity
 D) Create another L2VPN (with bandwidth qos requirements)
 
 .. code-block :: RST
+
 	docker compose exec -it mininet curl -s -X POST -H 'Content-type: application/json' http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "L2VPN-use-case5-2", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "any"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet01:50", "vlan": "any"}], "qos_metrics": {"min_bw": {"value": 8, "strict": true}}}'
 	
 	./scripts/show-sdx-controller.sh l2vpn
@@ -377,6 +397,7 @@ D) Create another L2VPN (with bandwidth qos requirements)
 E) Create another L2VPN (exceeding available BW)
 
 .. code-block :: RST
+
 	docker compose exec -it mininet curl -s -X POST -H 'Content-type: application/json' http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "L2VPN-use-case5-3", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "any"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet01:50", "vlan": "any"}], "qos_metrics": {"min_bw": {"value": 8, "strict": true}}}'
 	
 	./scripts/show-sdx-controller.sh l2vpn
@@ -385,6 +406,7 @@ E) Create another L2VPN (exceeding available BW)
 F) Remove all existing L2VPNs
 
 .. code-block :: RST
+
 	for ID in $(docker compose exec -it mininet curl -s http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 | jq -r '.[].service_id'); do docker compose exec -it mininet curl -s -X DELETE http://sdx-controller:8080/SDX-Controller/l2vpn/1.0/$ID; done
 
 
@@ -396,12 +418,14 @@ In this scenario we will simulate a failure on SDX-LC in one of the OXPs and eva
 A) Disable SDX-LC at OXP3
 
 .. code-block :: RST
+
 	docker compose down tenet-lc
 
 
 B) Check the topology
 
 .. code-block :: RST
+
 	./scripts/show-sdx-controller.sh nodes
 	
 	./scripts/show-sdx-controller.sh links
@@ -410,12 +434,14 @@ B) Check the topology
 C) Create a L2VPN between Tenet03:50 and Ampath3:50 any VLANs
 
 .. code-block :: RST
+
 	docker compose exec -it mininet curl -s -X POST -H 'Content-type: application/json' http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 -d '{"name": "L2VPN-use-case6", "endpoints": [{"port_id": "urn:sdx:port:ampath.net:Ampath3:50", "vlan": "any"}, {"port_id": "urn:sdx:port:tenet.ac.za:Tenet01:50", "vlan": "any"}]}'
 
 
 D) Check the L2VPN status, OXPs breakdowns
 
 .. code-block :: RST
+
 	./scripts/show-sdx-controller.sh l2vpn
 	
 	for OXP in ampath sax tenet; do echo "=> $OXP"; docker compose exec -it mininet curl -s -X GET http://$OXP:8181/api/kytos/mef_eline/v2/evc/ | jq -r '.[]|.id + " " + .status + " " + .name'; done
@@ -424,6 +450,7 @@ D) Check the L2VPN status, OXPs breakdowns
 E) Start the SDX-LC at OXP3
 
 .. code-block :: RST
+
 	docker compose up tenet-lc -d
 	
 	docker compose logs tenet-lc -t -n 100
@@ -432,10 +459,12 @@ E) Start the SDX-LC at OXP3
 F) Check the L2VPN status
 
 .. code-block :: RST
+
 	./scripts/show-sdx-controller.sh l2vpn
 
 
 G) Remove the L2VPN
 
 .. code-block :: RST
+
 	for ID in $(docker compose exec -it mininet curl -s http://sdx-controller:8080/SDX-Controller/l2vpn/1.0 | jq -r '.[].service_id'); do docker compose exec -it mininet curl -s -X DELETE http://sdx-controller:8080/SDX-Controller/l2vpn/1.0/$ID; done
