@@ -3,7 +3,7 @@ Deploying AtlanticWave-SDX into single server with Docker
 ===============================================================
 
 Introduction
-============
+************
 
 This page list the steps necessary for building the AW-SDX whole environment
 into a single server, using Docker and Docker-compose.
@@ -20,7 +20,7 @@ The topology being used on this setup is the following one:
 .. image:: ./media/sdx-single3oxps.png
 
 Pre-requirements
-================
+****************
 
 In order to be able to run this step-by-step, you need to have Docker already
 installed on your server, as well as git. Installing docker and git is out of
@@ -28,7 +28,25 @@ the scope of this procedure. For docker, we recommend the official documentation
 https://docs.docker.com/engine/install/debian/
 
 Deploying AW-SDX
-================
+****************
+
+In order to deploy AW-SDX you have two options: 1) using the end-to-end tests environment in interactive mode; 2) using the standard deployment strategy. Using the end-to-end approach is much easier and fast, while the CI/CD method gives you more control on the setup.
+
+1. Deploy SDX using end-to-end repo
+===================================
+
+The procedure is quite straigh-forward and utilizes the published Docker images:
+
+.. code-block :: RST
+
+	git clone https://github.com/atlanticwave-sdx/sdx-end-to-end-tests
+	cd sdx-end-to-end-tests
+	docker compose up -d
+	./wait-mininet-ready.sh
+	./scripts/run-mininet-interactive.sh
+
+2. Deploy SDX using the CI/CD repo
+==================================
 
 1. First step is to clone the sdx-continuous-development:
 
@@ -108,7 +126,7 @@ Some of the parameters you might want to change:
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 
 Testing
-================
+*******
 
 - Check if the topology is correctly identified by SDX-Controller:
 

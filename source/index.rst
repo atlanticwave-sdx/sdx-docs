@@ -30,6 +30,7 @@ AtlanticWave-SDX project documentation
    :caption: Deploying AtlanticWave-SDX
 
    sdx_deployment.rst
+   network-use-cases.rst
 
 .. toctree::
    :maxdepth: 1
