@@ -34,6 +34,10 @@ Versioning
 | 2.0.0- | 01/     | Add the Port entities attribute and small fixes. |
 | minor1 | 28/2025 |                                                  |
 +--------+---------+--------------------------------------------------+
+| 2.0.0- | 12/     | Increase the size of Link’s name to 100 chars,   |
+| minor2 | 01/2025 | adjust VLAN range allowed values to [1,4094] and |
+|        |         | clarify it is an inclusive list.                 |
++--------+---------+--------------------------------------------------+
 
 Introduction
 ============
@@ -571,7 +575,7 @@ when the port is under maintenance (not available for use).
 The **services** attribute comprises the services supported and their
 attributes. **services** is a dictionary. When empty, it is assumed that
 the Port object supports Point-to-Point L2VPN services and ALL VLAN IDs
-are supported, from 1 to 4095. The keys of the dictionary are the
+are supported, from 1 to 4094. The keys of the dictionary are the
 services listed in the Topology object, for instance "l2vpn-ptp". And
 each key is another dictionary with values specific to the service, for
 instance, "vlan_range" for the range of VLAN IDs supported by the Port.
@@ -581,7 +585,7 @@ Restrictions
 ------------
 
 1.  **name, id, node, type, nni, status,** and **state** must be
-    provided when creating the node object.
+    provided when creating the port object.
 
 2.  **name, id, node, type, status,** and **state** must not be empty.
 
@@ -624,16 +628,18 @@ Restrictions
 
 13. **services** is a dictionary that, when empty, is treated as having
     the key "l2vpn-ptp" and subkey "vlan_range" with values from 1 to
-    4095. If the key "l2vpn-ptp" is provided and empty, the same
+    4094. If the key "l2vpn-ptp" is provided and empty, the same
     applies: the "vlan_range" should be treated as with values from 1 to
-    4095.
+    4094.
 
 14. The "vlan_range" key under "l2vpn-ptp" and "l2vpn-ptmp" is a
     comma-delimited list of tuples, where each tuple's element 0 is the
     first VLAN ID of the range and the tuple's element 1 is the last
-    VLAN ID of the range. Multiple tuples can be provided in any
-    sequence. The minimum VLAN ID supported is 1 and the maximum VLAN ID
-    supported is 4095.
+    VLAN ID of the range. The tuples represent an inclusive VLAN range,
+    for example [100, 200] means from VLAN 100 to VLAN 200 (including
+    VLANs 100 and 200, i.e. 100, 101, 102, …, 200). Multiple tuples can
+    be provided in any sequence. The minimum VLAN ID supported is 1 and
+    the maximum VLAN ID supported is 4094.
 
 15. From the Port Object, only the **entities**, **mtu**, **status**,
     **state, and services** attributes can be set as private attributes
@@ -797,9 +803,10 @@ of a network connection between two network devices:
 The **name** attribute is a string that represents the name of the link
 and it will be used to display the link name within the SDX web user
 interface (UI). It is operator defined. The only restriction created for
-the **name** attribute is its maximum length of 30 (thirty) characters
-and only the following special characters are allowed: "." (period), ","
-(comma), "-" (dash), "\_" (underscore)", and "/" (forward slash).
+the **name** attribute is its maximum length of 100 (one hundred)
+characters and only the following special characters are allowed: "."
+(period), "," (comma), "-" (dash), "\_" (underscore)", and "/" (forward
+slash).
 
 The **id** attribute is a Uniform Resource Name (URN) used to uniquely
 identify the link in the AW-SDX context. The OXP operator is responsible
@@ -910,7 +917,7 @@ Restrictions
 2.  **name, id, ports, bandwidth, status,** and **state** must not be
     empty.
 
-3.  **name** must be an ASCII string with length not to exceed 30
+3.  **name** must be an ASCII string with length not to exceed 100
     characters.
 
 4.  **name** supports only the following special characters: "."
