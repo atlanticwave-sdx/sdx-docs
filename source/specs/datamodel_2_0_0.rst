@@ -637,9 +637,12 @@ Restrictions
     first VLAN ID of the range and the tuple's element 1 is the last
     VLAN ID of the range. The tuples represent an inclusive VLAN range,
     for example [100, 200] means from VLAN 100 to VLAN 200 (including
-    VLANs 100 and 200, i.e. 100, 101, 102, …, 200). Multiple tuples can
-    be provided in any sequence. The minimum VLAN ID supported is 1 and
-    the maximum VLAN ID supported is 4094.
+    VLANs 100 and 200, i.e. 100, 101, 102, …, 200). VLAN range can be
+    defined with just one VLAN when the first and last VLAN ID of the
+    range are equal, for instance [100, 100] (which means only VLAN ID
+    100 is available in this range). Multiple tuples can be provided in
+    any sequence. The minimum VLAN ID supported is 1 and the maximum
+    VLAN ID supported is 4094.
 
 15. From the Port Object, only the **entities**, **mtu**, **status**,
     **state, and services** attributes can be set as private attributes
