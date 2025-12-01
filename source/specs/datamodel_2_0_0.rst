@@ -211,7 +211,7 @@ topology and counters: **version** and **timestamp**:
    Below are some examples of changes that modify the topology and will
    increase the version number:
 
-   -  A new node is added or removed by the OXP operator..
+   -  A new node is added or removed by the OXP operator.
 
    -  A new link is added or removed.
 
