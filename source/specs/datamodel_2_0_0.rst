@@ -31,6 +31,13 @@ Versioning
 | 2.0.0  | 04/     | Added support for ISO3166. Link Type attribute   |
 |        | 01/2024 | was deprecated.                                  |
 +--------+---------+--------------------------------------------------+
+| 2.0.0- | 01/     | Add the Port entities attribute and small fixes. |
+| minor1 | 28/2025 |                                                  |
++--------+---------+--------------------------------------------------+
+| 2.0.0- | 12/     | Increase the size of Link’s name to 100 chars,   |
+| minor2 | 01/2025 | adjust VLAN range allowed values to [1,4094] and |
+|        |         | clarify it is an inclusive list.                 |
++--------+---------+--------------------------------------------------+
 
 Introduction
 ============
@@ -142,7 +149,7 @@ management. Newer versions will be created to add service-specific
 properties that will leverage the AW-SDX 2.0 Topology Data Model.
 
 The AW-SDX 2.0 Topology Data Model specification is compatible with the
-GRENML model [https://code.canarie.ca/gren_map] to simplify future
+GRENML model [https://github.com/grenmap] to simplify future
 adoption. AW-SDX 2.0 extends the GRENML with properties to address its
 needs. Like the GRENML model, this specification is based on JSON, which
 stands for JavaScript Object Notation. JSON was chosen because of its
@@ -204,7 +211,7 @@ topology and counters: **version** and **timestamp**:
    Below are some examples of changes that modify the topology and will
    increase the version number:
 
-   -  A new node is added or removed by the OXP operator..
+   -  A new node is added or removed by the OXP operator.
 
    -  A new link is added or removed.
 
@@ -417,11 +424,10 @@ Restrictions
 
 7.  **ports** must be a non-empty list of Port Objects.
 
-8.  The Node Object has no attributes that can be set to private since
-    all attributes are essential for the SDX operation. However, the
-    Location Object attributes can be manipulated to not provide the
-    exact location. More details can be found in the Location Object
-    section.
+8.  The Node Object has no attributes that can be set to private.
+    However, the Location Object attributes can be manipulated to not
+    provide the exact location. More details can be found in the
+    Location Object section.
 
 9.  **status** is an enum and only supports one of the following values:
     "up", "down", or "error"
@@ -462,6 +468,8 @@ of a network device's port (or interface):
 
 -  **id**
 
+-  **entities**
+
 -  **node**
 
 -  **type**
@@ -500,6 +508,15 @@ are:
 
 -  *"urn:sdx:port:rnp.br:juniper_router01:amlight_100G"
    "urn:sdx:port:zaoxi.ac.za:s1:port_to_brazil"*
+
+The OXPs use the **entities** attribute to describe the
+facilities/institutions (universities, research facilities, research
+and education network, and instruments) connected to the port. This
+attribute is for documentation-only purposes, and it must be kept as
+is by both SDX-LC and SDX Controller. MEICAN and API clients will use
+the **entities** attribute to link an institution to a Port ID when
+requesting SDX services. The OXPs are free to label the entities as
+acronyms, full names, or other approaches.
 
 The **node** attribute is a Uniform Resource Name (URN) used to uniquely
 identify which node the port belongs to in the AW-SDX context.
@@ -558,7 +575,7 @@ when the port is under maintenance (not available for use).
 The **services** attribute comprises the services supported and their
 attributes. **services** is a dictionary. When empty, it is assumed that
 the Port object supports Point-to-Point L2VPN services and ALL VLAN IDs
-are supported, from 1 to 4095. The keys of the dictionary are the
+are supported, from 1 to 4094. The keys of the dictionary are the
 services listed in the Topology object, for instance "l2vpn-ptp". And
 each key is another dictionary with values specific to the service, for
 instance, "vlan_range" for the range of VLAN IDs supported by the Port.
@@ -567,8 +584,8 @@ instance, "vlan_range" for the range of VLAN IDs supported by the Port.
 Restrictions
 ------------
 
-1.  **name, id, node, type, status,** and **state** must be provided
-    when creating the node object.
+1.  **name, id, node, type, nni, status,** and **state** must be
+    provided when creating the port object.
 
 2.  **name, id, node, type, status,** and **state** must not be empty.
 
@@ -585,41 +602,51 @@ Restrictions
     *<node_name>* is the node's name, and *<port_name>* is the port's
     name.
 
-6.  When **mtu** is not set, the port's MTU is considered to be 1,500
+6. **entities** is an unrestricted list of strings, where each string
+   could be the name, acronym, autonomous system number, or any other
+   descriptive approach.
+
+
+7.  When **mtu** is not set, the port's MTU is considered to be 1,500
     bytes.
 
-7.  **mtu** is an integer with minimum value of 1,500 and maximum of
+8.  **mtu** is an integer with minimum value of 1,500 and maximum of
     10,000.
 
-8.  When **nni** is not set (empty string), the port is considered an
+9.  When **nni** is not set (empty string), the port is considered an
     UNI.
 
-9.  **status** is an enum and only supports one of the following values:
+10. **status** is an enum and only supports one of the following values:
     "up", "down", or "error"
 
-10. **state** is an enum and only supports one of the following values:
+11. **state** is an enum and only supports one of the following values:
     "enabled", "disabled", or "maintenance"
 
-11. **services** is a dictionary with the following supported keys:
+12. **services** is a dictionary with the following supported keys:
     "l2vpn-ptp" and "l2vpn-ptmp". Each key is another dictionary with
     the subkey "vlan_range".
 
-12. **services** is a dictionary that, when empty, is treated as having
+13. **services** is a dictionary that, when empty, is treated as having
     the key "l2vpn-ptp" and subkey "vlan_range" with values from 1 to
-    4095. If the key "l2vpn-ptp" is provided and empty, the same
+    4094. If the key "l2vpn-ptp" is provided and empty, the same
     applies: the "vlan_range" should be treated as with values from 1 to
-    4095.
+    4094.
 
-13. The "vlan_range" key under "l2vpn-ptp" and "l2vpn-ptmp" is a
+14. The "vlan_range" key under "l2vpn-ptp" and "l2vpn-ptmp" is a
     comma-delimited list of tuples, where each tuple's element 0 is the
     first VLAN ID of the range and the tuple's element 1 is the last
-    VLAN ID of the range. Multiple tuples can be provided in any
-    sequence. The minimum VLAN ID supported is 1 and the maximum VLAN ID
-    supported is 4095.
+    VLAN ID of the range. The tuples represent an inclusive VLAN range,
+    for example [100, 200] means from VLAN 100 to VLAN 200 (including
+    VLANs 100 and 200, i.e. 100, 101, 102, …, 200). VLAN range can be
+    defined with just one VLAN when the first and last VLAN ID of the
+    range are equal, for instance [100, 100] (which means only VLAN ID
+    100 is available in this range). Multiple tuples can be provided in
+    any sequence. The minimum VLAN ID supported is 1 and the maximum
+    VLAN ID supported is 4094.
 
-14. From the Port Object, **mtu**, **status**, **state, and services**
-    can be set as private attributes although it is highly recommended
-    to keep them public.
+15. From the Port Object, only the **entities**, **mtu**, **status**,
+    **state, and services** attributes can be set as private attributes
+    although it is highly recommended to keep them public.
 
 Examples
 --------
@@ -630,6 +657,7 @@ Examples
        "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
        "name": "s3-eth2",
        "node": "urn:sdx:node:amlight.net:s3",
+       "entities": ["FIU", "Florida International University", "FIU-MMC", "AS3861", "Wall of Wind"],
        "type": "10GE",
        "mtu": 10000,
        "status": "up",
@@ -649,6 +677,7 @@ Examples
        "id": "urn:sdx:port:amlight.net:s3:s3-eth4",
        "name": "s3-eth4",
        "node": "urn:sdx:node:amlight.net:s3",
+       "entities": ["Sprace", "UNESP", "LHC Tier 2 Brazil"],
        "type": "100GE",
        "mtu": 9000,
        "status": "up",
@@ -707,7 +736,7 @@ Restrictions
    empty.
 
 3. **latitude** and **longitude** must be represented as a string with a
-   floating point number, in the range of -90.0 to 90.0.
+   floating point number, in the range of -180 to 180.
 
 4. **address** must be an ASCII string with length no longer than 255
    characters.
@@ -777,9 +806,10 @@ of a network connection between two network devices:
 The **name** attribute is a string that represents the name of the link
 and it will be used to display the link name within the SDX web user
 interface (UI). It is operator defined. The only restriction created for
-the **name** attribute is its maximum length of 30 (thirty) characters
-and only the following special characters are allowed: "." (period), ","
-(comma), "-" (dash), "\_" (underscore)", and "/" (forward slash).
+the **name** attribute is its maximum length of 100 (one hundred)
+characters and only the following special characters are allowed: "."
+(period), "," (comma), "-" (dash), "\_" (underscore)", and "/" (forward
+slash).
 
 The **id** attribute is a Uniform Resource Name (URN) used to uniquely
 identify the link in the AW-SDX context. The OXP operator is responsible
@@ -890,7 +920,7 @@ Restrictions
 2.  **name, id, ports, bandwidth, status,** and **state** must not be
     empty.
 
-3.  **name** must be an ASCII string with length not to exceed 30
+3.  **name** must be an ASCII string with length not to exceed 100
     characters.
 
 4.  **name** supports only the following special characters: "."
@@ -927,7 +957,7 @@ Restrictions
 13. **state** is an enum and only supports one of the following values:
     "enabled", "disabled", or "maintenance".
 
-14. From the Link Object, **residual_bandwidth**, **latency, and**
+14. From the Link Object, only **residual_bandwidth**, **latency, and**
     **packet_loss** can be set as private attributes although it is
     highly recommended to keep them public.
 
