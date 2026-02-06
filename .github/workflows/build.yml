@@ -36,7 +36,8 @@ jobs:
 
       - name: Build HTML documentation with Sphinx
         run: |
-          sphinx-build -W -b html -d ./build/doctrees ./source ./build/html
+          rm -rf build
+          python -m sphinx -E -a -W -b html -d ./build/doctrees ./source ./build/html
         
       # See https://github.com/actions/upload-artifact
       - name: Upload build artifacts
