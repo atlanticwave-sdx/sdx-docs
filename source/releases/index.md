@@ -7,4 +7,5 @@ Release notes are sourced from the canonical `sdx-release` repository.
 :maxdepth: 1
 
 v2026.1.0
+v2.0.0
 v2022.1.0
