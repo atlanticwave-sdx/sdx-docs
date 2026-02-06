@@ -6,12 +6,6 @@ on:
   push:
     branches:
       - "main"
-  pull_request:
-
-on:
-  push:
-    branches:
-      - "main"
       - "61-add-sdx-release-as-submodule-for-canonical-release-notes"
   pull_request:
 
