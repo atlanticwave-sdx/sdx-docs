@@ -24,10 +24,7 @@ exclude_patterns = [
     "_build",
     "Thumbs.db",
     ".DS_Store",
-    "_external",
-    "_external/**",
-    "**/_external",
-    "**/_external/**",
+    "_external/sdx-release/docs/**",
 ]
 
 language = 'en'
