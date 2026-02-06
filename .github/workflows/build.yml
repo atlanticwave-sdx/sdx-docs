@@ -5,7 +5,6 @@ name: Build docs
 on:
   push:
     branches:
-      - "main"
       - "61-add-sdx-release-as-submodule-for-canonical-release-notes"
   pull_request:
 
