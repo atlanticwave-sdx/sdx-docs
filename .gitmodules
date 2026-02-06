@@ -1,0 +1,3 @@
+[submodule "source/_external/sdx-release"]
+	path = source/_external/sdx-release
+	url = https://github.com/atlanticwave-sdx/sdx-release.git

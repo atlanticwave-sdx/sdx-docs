@@ -11,6 +11,11 @@ build:
   tools:
     python: "3.12"
 
+# Ensure ReadTheDocs clones submodules
+submodules:
+  include: all
+  recursive: true
+
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
   configuration: source/conf.py
