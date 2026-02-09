@@ -18,13 +18,24 @@ extensions = [
     'sphinx.ext.todo'
 ]
 
+# 1. Enable metadata parsing
+myst_enable_extensions = ["frontmatter"]
+
+# 2. Tell MyST to use the 'title' from your YAML as the H1 header.
+# This fixes the "Headings start at H2" error because it creates the H1 for you.
+myst_title_to_header = True
+
+# 3. Suppress the header warning just in case
+suppress_warnings = ["myst.header"]
+
+# -----------------------------------------
+
 templates_path = ['_templates']
 
 exclude_patterns = [
     "_build",
     "Thumbs.db",
     ".DS_Store",
-    "_external/**",
 ]
 
 language = 'en'
