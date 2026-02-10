@@ -37,6 +37,8 @@ exclude_patterns = [
     "_build",
     "Thumbs.db",
     ".DS_Store",
+    # Ignore the source code/services inside the submodule
+    "_external/sdx-release/services/**", 
 ]
 
 language = 'en'
