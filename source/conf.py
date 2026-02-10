@@ -18,11 +18,12 @@ extensions = [
     'sphinx.ext.todo'
 ]
 
-# 1. Enable metadata parsing
-myst_enable_extensions = ["frontmatter"]
+# 1. FIX: Removed "frontmatter" from here because it's built-in.
+# You can leave this as an empty list.
+myst_enable_extensions = []
 
-# 2. Tell MyST to use the 'title' from your YAML as the H1 header.
-# This fixes the "Headings start at H2" error because it creates the H1 for you.
+# 2. FIX: This promotes your 'title: 2026.1.0' from the YAML to be the H1.
+# This solves the "H2 before H1" error and ensures you only have ONE title.
 myst_title_to_header = True
 
 # 3. Suppress the header warning just in case
