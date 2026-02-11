@@ -24,7 +24,7 @@ myst_enable_extensions = []
 
 # 2. FIX: This promotes your 'title: 2026.1.0' from the YAML to be the H1.
 # This solves the "H2 before H1" error and ensures you only have ONE title.
-myst_title_to_header = True
+myst_title_to_header = False
 
 # 3. Suppress the header warning just in case
 suppress_warnings = ["myst.header"]
