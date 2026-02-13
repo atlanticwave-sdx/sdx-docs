@@ -5,7 +5,6 @@ name: Build docs
 on:
   push:
     branches:
-      - "main"
       - "61-add-sdx-release-as-submodule-for-canonical-release-notes"
   pull_request:
 
@@ -36,7 +35,8 @@ jobs:
 
       - name: Build HTML documentation with Sphinx
         run: |
-          sphinx-build -W -b html -d ./build/doctrees ./source ./build/html
+          rm -rf build
+          python -m sphinx -E -a -W -b html -d ./build/doctrees ./source ./build/html
         
       # See https://github.com/actions/upload-artifact
       - name: Upload build artifacts
